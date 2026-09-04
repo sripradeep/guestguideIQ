@@ -1,0 +1,31 @@
+{
+  "name": "guestguideiq",
+  "version": "1.0.0",
+  "description": "GuestGuideIQ marketing site — hyperlocal travel experiences for short-term rental guests.",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sripradeep/guestguideIQ.git"
+  },
+  "keywords": [
+    "guestguideiq",
+    "hyperlocal-travel",
+    "short-term-rental"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sripradeep/guestguideIQ/issues"
+  },
+  "homepage": "https://github.com/sripradeep/guestguideIQ#readme",
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.1"
+  }
+}

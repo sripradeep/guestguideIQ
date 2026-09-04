@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Thanks" description="Your message reached us — thanks for getting in touch with GuestGuideIQ.">
+  <section class="wrap section thank-you">
+    <span class="eyebrow">Message sent</span>
+    <h1>Got it — thank you.</h1>
+    <p class="lead">
+      We read every submission ourselves. If it calls for a reply, we’ll be in touch at the email
+      you gave us.
+    </p>
+    <a class="btn btn-secondary" href="/">Back to home</a>
+  </section>
+</BaseLayout>
+
+<style>
+  .thank-you {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .thank-you .lead {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .thank-you .btn {
+    margin-top: 12px;
+  }
+</style>

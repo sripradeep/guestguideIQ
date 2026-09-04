@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WaitlistForm from '../components/WaitlistForm.astro';
+import ExperienceCard from '../components/ExperienceCard.astro';
+import { experiences } from '../data/experiences';
+
+const preview = experiences.slice(0, 3);
+
+const valueProps = [
+  {
+    title: 'Discover like a local',
+    body: 'Skip the ten-best-things lists. Get the spots the neighborhood actually uses.',
+  },
+  {
+    title: 'Curated, not crowdsourced',
+    body: 'Every recommendation is vetted for what makes it genuinely hyperlocal — not scraped from a review site.',
+  },
+  {
+    title: 'Built into your stay',
+    body: 'It lives right inside your host’s digital property guide. No extra app, no extra login.',
+  },
+];
+---
+
+<BaseLayout title="GuestGuideIQ">
+  <section class="hero wrap section">
+    <span class="eyebrow">Hyperlocal travel, for every stay</span>
+    <h1>Skip the tourist trail.<br />Discover the good stuff.</h1>
+    <p class="lead hero-sub">
+      GuestGuideIQ turns any short-term rental stay into a hyperlocal experience — real hidden
+      gems, curated by neighborhood, delivered right inside your host’s digital guide.
+    </p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#waitlist">Join the Waitlist</a>
+      <a class="btn btn-secondary" href="/experiences/">See Sample Experiences</a>
+    </div>
+  </section>
+
+  <section class="wrap section-tight value-props">
+    {valueProps.map((vp) => (
+      <div class="value-prop">
+        <h3>{vp.title}</h3>
+        <p class="muted">{vp.body}</p>
+      </div>
+    ))}
+  </section>
+
+  <section class="wrap section">
+    <span class="eyebrow">A preview</span>
+    <h2>What a hyperlocal recommendation looks like</h2>
+    <p class="lead">
+      A few illustrative examples of the kind of hidden gem GuestGuideIQ surfaces — real in
+      spirit, a preview of what’s coming.
+    </p>
+    <div class="experience-grid">
+      {preview.map((exp) => <ExperienceCard experience={exp} />)}
+    </div>
+    <a class="btn btn-secondary see-all" href="/experiences/">See all sample experiences</a>
+  </section>
+
+  <section class="wrap section operator-band">
+    <div class="operator-card card">
+      <div class="operator-copy">
+        <span class="eyebrow">For STR operators</span>
+        <h2>Build a guest-ready guide in minutes.</h2>
+        <p class="lead">
+          GuestGuideIQ gives short-term rental hosts and property managers a fast way to create a
+          beautiful digital property guide — packed with hyperlocal knowledge your guests won’t
+          find anywhere else, without you writing a single recommendation yourself.
+        </p>
+        <a class="btn btn-primary" href="/partners/">See partner details</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section-tight" id="waitlist">
+    <div class="card waitlist-card">
+      <WaitlistForm id="waitlist-home" />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    max-width: 760px;
+  }
+
+  .hero-sub {
+    margin-top: 8px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 28px;
+  }
+
+  .value-props {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    border-top: 1px solid var(--line-soft);
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  @media (max-width: 760px) {
+    .value-props {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+
+  .value-prop h3 {
+    margin-bottom: 6px;
+  }
+
+  .experience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin: 28px 0 24px;
+  }
+
+  .see-all {
+    margin-top: 4px;
+  }
+
+  .operator-card {
+    padding: clamp(32px, 5vw, 48px);
+  }
+
+  .operator-copy {
+    max-width: 60ch;
+  }
+
+  .waitlist-card {
+    padding: clamp(32px, 5vw, 48px);
+    max-width: 640px;
+    margin: 0 auto;
+  }
+</style>

@@ -1,0 +1,124 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PartnerForm from '../components/PartnerForm.astro';
+---
+
+<BaseLayout
+  title="Partners"
+  description="GuestGuideIQ for short-term rental operators and local experience providers — subscriptions, lead generation, and destination partnerships."
+>
+  <section class="wrap section">
+    <span class="eyebrow">Partner with GuestGuideIQ</span>
+    <h1>Two ways to work with us.</h1>
+    <p class="lead">
+      GuestGuideIQ works for two very different partners in two very different ways — a
+      subscription for the people hosting the stay, and paid visibility for the people who make
+      it memorable.
+    </p>
+  </section>
+
+  <section class="wrap section-tight pitch-grid">
+    <div class="card pitch">
+      <span class="eyebrow">Subscription</span>
+      <h2>For STR operators</h2>
+      <p class="lead">
+        Build a guest-ready property guide in minutes — not weeks — and fill it with local
+        knowledge you don’t have to write yourself.
+      </p>
+      <ul>
+        <li><strong>Speed.</strong> Go from blank page to a polished digital guide fast — the whole point is not having to author local recommendations yourself.</li>
+        <li><strong>Depth.</strong> Hidden gems and neighborhood knowledge, curated for your property’s exact location, not generic city-wide lists.</li>
+        <li><strong>Guest satisfaction.</strong> A guide guests actually read and use tends to mean fewer repetitive questions and better reviews.</li>
+        <li><strong>Low lift.</strong> No integration project — set up your guide, publish, done.</li>
+      </ul>
+    </div>
+
+    <div class="card pitch">
+      <span class="eyebrow">Advertising &amp; leads</span>
+      <h2>For experience providers</h2>
+      <p class="lead">
+        Get recommended inside guest guides at the exact moment a traveler is deciding what to
+        do nearby — that’s a lead, not a listing.
+      </p>
+      <ul>
+        <li><strong>Paid placement.</strong> Show up inside the property guide for stays near you — not buried in generic search results.</li>
+        <li><strong>Right-moment targeting.</strong> Guests see you while they’re actively planning their day, not scrolling a feed.</li>
+        <li><strong>No content donation required.</strong> This is an advertising relationship — you pay for visibility and leads, full stop.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="wrap section-tight dmo-note">
+    <p class="muted">
+      <strong>Destinations &amp; DMOs</strong> — if you’re a tourism board or destination
+      marketing organization curious about a partnership at the destination level, use the form
+      below and select “Destination / DMO.” We’d like to hear what that would look like for you.
+    </p>
+  </section>
+
+  <section class="wrap section-tight" id="apply">
+    <div class="card form-card">
+      <h2>Tell us about you</h2>
+      <p class="muted">One form, routed to the right conversation.</p>
+      <PartnerForm id="partner-form-page" />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .pitch-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 820px) {
+    .pitch-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .pitch {
+    padding: clamp(26px, 4vw, 34px);
+  }
+
+  .pitch h2 {
+    margin-top: 4px;
+  }
+
+  .pitch ul {
+    margin: 18px 0 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .pitch li {
+    color: var(--ink-muted);
+    font-size: 0.95rem;
+  }
+
+  .pitch li strong {
+    color: var(--ink);
+  }
+
+  .dmo-note {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .dmo-note p {
+    max-width: 68ch;
+  }
+
+  .form-card {
+    padding: clamp(28px, 5vw, 44px);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .form-card h2 {
+    margin-bottom: 4px;
+  }
+</style>

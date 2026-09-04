@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ExperienceCard from '../components/ExperienceCard.astro';
+import WaitlistForm from '../components/WaitlistForm.astro';
+import { experiences } from '../data/experiences';
+---
+
+<BaseLayout
+  title="Sample Experiences"
+  description="A preview of the kind of hyperlocal, hidden-gem experiences GuestGuideIQ surfaces inside a property guide."
+>
+  <section class="wrap section">
+    <span class="eyebrow">A concept showcase</span>
+    <h1>What locals know that guidebooks don’t.</h1>
+    <p class="lead">
+      These are illustrative examples — a preview of the kind of hyperlocal recommendation
+      GuestGuideIQ surfaces, not live or bookable inventory yet.
+    </p>
+  </section>
+
+  <section class="wrap section-tight">
+    <div class="experience-grid">
+      {experiences.map((exp) => <ExperienceCard experience={exp} showWhy />)}
+    </div>
+  </section>
+
+  <section class="wrap section-tight" id="waitlist">
+    <div class="card waitlist-card">
+      <WaitlistForm id="waitlist-experiences" />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .experience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+  }
+
+  .waitlist-card {
+    padding: clamp(32px, 5vw, 48px);
+    max-width: 640px;
+    margin: 0 auto;
+  }
+</style>

@@ -1,0 +1,166 @@
+---
+const nav = [
+  { href: '/how-it-works/', label: 'How It Works' },
+  { href: '/experiences/', label: 'Sample Experiences' },
+  { href: '/partners/', label: 'Partners' },
+  { href: '/about/', label: 'About' },
+];
+---
+
+<header class="site-header">
+  <div class="wrap site-header-inner">
+    <a class="logo" href="/">
+      <span class="logo-mark" aria-hidden="true">◎</span>
+      GuestGuideIQ
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />
+      <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle menu">
+        <span></span>
+      </label>
+      <ul>
+        {nav.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+        <li class="nav-cta"><a class="btn btn-primary btn-small" href="/#waitlist">Join the Waitlist</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--line);
+    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+  }
+
+  .site-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .logo {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--ink);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo-mark {
+    color: var(--accent);
+    font-size: 1rem;
+  }
+
+  .site-nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .site-nav a {
+    text-decoration: none;
+    color: var(--ink-muted);
+    font-size: 0.95rem;
+  }
+
+  .site-nav a:hover {
+    color: var(--ink);
+  }
+
+  .btn-small {
+    padding: 9px 18px;
+    font-size: 0.85rem;
+  }
+
+  .nav-toggle,
+  .nav-toggle-label {
+    display: none;
+  }
+
+  @media (max-width: 760px) {
+    .nav-toggle-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+    }
+
+    .nav-toggle-label span,
+    .nav-toggle-label span::before,
+    .nav-toggle-label span::after {
+      content: '';
+      display: block;
+      width: 16px;
+      height: 2px;
+      background: var(--ink);
+      position: relative;
+    }
+
+    .nav-toggle-label span::before {
+      position: absolute;
+      top: -5px;
+    }
+
+    .nav-toggle-label span::after {
+      position: absolute;
+      top: 5px;
+    }
+
+    .site-nav {
+      position: relative;
+    }
+
+    .site-nav ul {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 12px);
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 12px;
+      min-width: 200px;
+      display: none;
+    }
+
+    .site-nav ul li {
+      width: 100%;
+    }
+
+    .site-nav ul a {
+      display: block;
+      padding: 8px 10px;
+      border-radius: 6px;
+    }
+
+    .nav-cta {
+      margin-top: 6px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .nav-toggle:checked ~ ul {
+      display: flex;
+    }
+  }
+</style>

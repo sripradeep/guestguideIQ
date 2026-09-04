@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WaitlistForm from '../components/WaitlistForm.astro';
+
+const steps = [
+  {
+    title: 'A host builds a guide',
+    body: 'An STR operator sets up their digital property guide on GuestGuideIQ in minutes — property details, house rules, and check-in info, all in one place guests actually open.',
+  },
+  {
+    title: 'We fill it with hyperlocal knowledge',
+    body: 'GuestGuideIQ’s curated hidden gems and neighborhood knowledge populate the guide automatically, tailored to that property’s exact location — no research required from the host.',
+  },
+  {
+    title: 'Guests explore like a local',
+    body: 'Guests get a link to the guide before or during their stay, and find real, specific recommendations instead of the same ten tourist spots every site names.',
+  },
+  {
+    title: 'Experience providers get discovered',
+    body: 'Local guides, tours, and businesses reach guests at exactly the moment they’re deciding what to do nearby — not buried in a search results page.',
+  },
+];
+---
+
+<BaseLayout
+  title="How It Works"
+  description="How GuestGuideIQ turns a short-term rental property guide into a source of real, hyperlocal recommendations."
+>
+  <section class="wrap section">
+    <span class="eyebrow">How it will work</span>
+    <h1>From property guide to hidden gem, in a few clicks.</h1>
+    <p class="lead">
+      GuestGuideIQ isn’t live yet — here’s the flow we’re building, from the host’s first setup
+      to the guest walking into a place no listicle would have found.
+    </p>
+  </section>
+
+  <section class="wrap section-tight steps">
+    <ol>
+      {steps.map((step, i) => (
+        <li class="step">
+          <span class="step-number mono">{String(i + 1).padStart(2, '0')}</span>
+          <div>
+            <h3>{step.title}</h3>
+            <p class="muted">{step.body}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="wrap section-tight" id="waitlist">
+    <div class="card waitlist-card">
+      <WaitlistForm id="waitlist-how" />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .steps ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 68ch;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 20px;
+  }
+
+  .step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+  }
+
+  .step h3 {
+    margin-bottom: 4px;
+  }
+
+  .waitlist-card {
+    padding: clamp(32px, 5vw, 48px);
+    max-width: 640px;
+    margin: 0 auto;
+  }
+</style>

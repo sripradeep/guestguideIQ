@@ -1,0 +1,80 @@
+---
+import type { Experience } from '../data/experiences';
+
+interface Props {
+  experience: Experience;
+  showWhy?: boolean;
+}
+
+const { experience, showWhy = false } = Astro.props;
+---
+
+<article class="card experience-card">
+  <span class="tag mono">{experience.destinationType}</span>
+  <h3>{experience.title}</h3>
+  <p class="location muted mono">{experience.location}</p>
+  <p class="blurb">{experience.blurb}</p>
+  {showWhy && (
+    <div class="why">
+      <span class="why-label mono">Why it’s hyperlocal</span>
+      <p>{experience.whyHyperlocal}</p>
+    </div>
+  )}
+</article>
+
+<style>
+  .experience-card {
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .tag {
+    display: inline-block;
+    width: fit-content;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--teal-ink);
+    background: var(--teal);
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-bottom: 14px;
+  }
+
+  .experience-card h3 {
+    margin-bottom: 4px;
+  }
+
+  .location {
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+  }
+
+  .blurb {
+    font-size: 0.95rem;
+    color: var(--ink-muted);
+    flex: 1;
+  }
+
+  .why {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--line);
+  }
+
+  .why-label {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .why p {
+    font-size: 0.9rem;
+    margin: 0;
+  }
+</style>

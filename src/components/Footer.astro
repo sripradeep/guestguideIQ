@@ -1,0 +1,112 @@
+---
+import { SITE } from '../site.config';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <span class="logo">
+        <span class="logo-mark" aria-hidden="true">◎</span>
+        GuestGuideIQ
+      </span>
+      <p class="muted footer-tagline">Hyperlocal travel, built into every stay.</p>
+    </div>
+
+    <nav class="footer-nav" aria-label="Footer">
+      <div class="footer-col">
+        <span class="footer-heading">Site</span>
+        <a href="/how-it-works/">How It Works</a>
+        <a href="/experiences/">Sample Experiences</a>
+        <a href="/partners/">Partners</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-heading">Get in touch</span>
+        <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>
+        <a href="/#waitlist">Join the waitlist</a>
+      </div>
+    </nav>
+  </div>
+  <div class="wrap footer-bottom">
+    <span class="mono">© {year} GuestGuideIQ. All rights reserved.</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--line);
+    background: var(--surface);
+    margin-top: clamp(48px, 8vw, 96px);
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+    padding-top: clamp(40px, 6vw, 64px);
+    padding-bottom: 32px;
+  }
+
+  .footer-brand .logo {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--ink);
+  }
+
+  .logo-mark {
+    color: var(--accent);
+  }
+
+  .footer-tagline {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    max-width: 32ch;
+  }
+
+  .footer-nav {
+    display: flex;
+    gap: 56px;
+    flex-wrap: wrap;
+  }
+
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-heading {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 2px;
+  }
+
+  .footer-col a {
+    color: var(--ink-muted);
+    text-decoration: none;
+    font-size: 0.92rem;
+  }
+
+  .footer-col a:hover {
+    color: var(--ink);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid var(--line-soft);
+    padding-top: 16px;
+    padding-bottom: 24px;
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+  }
+</style>

@@ -1,0 +1,313 @@
+/* ==========================================================================
+   GuestGuideIQ — design tokens (v1 placeholder brand, see docs/SPEC.md §7)
+   Carries the palette/type established in the discovery spec so the site
+   and the spec document read as one brand. Swap these tokens wholesale
+   once a real brand guide exists — nothing else should need to change.
+   ========================================================================== */
+
+:root {
+  /* --- color: light (default) --- */
+  --bg: #f2eee3;
+  --surface: #fbf9f2;
+  --surface-raised: #ffffff;
+  --ink: #1e231e;
+  --ink-muted: #5b5c4f;
+  --ink-faint: #8b8a78;
+  --accent: #b9711e;
+  --accent-strong: #8f5716;
+  --accent-ink: #fbf3e6;
+  --teal: #2f5d58;
+  --teal-strong: #23423e;
+  --teal-ink: #e9f2ef;
+  --line: #dad3bf;
+  --line-soft: #e7e1d0;
+  --shadow: 0 1px 2px rgba(30, 35, 30, 0.06), 0 8px 24px rgba(30, 35, 30, 0.06);
+
+  /* --- type --- */
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Work Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  /* --- layout --- */
+  --content-width: 1180px;
+  --radius: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #171913;
+    --surface: #1f221a;
+    --surface-raised: #262920;
+    --ink: #eae6d8;
+    --ink-muted: #a7a491;
+    --ink-faint: #74725f;
+    --accent: #e0a24c;
+    --accent-strong: #f0b967;
+    --accent-ink: #2a1c08;
+    --teal: #7fc2b9;
+    --teal-strong: #9ad6ce;
+    --teal-ink: #0d1f1c;
+    --line: #34362a;
+    --line-soft: #292b21;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 10px 28px rgba(0, 0, 0, 0.4);
+  }
+}
+
+:root[data-theme='dark'] {
+  --bg: #171913;
+  --surface: #1f221a;
+  --surface-raised: #262920;
+  --ink: #eae6d8;
+  --ink-muted: #a7a491;
+  --ink-faint: #74725f;
+  --accent: #e0a24c;
+  --accent-strong: #f0b967;
+  --accent-ink: #2a1c08;
+  --teal: #7fc2b9;
+  --teal-strong: #9ad6ce;
+  --teal-ink: #0d1f1c;
+  --line: #34362a;
+  --line-soft: #292b21;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 10px 28px rgba(0, 0, 0, 0.4);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--ink);
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.5em;
+}
+
+h1 {
+  font-size: clamp(2.1rem, 4.5vw, 3.2rem);
+  line-height: 1.08;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  line-height: 1.15;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+p {
+  margin: 0 0 1em;
+  max-width: 65ch;
+}
+
+a {
+  color: var(--teal);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 1px;
+  background: var(--accent);
+  display: inline-block;
+}
+
+.wrap {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 56px);
+}
+
+.section {
+  padding: clamp(56px, 8vw, 96px) 0;
+}
+
+.section-tight {
+  padding: clamp(32px, 5vw, 56px) 0;
+}
+
+.lead {
+  font-size: 1.1rem;
+  color: var(--ink-muted);
+  max-width: 60ch;
+}
+
+.muted {
+  color: var(--ink-muted);
+}
+
+/* --- buttons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 12px 22px;
+  border-radius: 100px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.12s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.btn-primary:hover {
+  background: var(--accent-strong);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.btn-secondary:hover {
+  border-color: var(--ink-faint);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .btn:active {
+    transform: scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- cards --- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* --- forms --- */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.field label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.field input,
+.field textarea,
+.field select {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 11px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--surface-raised);
+  color: var(--ink);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.form-note {
+  font-size: 0.82rem;
+  color: var(--ink-faint);
+  margin-top: 10px;
+  max-width: 48ch;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line-soft);
+  vertical-align: top;
+}
+
+th {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+  font-weight: 500;
+}

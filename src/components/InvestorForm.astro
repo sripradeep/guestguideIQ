@@ -1,0 +1,51 @@
+---
+import { FORMS } from '../site.config';
+
+interface Props {
+  id?: string;
+}
+
+const { id = 'investor-form' } = Astro.props;
+---
+
+<form action={FORMS.investor} method="POST" class="investor-form" id={id}>
+  <input type="hidden" name="_subject" value="New GuestGuideIQ investor/press inquiry" />
+  <input type="hidden" name="_next" value="/thank-you/" />
+
+  <div class="field-row">
+    <div class="field">
+      <label for={`${id}-name`}>Name</label>
+      <input id={`${id}-name`} type="text" name="name" required autocomplete="name" />
+    </div>
+    <div class="field">
+      <label for={`${id}-org`}>Organization</label>
+      <input id={`${id}-org`} type="text" name="organization" autocomplete="organization" />
+    </div>
+  </div>
+
+  <div class="field">
+    <label for={`${id}-email`}>Email</label>
+    <input id={`${id}-email`} type="email" name="email" required autocomplete="email" />
+  </div>
+
+  <div class="field">
+    <label for={`${id}-message`}>Message</label>
+    <textarea id={`${id}-message`} name="message" placeholder="What would you like to know?"></textarea>
+  </div>
+
+  <button class="btn btn-primary" type="submit">Request Info</button>
+</form>
+
+<style>
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  @media (max-width: 560px) {
+    .field-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

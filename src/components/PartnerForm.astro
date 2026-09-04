@@ -1,0 +1,80 @@
+---
+import { FORMS } from '../site.config';
+
+interface Props {
+  id?: string;
+  defaultType?: string;
+}
+
+const { id = 'partner-form', defaultType } = Astro.props;
+
+const orgTypes = [
+  { value: 'str-operator', label: 'STR operator / property manager' },
+  { value: 'experience-provider', label: 'Experience provider (guide, tour, local business)' },
+  { value: 'dmo', label: 'Destination / DMO' },
+  { value: 'other', label: 'Other' },
+];
+---
+
+<form action={FORMS.partner} method="POST" class="partner-form" id={id}>
+  <input type="hidden" name="_subject" value="New GuestGuideIQ partner inquiry" />
+  <input type="hidden" name="_next" value="/thank-you/" />
+
+  <div class="field-row">
+    <div class="field">
+      <label for={`${id}-name`}>Name</label>
+      <input id={`${id}-name`} type="text" name="name" required autocomplete="name" />
+    </div>
+    <div class="field">
+      <label for={`${id}-company`}>Company / property</label>
+      <input id={`${id}-company`} type="text" name="company" autocomplete="organization" />
+    </div>
+  </div>
+
+  <div class="field-row">
+    <div class="field">
+      <label for={`${id}-role`}>Role</label>
+      <input id={`${id}-role`} type="text" name="role" placeholder="e.g. Host, Property Manager, Guide" />
+    </div>
+    <div class="field">
+      <label for={`${id}-type`}>I am a…</label>
+      <select id={`${id}-type`} name="organization_type" required>
+        <option value="" disabled selected={!defaultType}>Select one</option>
+        {orgTypes.map((opt) => (
+          <option value={opt.value} selected={defaultType === opt.value}>{opt.label}</option>
+        ))}
+      </select>
+    </div>
+  </div>
+
+  <div class="field">
+    <label for={`${id}-email`}>Email</label>
+    <input id={`${id}-email`} type="email" name="email" required autocomplete="email" />
+  </div>
+
+  <div class="field">
+    <label for={`${id}-message`}>Message</label>
+    <textarea
+      id={`${id}-message`}
+      name="message"
+      placeholder="Tell us about your properties, your listings, or the experiences you offer."
+    ></textarea>
+  </div>
+
+  <button class="btn btn-primary" type="submit">Send Inquiry</button>
+  <p class="form-note">We reply to every inquiry personally — usually within a couple of days.</p>
+</form>
+
+<style>
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  @media (max-width: 560px) {
+    .field-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

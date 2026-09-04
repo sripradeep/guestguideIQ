@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About"
+  description="Why GuestGuideIQ exists: hyperlocal travel knowledge, built into the guest guides people already open."
+>
+  <section class="wrap section about-hero">
+    <span class="eyebrow">Why we're building this</span>
+    <h1>Every place has an Alfama bakery. Most travelers never find it.</h1>
+    <p class="lead">
+      The internet made it easier than ever to find the ten most-photographed things to do in
+      any city — and, somehow, harder to find what the people who live there actually do. Every
+      "hidden gem" list reads the same because it's built the same way: scraped, ranked, and
+      repeated across a thousand sites.
+    </p>
+  </section>
+
+  <section class="wrap section-tight about-body">
+    <p>
+      GuestGuideIQ starts from a different question: not "what ranks well," but "what does a
+      local actually tell a friend who's visiting?" That knowledge exists — it just doesn't live
+      anywhere a traveler can find it before they've already left.
+    </p>
+    <p>
+      Short-term rentals turned out to be the right place to put it. A host already has a
+      relationship with their guest, and guests already open a property guide to find the wifi
+      password and check-out time. That's a real, trusted moment to put hyperlocal knowledge in
+      front of someone — without asking them to discover, download, and trust a whole new app
+      first.
+    </p>
+    <p>
+      Our vision is simple: every stay comes with a local's know-how built in, and every local
+      business or guide gets a real chance to be discovered by the people already standing in
+      their neighborhood.
+    </p>
+  </section>
+
+  <section class="wrap section-tight about-contact">
+    <div class="card">
+      <h2>Investors &amp; press</h2>
+      <p class="muted">
+        Want the fuller story, our roadmap, or just to ask a question? Reach out through{' '}
+        <a href="/contact/">our contact page</a> — we read every message ourselves.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-hero {
+    max-width: 760px;
+  }
+
+  .about-body {
+    max-width: 68ch;
+  }
+
+  .about-contact .card {
+    padding: clamp(26px, 4vw, 36px);
+    max-width: 640px;
+  }
+
+  .about-contact h2 {
+    margin-bottom: 8px;
+  }
+</style>
