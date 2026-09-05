@@ -1,16 +1,27 @@
 ---
-import { FORMS } from '../site.config';
+import { FORMS, SITE } from '../site.config';
 
 interface Props {
   id?: string;
 }
 
 const { id = 'investor-form' } = Astro.props;
+// Formspree's _next redirect requires a fully-qualified URL — a relative
+// path like "/thank-you/" is silently ignored and it falls back to its own
+// generic success page.
+const thankYouUrl = new URL('/thank-you/', SITE.url).toString();
 ---
 
-<form action={FORMS.investor} method="POST" class="investor-form" id={id}>
+<form
+  action={FORMS.investor}
+  method="POST"
+  class="investor-form"
+  id={id}
+  data-ajax-form
+  data-success-url="/thank-you/"
+>
   <input type="hidden" name="_subject" value="New GuestGuideIQ investor/press inquiry" />
-  <input type="hidden" name="_next" value="/thank-you/" />
+  <input type="hidden" name="_next" value={thankYouUrl} />
 
   <div class="field-row">
     <div class="field">
@@ -34,6 +45,9 @@ const { id = 'investor-form' } = Astro.props;
   </div>
 
   <button class="btn btn-primary" type="submit">Request Info</button>
+  <p class="form-error" data-form-error hidden>
+    Something went wrong sending that — please try again, or email us at hello@guestguideiq.com.
+  </p>
 </form>
 
 <style>

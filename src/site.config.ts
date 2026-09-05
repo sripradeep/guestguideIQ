@@ -18,9 +18,9 @@ export const SITE = {
 // point at placeholders and submissions will fail with a clear Formspree error
 // rather than silently going nowhere.
 export const FORMS = {
-  waitlist: 'https://formspree.io/f/REPLACE_WAITLIST_FORM_ID',
-  partner: 'https://formspree.io/f/REPLACE_PARTNER_FORM_ID',
-  investor: 'https://formspree.io/f/REPLACE_INVESTOR_FORM_ID',
+  waitlist: 'https://formspree.io/f/xbgjkwkp',
+  partner: 'https://formspree.io/f/xjyvolol',
+  investor: 'https://formspree.io/f/maeybvbz',
 };
 
 // Set to a real GA4 measurement ID ("G-XXXXXXX") or Plausible domain to wire

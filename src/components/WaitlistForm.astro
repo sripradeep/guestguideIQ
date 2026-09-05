@@ -1,5 +1,5 @@
 ---
-import { FORMS } from '../site.config';
+import { FORMS, SITE } from '../site.config';
 
 interface Props {
   id?: string;
@@ -7,6 +7,10 @@ interface Props {
 }
 
 const { id = 'waitlist', compact = false } = Astro.props;
+// Formspree's _next redirect requires a fully-qualified URL — a relative
+// path like "/thank-you/" is silently ignored and it falls back to its own
+// generic success page.
+const thankYouUrl = new URL('/thank-you/', SITE.url).toString();
 ---
 
 <div class:list={['waitlist-form', { compact }]} id={id}>
@@ -19,9 +23,15 @@ const { id = 'waitlist', compact = false } = Astro.props;
       </p>
     </>
   )}
-  <form action={FORMS.waitlist} method="POST" class="inline-form">
+  <form
+    action={FORMS.waitlist}
+    method="POST"
+    class="inline-form"
+    data-ajax-form
+    data-success-url="/thank-you/"
+  >
     <input type="hidden" name="_subject" value="New GuestGuideIQ waitlist signup" />
-    <input type="hidden" name="_next" value="/thank-you/" />
+    <input type="hidden" name="_next" value={thankYouUrl} />
     <label class="sr-only" for={`${id}-email`}>Email address</label>
     <input
       id={`${id}-email`}
@@ -34,6 +44,9 @@ const { id = 'waitlist', compact = false } = Astro.props;
     <button class="btn btn-primary" type="submit">Join the Waitlist</button>
   </form>
   <p class="form-note">We’ll only email you about GuestGuideIQ’s launch. No spam, unsubscribe anytime.</p>
+  <p class="form-error" data-form-error hidden>
+    Something went wrong sending that — please try again, or email us at hello@guestguideiq.com.
+  </p>
 </div>
 
 <style>
