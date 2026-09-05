@@ -9483,7 +9483,8 @@ function boltEventUnits(event: AuditShardEvent): string[] {
 export function reviewAttemptWindow(
   projectDir: string,
   stateContent: string,
-  stage: { slug: string; for_each?: string },
+  stage: { slug: string; for_each?: string; review_class?: ReviewClass },
+  options: { reviewClass?: ReviewClass } = {},
 ): ReviewAttemptWindow {
   const allEvents = readAuditShardEvents(projectDir);
   const events = allEvents
@@ -9504,6 +9505,36 @@ export function reviewAttemptWindow(
     artifactPerUnit &&
     getField(stateContent, "Construction Iteration")?.trim() === "unit-major";
   const teamOwnership = artifactPerUnit && isTeamUnitOwnership(stateContent);
+  // An `advisory` stage's whole review model is "exactly one normal pass, plus
+  // one bounded stale-receipt recovery pass" (stage-protocol-reviewer.md
+  // §12a): a Request Changes (GATE_REJECTED) is how a human turns an advisory
+  // finding into a revision, and the recovery pass for that revision is
+  // documented to land "at the next ordinal" - i.e. it CONTINUES the same
+  // attempt's numbering rather than starting over. Treating GATE_REJECTED as a
+  // floor boundary (as adversarial stages need, to get a fresh repair-loop
+  // budget "as at first entry") would push the pre-rejection terminal receipt
+  // out of this window before the per-event scan below ever sees it, so a
+  // produces[] edit made in response to the rejection could never be detected
+  // as voiding that receipt (`stageStale` can only fire when a receipt is
+  // still in view to invalidate) - permanently disabling the documented
+  // recovery path after every single advisory Request Changes. Resolve the
+  // effective class (never throws; fails open to "adversarial", the prior
+  // behavior) and exempt advisory from this one boundary only.
+  let effectiveReviewClass: ReviewClass = "adversarial";
+  if (options.reviewClass !== undefined) {
+    effectiveReviewClass = options.reviewClass;
+  } else {
+    try {
+      effectiveReviewClass = resolveReviewClass(
+        stage.review_class ?? "adversarial",
+        getField(stateContent, "Scope") ?? "",
+        stateContent,
+      );
+    } catch {
+      // Fails open to the pre-existing floor-reset behavior.
+    }
+  }
+  const advisoryFloorExempt = effectiveReviewClass === "advisory";
   let floorIdx = -1;
   for (let i = 0; i < events.length; i++) {
     const event = events[i];
@@ -9512,6 +9543,7 @@ export function reviewAttemptWindow(
     if (!boundary && auditBlockField(event.block, "Stage") === stage.slug) {
       boundary =
         (event.event === "GATE_REJECTED" &&
+          !advisoryFloorExempt &&
           !(teamOwnership && auditBlockField(event.block, "Unit"))) ||
         (event.event === "STAGE_STARTED" &&
           !unitMajor &&
@@ -9756,7 +9788,7 @@ export function freshReviewReceipts(
   const teamOwnership = perUnit && isTeamUnitOwnership(stateContent);
   const attemptWindow =
     options.attemptWindow ??
-    reviewAttemptWindow(projectDir, stateContent, stage);
+    reviewAttemptWindow(projectDir, stateContent, stage, { reviewClass });
   const { allEvents, events, floorIdx, mergedBoltUnits, openBoltUnits } =
     attemptWindow;
   empty.mergedBoltUnits = mergedBoltUnits;
@@ -9948,6 +9980,67 @@ export function freshReviewReceipts(
       unitPending.delete(rejectedUnit);
       for (const [key, request] of pendingRequests) {
         if (request.unit === rejectedUnit) pendingRequests.delete(key);
+      }
+      continue;
+    }
+    // Non-team GATE_REJECTED on an `advisory` stage is exempt from the floor
+    // reset above (this receipt stays in view), so it must void the terminal
+    // receipt itself here, the same way a later produces[] write would - a
+    // Request Changes with no revision yet must not leave a stale READY
+    // receipt looking fresh. Marking it `stale` (not simply clearing it) is
+    // what lets the one bounded recovery pass documented in
+    // stage-protocol-reviewer.md §12a fire once the artifact is revised.
+    if (
+      !teamOwnership &&
+      e.event === "GATE_REJECTED" &&
+      reviewClass === "advisory" &&
+      gateStagesFromBlock(e.block).includes(stage.slug)
+    ) {
+      if (!perUnit) {
+        if (stageVerdict !== null) {
+          stageStale = true;
+          stageStaleProgress = {
+            nextIteration: (stageIteration ?? 0) + 1,
+            recoverySpent: stageReceiptRecovery,
+          };
+        }
+        stageVerdict = null;
+        stageIteration = null;
+        stageReceiptRecovery = false;
+        stagePending = null;
+        // Mirror the artifact-side clear on the source-fingerprint side too:
+        // aidlc-log.ts's handleReview ORs `attempt.recoverySpent` with this
+        // sourceRecoverySpent flag, so leaving it true here would keep a
+        // workspace_requires advisory stage permanently deadlocked the same
+        // way the artifact-side receipt was before this fix - a Request
+        // Changes must re-arm BOTH recovery flags, not just one of them.
+        sourceRecoverySpent = false;
+        newestSourceFingerprint = null;
+        newestSourceUnit = null;
+        newestSourceProgress = null;
+      } else {
+        const rejectedUnit = eventUnit || null;
+        const units = rejectedUnit ? [rejectedUnit] : [...unitVerdicts.keys()];
+        for (const unit of units) {
+          if (unitVerdicts.delete(unit)) {
+            unitStale.add(unit);
+            unitStaleProgress.set(unit, {
+              nextIteration: (unitIterations.get(unit) ?? 0) + 1,
+              recoverySpent: unitReceiptRecovery.get(unit) ?? false,
+            });
+          }
+          unitIterations.delete(unit);
+          unitReceiptRecovery.delete(unit);
+          unitPending.delete(unit);
+          // Same source-side mirror as above, scoped to this unit (matching
+          // resetUnitReviewState's existing guard elsewhere in this scan).
+          if (newestSourceUnit === unit) {
+            sourceRecoverySpent = false;
+            newestSourceFingerprint = null;
+            newestSourceUnit = null;
+            newestSourceProgress = null;
+          }
+        }
       }
       continue;
     }
