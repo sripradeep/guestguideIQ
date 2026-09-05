@@ -1043,12 +1043,34 @@ type ReviewAttemptSummary = {
 function reviewAttemptSummary(
   rows: AuditShardEvent[],
   stateContent: string,
-  stage: { slug: string; for_each?: string; workspace_requires?: boolean },
+  stage: {
+    slug: string;
+    for_each?: string;
+    workspace_requires?: boolean;
+    review_class?: ReviewClass;
+  },
   reviewer: string,
   unit: string | undefined,
   workflow: string | undefined,
   attemptWindow?: ReturnType<typeof reviewAttemptWindow> | null,
 ): ReviewAttemptSummary {
+  // Mirrors reviewAttemptWindow's advisory exemption (aidlc-lib.ts): an
+  // `advisory` stage's one bounded stale-receipt recovery pass is documented
+  // to land "at the next ordinal" after a Request Changes revision, which
+  // requires this window to keep counting through the GATE_REJECTED rather
+  // than resetting `requestCount`/`recoverySpent` back to zero at it. Fails
+  // open to the pre-existing floor-reset behavior on any resolution error.
+  let effectiveReviewClass: ReviewClass = "adversarial";
+  try {
+    effectiveReviewClass = resolveReviewClass(
+      stage.review_class ?? "adversarial",
+      getField(stateContent, "Scope") ?? "",
+      stateContent,
+    );
+  } catch {
+    // Fails open.
+  }
+  const advisoryFloorExempt = effectiveReviewClass === "advisory";
   const relevant = new Set([
     "WORKFLOW_STARTED",
     "STAGE_STARTED",
@@ -1191,6 +1213,19 @@ function reviewAttemptSummary(
       const rejectedUnit = auditBlockField(entry.block, "Unit");
       if (teamOwnership && unit !== undefined && rejectedUnit !== unit) continue;
       if (teamOwnership && unit === undefined && rejectedUnit !== null) continue;
+      if (advisoryFloorExempt && !teamOwnership) {
+        // Advisory: keep the pre-rejection terminal receipt in this window
+        // so the one bounded recovery pass (stage-protocol-reviewer.md §12a)
+        // can land at the next ordinal instead of restarting the attempt
+        // (and its request/recovery accounting) at 1. This row is NOT the
+        // floor, so - mirroring reviewAttemptWindow's `if (!boundary)
+        // continue;` ordering in aidlc-lib.ts - it must not touch `ambiguity`
+        // either: doing so before this check would let a same-second
+        // cross-shard coincidence at THIS non-boundary row spuriously flag
+        // the real (earlier, unambiguous) floor as ambiguous, or silently
+        // clear a real ambiguity from that earlier floor.
+        continue;
+      }
       const tied = tiedAcrossShards(i);
       if (tied) ambiguity = `cross-shard gate boundary tie at ${entry.timestamp}`;
       else ambiguity = null;
@@ -1271,6 +1306,36 @@ function reviewAttemptSummary(
   >();
   for (let i = floor + 1; i < events.length; i++) {
     const entry = events[i];
+    if (
+      advisoryFloorExempt &&
+      !teamOwnership &&
+      entry.event === "GATE_REJECTED"
+    ) {
+      // The floor no longer resets at this boundary (above), so a spent
+      // recovery pass would otherwise stay spent forever across repeated
+      // Request Changes cycles. A human Request Changes decision is exactly
+      // what re-arms one fresh recovery pass (stage-protocol-reviewer.md
+      // §12a: "only Request Changes (GATE_REJECTED) resets the attempt").
+      const gateStages = (
+        auditBlockField(entry.block, "Gate Stages") ??
+          auditBlockField(entry.block, "Stage") ??
+          ""
+      ).split(",").map((value) => value.trim());
+      if (gateStages.includes(stage.slug)) {
+        const rejectedUnit = auditBlockField(entry.block, "Unit") || undefined;
+        // A Unit-less (stage-level) rejection applies to every per-unit
+        // reviewer, mirroring freshReviewReceipts's fan-out in aidlc-lib.ts
+        // (the non-team `handleReject` path emits GATE_REJECTED with no Unit
+        // field even for a per-unit advisory stage) - a strict `=== unit`
+        // check here would leave `recoverySpent` stuck true forever the
+        // moment a stage-level rejection follows a spent recovery pass.
+        if (rejectedUnit === undefined || rejectedUnit === unit) {
+          recoveryIteration = null;
+          recoverySpent = false;
+        }
+      }
+      continue;
+    }
     if (
       entry.event !== "REVIEW_REQUESTED" &&
       entry.event !== "REVIEW_COMPLETED"
