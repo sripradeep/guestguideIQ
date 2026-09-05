@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "GuestGuideIQ marketing site — hyperlocal travel experiences for short-term rental guests.",
   "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
