@@ -10008,6 +10008,16 @@ export function freshReviewReceipts(
         stageIteration = null;
         stageReceiptRecovery = false;
         stagePending = null;
+        // Mirror the artifact-side clear on the source-fingerprint side too:
+        // aidlc-log.ts's handleReview ORs `attempt.recoverySpent` with this
+        // sourceRecoverySpent flag, so leaving it true here would keep a
+        // workspace_requires advisory stage permanently deadlocked the same
+        // way the artifact-side receipt was before this fix - a Request
+        // Changes must re-arm BOTH recovery flags, not just one of them.
+        sourceRecoverySpent = false;
+        newestSourceFingerprint = null;
+        newestSourceUnit = null;
+        newestSourceProgress = null;
       } else {
         const rejectedUnit = eventUnit || null;
         const units = rejectedUnit ? [rejectedUnit] : [...unitVerdicts.keys()];
@@ -10022,6 +10032,14 @@ export function freshReviewReceipts(
           unitIterations.delete(unit);
           unitReceiptRecovery.delete(unit);
           unitPending.delete(unit);
+          // Same source-side mirror as above, scoped to this unit (matching
+          // resetUnitReviewState's existing guard elsewhere in this scan).
+          if (newestSourceUnit === unit) {
+            sourceRecoverySpent = false;
+            newestSourceFingerprint = null;
+            newestSourceUnit = null;
+            newestSourceProgress = null;
+          }
         }
       }
       continue;

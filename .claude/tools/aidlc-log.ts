@@ -1053,22 +1053,35 @@ function reviewAttemptSummary(
   unit: string | undefined,
   workflow: string | undefined,
   attemptWindow?: ReturnType<typeof reviewAttemptWindow> | null,
+  options: { reviewClass?: ReviewClass } = {},
 ): ReviewAttemptSummary {
   // Mirrors reviewAttemptWindow's advisory exemption (aidlc-lib.ts): an
   // `advisory` stage's one bounded stale-receipt recovery pass is documented
   // to land "at the next ordinal" after a Request Changes revision, which
   // requires this window to keep counting through the GATE_REJECTED rather
-  // than resetting `requestCount`/`recoverySpent` back to zero at it. Fails
-  // open to the pre-existing floor-reset behavior on any resolution error.
+  // than resetting `requestCount`/`recoverySpent` back to zero at it.
+  //
+  // `options.reviewClass`, when given, is the caller's own final resolution
+  // (loadContext's `reviewClass`, aidlc-log.ts) and takes precedence: the
+  // caller's autonomous-swarm carve-out (`declared` class, bypassing the
+  // scope cap, once a Bolt attempt is open) must not silently diverge from
+  // what this window treats as advisory-exempt, or `requestCount`/`budget`
+  // accounting disagrees with the budget the caller actually enforces. Falls
+  // back to resolving it independently when the caller has none yet
+  // (fails open to the pre-existing floor-reset behavior on any error).
   let effectiveReviewClass: ReviewClass = "adversarial";
-  try {
-    effectiveReviewClass = resolveReviewClass(
-      stage.review_class ?? "adversarial",
-      getField(stateContent, "Scope") ?? "",
-      stateContent,
-    );
-  } catch {
-    // Fails open.
+  if (options.reviewClass !== undefined) {
+    effectiveReviewClass = options.reviewClass;
+  } else {
+    try {
+      effectiveReviewClass = resolveReviewClass(
+        stage.review_class ?? "adversarial",
+        getField(stateContent, "Scope") ?? "",
+        stateContent,
+      );
+    } catch {
+      // Fails open.
+    }
   }
   const advisoryFloorExempt = effectiveReviewClass === "advisory";
   const relevant = new Set([
@@ -1562,43 +1575,73 @@ function handleReview(args: string[]): void {
     const teamOwnership = isTeamUnitOwnership(state);
     const unitResolution =
       node.for_each === "unit-of-work" ? resolveBoltDag(pd, intent, space) : null;
-    const attemptWindow =
+    const declared = node.review_class ?? "adversarial";
+    // The autonomous-swarm carve-out below (once a Bolt attempt is open) uses
+    // `declared` directly, bypassing any scope/override cap; everywhere else
+    // uses the capped resolution. Resolve it up front so it can be threaded
+    // into the window/attempt below as the SAME reviewClass this function's
+    // other consumer (freshReviewReceipts, via `receipts` further down) will
+    // use in the common (non-autonomous) case - without this,
+    // reviewAttemptSummary and reviewAttemptWindow would each independently
+    // re-resolve the class and could disagree with what `reviewClass`/
+    // `budget` below settle on. `resolvedScopeClass` preserves the original
+    // "resolution failed -> null, budget enforcement skipped, ordinal
+    // enforcement remains active" semantics for the non-autonomous branch
+    // below; `scopeCappedClass` is the non-null variant (fails open to
+    // "adversarial", the pre-existing floor-reset behavior) needed by the
+    // window/attempt hint, which must have a concrete class either way.
+    let resolvedScopeClass: ReviewClass | null = null;
+    try {
+      resolvedScopeClass = resolveReviewClass(
+        declared,
+        getField(state, "Scope") ?? "",
+        state,
+      );
+    } catch {
+      // Fails open for the hint below; reviewClass/budget stay null further
+      // down when this happens on the non-autonomous path.
+    }
+    const scopeCappedClass: ReviewClass = resolvedScopeClass ?? "adversarial";
+    const filteredRows = readAuditShardEvents(pd, intent, space).filter(
+      (row) => {
+        if (!flags.unit || !teamOwnership) return true;
+        const eventUnit = auditBlockField(row.block, "Unit");
+        if (eventUnit !== null) {
+          return eventUnit !== flags.unit ||
+            eventMatchesClaimAttempt(pd, row.block, eventUnit);
+        }
+        const boltSlug = auditBlockField(row.block, "Bolt slug");
+        const boltNames = auditBlockField(row.block, "Bolt names");
+        if (
+          boltNames === flags.unit &&
+          boltSlug === boltSlugForUnit(flags.unit) &&
+          (
+            row.event === "BOLT_STARTED" ||
+            row.event === "BOLT_COMPLETED" ||
+            row.event === "BOLT_FAILED"
+          )
+        ) {
+          return eventMatchesClaimAttempt(pd, row.block, flags.unit);
+        }
+        return true;
+      },
+    );
+    const buildAttemptWindow = (reviewClassHint: ReviewClass) =>
       node.for_each === "unit-of-work"
-        ? reviewAttemptWindow(pd, state, node)
+        ? reviewAttemptWindow(pd, state, node, { reviewClass: reviewClassHint })
         : null;
-    const attempt = reviewAttemptSummary(
-      readAuditShardEvents(pd, intent, space).filter(
-        (row) => {
-          if (!flags.unit || !teamOwnership) return true;
-          const eventUnit = auditBlockField(row.block, "Unit");
-          if (eventUnit !== null) {
-            return eventUnit !== flags.unit ||
-              eventMatchesClaimAttempt(pd, row.block, eventUnit);
-          }
-          const boltSlug = auditBlockField(row.block, "Bolt slug");
-          const boltNames = auditBlockField(row.block, "Bolt names");
-          if (
-            boltNames === flags.unit &&
-            boltSlug === boltSlugForUnit(flags.unit) &&
-            (
-              row.event === "BOLT_STARTED" ||
-              row.event === "BOLT_COMPLETED" ||
-              row.event === "BOLT_FAILED"
-            )
-          ) {
-            return eventMatchesClaimAttempt(pd, row.block, flags.unit);
-          }
-          return true;
-        },
-      ),
+    let attemptWindow = buildAttemptWindow(scopeCappedClass);
+    let attempt = reviewAttemptSummary(
+      filteredRows,
       state,
       node,
       flags.reviewer,
       flags.unit,
       fields.Workflow,
       attemptWindow,
+      { reviewClass: scopeCappedClass },
     );
-    const mergedBoltUnits =
+    let mergedBoltUnits =
       attemptWindow?.mergedBoltUnits ?? new Set<string>();
     if (enforceAdmissibility && flags.unit) {
       const resolution = unitResolution ?? resolveBoltDag(pd, intent, space);
@@ -1640,7 +1683,6 @@ function handleReview(args: string[]): void {
         );
       }
     }
-    const declared = node.review_class ?? "adversarial";
     if (attempt.ambiguity !== null) {
       refuseReview(
         `Cannot record review for "${flags.stage}": ${attempt.ambiguity} makes the current review attempt chronology ambiguous. Record a fresh stage/jump boundary, then request the review again.`,
@@ -1654,19 +1696,39 @@ function handleReview(args: string[]): void {
         reviewClass === "advisory"
           ? 1
           : node.reviewer_max_iterations ?? 2;
-    } else {
-      try {
-        reviewClass = resolveReviewClass(
-          declared,
-          getField(state, "Scope") ?? "",
+      if (reviewClass !== scopeCappedClass) {
+        // The carve-out bypasses the scope cap once a Bolt attempt is open,
+        // diverging from the `scopeCappedClass` hint the window/attempt above
+        // were built with. Rebuild both with the class the budget above
+        // actually enforces, so requestCount/recoverySpent/staleness
+        // accounting agree with it rather than the narrower capped class.
+        attemptWindow = buildAttemptWindow(reviewClass);
+        mergedBoltUnits =
+          attemptWindow?.mergedBoltUnits ?? new Set<string>();
+        attempt = reviewAttemptSummary(
+          filteredRows,
           state,
+          node,
+          flags.reviewer,
+          flags.unit,
+          fields.Workflow,
+          attemptWindow,
+          { reviewClass },
         );
-        if (reviewClass === "none") budget = 0;
-        else if (reviewClass === "advisory") budget = 1;
-        else budget = node.reviewer_max_iterations ?? 2;
-      } catch {
-        // Class resolution fails open; ordinal enforcement remains active.
+        if (attempt.ambiguity !== null) {
+          refuseReview(
+            `Cannot record review for "${flags.stage}": ${attempt.ambiguity} makes the current review attempt chronology ambiguous. Record a fresh stage/jump boundary, then request the review again.`,
+          );
+        }
       }
+    } else {
+      // null when resolution above failed: reviewClass/budget stay null
+      // (budget enforcement skipped; ordinal enforcement remains active),
+      // matching the original fails-open behavior.
+      reviewClass = resolvedScopeClass;
+      if (reviewClass === "none") budget = 0;
+      else if (reviewClass === "advisory") budget = 1;
+      else if (reviewClass === "adversarial") budget = node.reviewer_max_iterations ?? 2;
     }
     // Receipt freshness is needed only while minting REVIEW_REQUESTED (to
     // classify bounded stale-receipt recovery). REVIEW_COMPLETED consumes only
