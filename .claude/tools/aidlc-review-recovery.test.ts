@@ -349,3 +349,180 @@ test("adversarial Request Changes still resets the attempt (no advisory exemptio
     rmSync(root, { recursive: true, force: true });
   }
 });
+
+test("backward jump resets an advisory stage to a fresh attempt, not a stuck recovery deadlock", () => {
+  // Repro: an advisory stage (budget 1) already used its one normal pass
+  // AND its one bounded stale-receipt recovery pass (iteration 1
+  // READY-with-findings -> GATE_REJECTED -> revision -> iteration 2
+  // recovery READY) and was approved. Later, a `aidlc-jump.ts execute
+  // --direction backward` resets this stage (its own `stages_reset` output
+  // includes it) to fold in new information, and the artifact is edited
+  // again post-jump. Unlike the same-attempt post-receipt-edit case above,
+  // this is a NEW attempt: STAGE_JUMPED is an unconditional, class-agnostic
+  // floor boundary in both reviewAttemptWindow (aidlc-lib.ts) and
+  // reviewAttemptSummary (aidlc-log.ts) - it is not exempted for advisory
+  // the way GATE_REJECTED is. So the pre-jump receipts and its already-spent
+  // recovery pass must drop out of the window entirely, leaving a genuinely
+  // fresh budget (iteration 1, no `Recovery: stale-receipt` flag needed) -
+  // mirroring the "no advisory exemption leak" shape of the adversarial
+  // GATE_REJECTED test above, but for the jump boundary specifically.
+  const { root, stage, artifactPath, auditPath, stateContent } = makeFixture();
+  try {
+    let ts = 0;
+    const nextTs = () => `2026-01-01T00:00:${String(ts++).padStart(2, "0")}Z`;
+    let audit = "";
+    const flush = () => writeFileSync(auditPath, audit);
+
+    audit += auditBlock("STAGE_STARTED", nextTs(), {
+      Stage: "requirements-analysis",
+    });
+    flush();
+
+    // --- iteration 1: normal pass, READY-with-findings ---
+    const requestSnap = reviewArtifactSnapshot(root, stage)!;
+    audit += auditBlock("REVIEW_REQUESTED", nextTs(), {
+      Stage: "requirements-analysis",
+      Reviewer: "aidlc-product-lead-agent",
+      Iteration: "1",
+      "Artifact Fingerprint": requestSnap.requestFingerprint,
+      "Review Appendix Artifact": requestSnap.appendixArtifact,
+      "Review Appendix Offset": String(requestSnap.appendixOffset),
+      "Review Appendix Prior Digest": "none",
+      "Review Appendix Prior Length": "0",
+    });
+    flush();
+    writeFileSync(
+      artifactPath,
+      "# Requirements\n\nOriginal content.\n\n" +
+        "## Review\n**Verdict:** READY\n**Reviewer:** aidlc-product-lead-agent\n**Iteration:** 1\n",
+    );
+    const completedSnap = reviewArtifactSnapshot(root, stage)!;
+    audit += auditBlock("REVIEW_COMPLETED", nextTs(), {
+      Stage: "requirements-analysis",
+      Reviewer: "aidlc-product-lead-agent",
+      Iteration: "1",
+      Verdict: "READY",
+      "Request Fingerprint": requestSnap.requestFingerprint,
+      "Artifact Fingerprint": completedSnap.fingerprint,
+      "Review Appendix Artifact": completedSnap.appendixArtifact,
+      "Review Appendix Offset": String(requestSnap.appendixOffset),
+      "Review Appendix Prior Digest": "none",
+      "Review Appendix Prior Length": "0",
+    });
+    flush();
+
+    // --- Human Request Changes; revise; recovery pass at iteration 2 ---
+    audit += auditBlock("GATE_REJECTED", nextTs(), {
+      Stage: "requirements-analysis",
+      Feedback: "fix R-01",
+    });
+    flush();
+    writeFileSync(artifactPath, "# Requirements\n\nFixed R-01.\n");
+    audit += auditBlock("ARTIFACT_UPDATED", nextTs(), {
+      Tool: "Edit",
+      File: artifactPath.replace(/\\/g, "/"),
+    });
+    flush();
+    const recoverySnap = reviewArtifactSnapshot(root, stage)!;
+    audit += auditBlock("REVIEW_REQUESTED", nextTs(), {
+      Stage: "requirements-analysis",
+      Reviewer: "aidlc-product-lead-agent",
+      Iteration: "2",
+      Recovery: "stale-receipt",
+      "Recovery Cause": "artifact",
+      "Artifact Fingerprint": recoverySnap.requestFingerprint,
+      "Review Appendix Artifact": recoverySnap.appendixArtifact,
+      "Review Appendix Offset": String(recoverySnap.appendixOffset),
+      "Review Appendix Prior Digest": "none",
+      "Review Appendix Prior Length": "0",
+    });
+    flush();
+    writeFileSync(
+      artifactPath,
+      "# Requirements\n\nFixed R-01.\n\n" +
+        "## Review\n**Verdict:** READY\n**Reviewer:** aidlc-product-lead-agent\n**Iteration:** 2\n",
+    );
+    const recoveryCompletedSnap = reviewArtifactSnapshot(root, stage)!;
+    audit += auditBlock("REVIEW_COMPLETED", nextTs(), {
+      Stage: "requirements-analysis",
+      Reviewer: "aidlc-product-lead-agent",
+      Iteration: "2",
+      Verdict: "READY",
+      "Request Fingerprint": recoverySnap.requestFingerprint,
+      "Artifact Fingerprint": recoveryCompletedSnap.fingerprint,
+      "Review Appendix Artifact": recoveryCompletedSnap.appendixArtifact,
+      "Review Appendix Offset": String(recoverySnap.appendixOffset),
+      "Review Appendix Prior Digest": "none",
+      "Review Appendix Prior Length": "0",
+    });
+    flush();
+    audit += auditBlock("GATE_APPROVED", nextTs(), {
+      Stage: "requirements-analysis",
+    });
+    flush();
+
+    // Sanity: the recovery pass is spent going into the jump.
+    let receipts = freshReviewReceipts(root, stateContent, stage);
+    expect(receipts.stageVerdict).toBe("READY");
+    expect(receipts.stageStale).toBe(false);
+
+    // --- New information arrives; a backward jump (aidlc-jump.ts execute)
+    // resets this stage and re-enters it (mirrors STAGE_JUMPED + the
+    // re-entry STAGE_STARTED that execute --direction backward emits for
+    // its target) ---
+    audit += auditBlock("STAGE_JUMPED", nextTs(), {
+      Direction: "BACKWARD",
+      Source: "domain-design",
+      Target: "requirements-analysis",
+      Scope: "feature",
+    });
+    flush();
+    audit += auditBlock("STAGE_STARTED", nextTs(), {
+      Stage: "requirements-analysis",
+      Agent: "aidlc-product-agent",
+    });
+    flush();
+
+    // The jump alone (before any new edit) already reads as a clean slate:
+    // no verdict in view, and NOT "stale" - there is nothing left in the
+    // window for a later edit to invalidate, which is the correct shape for
+    // a brand new attempt rather than a carried-over stale receipt.
+    receipts = freshReviewReceipts(root, stateContent, stage);
+    expect(receipts.stageVerdict).toBeNull();
+    expect(receipts.stageStale).toBe(false);
+
+    // --- Fold in the new requirement post-jump ---
+    writeFileSync(
+      artifactPath,
+      "# Requirements\n\nFixed R-01.\n\nFR9: locality branding.\n",
+    );
+    audit += auditBlock("ARTIFACT_UPDATED", nextTs(), {
+      Tool: "Edit",
+      File: artifactPath.replace(/\\/g, "/"),
+    });
+    flush();
+
+    receipts = freshReviewReceipts(root, stateContent, stage);
+    expect(receipts.stageVerdict).toBeNull();
+    // Still not "stale": the pre-jump receipts (and the spent recovery pass
+    // that would otherwise permanently deadlock further reviews) are OUT of
+    // this attempt's window, not merely invalidated within it.
+    expect(receipts.stageStale).toBe(false);
+
+    // The window backing reviewAttemptSummary's requestCount in aidlc-log.ts
+    // must show zero requests since the jump boundary - i.e. the next
+    // review this stage requests is a normal iteration-1 pass on a fresh
+    // budget, not iteration 3 continuing the pre-jump count (which would
+    // incorrectly collide with the advisory budget of 1 and read as
+    // permanently exhausted).
+    const window = reviewAttemptWindow(root, stateContent, stage, {
+      reviewClass: "advisory",
+    });
+    const requestsInWindow = window.events
+      .slice(window.floorIdx + 1)
+      .filter((e) => e.event === "REVIEW_REQUESTED").length;
+    expect(requestsInWindow).toBe(0);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
