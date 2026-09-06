@@ -2085,12 +2085,19 @@ function handleReview(args: string[]): void {
             ),
           );
         }
-        if (!recoveryEligible && budget !== null && iteration > budget) {
-          refuseReview(reviewBudgetMessage(flags.stage, iteration, budget));
-        }
-        if (!recoveryEligible && budget !== null && expected > budget) {
-          refuseReview(reviewBudgetMessage(flags.stage, expected, budget));
-        }
+        // Ordinal/pending checks run BEFORE the budget-exceeded checks below.
+        // A wrong ordinal that also happens to exceed budget (e.g. a caller
+        // that assumes iteration numbering survives a floor-resetting
+        // boundary - a jump, a workflow restart - and keeps incrementing
+        // from the pre-boundary count) must surface "the next iteration is
+        // N" rather than the misleading "this stage allows N passes, stop
+        // asking" - the latter reads as a spent/exhausted budget even when a
+        // fresh pass is available at the correct ordinal. `expected` already
+        // reflects any floor reset (attempt.requestCount is windowed the
+        // same way `scopeStale`/`recoveryEligible` are), so this reordering
+        // changes no outcome when the caller passes the correct ordinal - it
+        // only replaces a misleading refusal with an actionable one when
+        // they don't.
         if (attempt.pendingIterations.size > 0) {
           const pending = [...attempt.pendingIterations].sort((a, b) => a - b);
           refuseReview(
@@ -2104,6 +2111,12 @@ function handleReview(args: string[]): void {
             `Cannot start review iteration ${iteration} for "${flags.stage}" because the next ` +
               `iteration is ${expected}. Retry with --iteration ${expected}.`,
           );
+        }
+        if (!recoveryEligible && budget !== null && iteration > budget) {
+          refuseReview(reviewBudgetMessage(flags.stage, iteration, budget));
+        }
+        if (!recoveryEligible && budget !== null && expected > budget) {
+          refuseReview(reviewBudgetMessage(flags.stage, expected, budget));
         }
         if (recoveryEligible) {
           fields.Recovery = "stale-receipt";
