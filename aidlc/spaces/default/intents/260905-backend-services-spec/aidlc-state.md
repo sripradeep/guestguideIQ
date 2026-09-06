@@ -31,9 +31,11 @@
 - **In Progress**: code-generation
 
 ## Runtime State
-- **Revision Count**: 8
+- **Revision Count**: 9
 
 - **Skeleton Stance**: on
+- **Parked**: 2026-09-06T17:11:37Z
+- **Parked At Stage**: code-generation
 ## Phase Progress
 <!-- Status values: Pending, Active, Verified, Skipped -->
 
@@ -77,7 +79,7 @@ Per unit: [TBD]
 - [x] nfr-requirements — EXECUTE
 - [x] nfr-design — EXECUTE
 - [x] infrastructure-design — EXECUTE
-- [-] code-generation — EXECUTE
+- [R] code-generation — EXECUTE
 - [ ] build-and-test — EXECUTE
 - [ ] ci-pipeline — EXECUTE
 
@@ -96,7 +98,7 @@ Per unit: [TBD]
 - **Next Stage**: build-and-test
 - **Status**: Running
 - **Construction Autonomy Mode**: gated
-- **Last Updated**: 2026-09-06T16:26:07Z
+- **Last Updated**: 2026-09-06T17:11:37Z
 
 ## Session Resume Point
 - **Last Completed Stage**: infrastructure-design
