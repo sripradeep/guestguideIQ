@@ -11453,6 +11453,30 @@ export function shapeSourceSnapshotIndex(
 // Recorded in place of a fingerprint when one cannot be computed, so a receipt
 // written against an unbindable workspace stays distinguishable from a
 // pre-#629 receipt that carries no field at all (#646 review).
+//
+// workspaceSourceFingerprint()/workspaceSourceState() NEVER return this
+// string themselves - a live call resolves to a real sha256/sha1 hash or to
+// `null` on failure. This sentinel only ever appears in something already
+// RECORDED (an authority's sourceFloor, a receipt's certifiedSourceSha256,
+// an audit field), written there via `<live fingerprint> ?? UNBINDABLE_FINGERPRINT`.
+// Comparing a fresh live-fingerprint call directly against a recorded
+// sourceFloor/certifiedSourceSha256-shaped value WITHOUT checking for this
+// sentinel first is a structural no-op that always evaluates as a mismatch
+// whenever the recorded side is legitimately unbindable - the live side can
+// never equal the literal string "unbindable", so the comparison silently and
+// permanently fails closed instead of skipping. This exact bug shipped five
+// times in aidlc-testing-posture.ts's Plan Approval -> Code Generation flow
+// (recordPlanApprovalReceipt, evaluateCodeGenerationApproval,
+// beginCodeGeneration) before being fixed; see
+// aidlc-testing-posture.unbindable-source-floor.test.ts for the regression
+// test and repro. Guard every such comparison with
+// `recorded !== UNBINDABLE_FINGERPRINT && <live !== recorded>` (skip the
+// check when unbindable) or `recorded === UNBINDABLE_FINGERPRINT || <live
+// === recorded>` (short-circuit true when unbindable) - pick whichever
+// matches the call site's intent (some call sites instead deliberately
+// REFUSE outright when the recorded value is unbindable, e.g. worktree merge
+// and swarm convergence; that is a valid design choice too, as long as it is
+// an explicit check rather than an accidental one).
 export const UNBINDABLE_FINGERPRINT = "unbindable";
 
 function sourceIdentityBudget(name: string, fallback: number): number {
@@ -22906,6 +22930,76 @@ export function replaceSection(
   const nextMatch = nextHeading.exec(remainder);
   const bodyEnd = nextMatch ? bodyStart + nextMatch.index : content.length;
   return content.slice(0, bodyStart) + newContent + content.slice(bodyEnd);
+}
+
+// Parses a markdown section's body into one string per logical bullet.
+// Bullets are markdown list items (`- ...` / `* ...`), but a single bullet is
+// often soft-wrapped across several physical lines in hand-authored prose —
+// one logical rule, several lines. A naive per-physical-line split (and a
+// per-line date stamp built on top of it) treats each wrapped line as its own
+// rule, corrupting anything that stamps or dedupes per rule. This joins every
+// continuation line (anything that isn't blank, a comment, a heading, or the
+// start of a new bullet) onto the in-progress bullet with a single space, so
+// each logical bullet becomes exactly one string regardless of how the source
+// wrapped it. A blank line or a comment/heading-like line closes out whatever
+// bullet is in progress. Used by practices-promote (aidlc-state.ts) to parse
+// the Mandated/Forbidden sections of a discovered-rules.md draft before
+// stamping each rule with an `(affirmed <date>)` suffix.
+export function parseMarkdownBullets(sectionContent: string): string[] {
+  const bullets: string[] = [];
+  let current = "";
+  for (const rawLine of sectionContent.split("\n")) {
+    const line = rawLine.trim();
+    if (line.length === 0 || line.startsWith("<!--") || line.startsWith("#")) {
+      if (current) {
+        bullets.push(current);
+        current = "";
+      }
+      continue;
+    }
+    if (/^[-*]\s/.test(line)) {
+      if (current) bullets.push(current);
+      current = line;
+    } else if (current) {
+      current = `${current} ${line}`;
+    } else {
+      // No bullet marker seen yet and no bullet in progress — keep the line
+      // rather than silently dropping it.
+      current = line;
+    }
+  }
+  if (current) bullets.push(current);
+  return bullets;
+}
+
+// appendUnderHeading inserts new content immediately before the `## `
+// heading that follows `heading`'s section (or at EOF when there is none).
+// When that section previously ended with a blank line before the next
+// heading — the normal, well-formed shape — repeated appendUnderHeading
+// calls insert new content AFTER that blank line (i.e. immediately before
+// the heading), so the blank line ends up separating the section's old
+// content from the newly appended content instead of separating the
+// appended content from the next heading. The last appended line then sits
+// glued directly against the following `## ` heading with no blank line.
+// This restores exactly one blank line between `heading`'s section and the
+// `## ` heading that follows it, regardless of how many blank lines (zero or
+// several) are there now. A no-op if `heading` is absent, or if it is the
+// last `## ` section in the file (nothing follows it to separate from).
+export function ensureBlankLineBeforeHeading(content: string, heading: string): string {
+  const headingRegex = new RegExp(`^${escapeRegex(heading)}[ \\t]*$`, "m");
+  const startMatch = headingRegex.exec(content);
+  if (!startMatch) return content;
+  const afterHeading = startMatch.index + startMatch[0].length;
+  const bodyStart = content[afterHeading] === "\n" ? afterHeading + 1 : afterHeading;
+  const nextHeadingRegex = /^## [^\n]*$/m;
+  const remainder = content.slice(bodyStart);
+  const nextMatch = nextHeadingRegex.exec(remainder);
+  if (!nextMatch) return content; // last section in the file — nothing follows it
+  const nextHeadingStart = bodyStart + nextMatch.index;
+  const before = content.slice(0, nextHeadingStart);
+  const trimmedBefore = before.replace(/\n+$/, "");
+  if (trimmedBefore.length === 0) return content;
+  return `${trimmedBefore}\n\n${content.slice(nextHeadingStart)}`;
 }
 
 // --- Bolt/unit dependency DAG (units-generation 2.7 → runtime compile) ---

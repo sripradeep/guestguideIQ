@@ -50,6 +50,7 @@ import {
   currentSwarmAttemptObligations,
   effectiveUnitGateRhythm,
   emitError,
+  ensureBlankLineBeforeHeading,
   errorMessage,
   eventMatchesClaimAttempt,
   extractMarkdownSection,
@@ -81,6 +82,7 @@ import {
   PHASE_NUMBERS,
   PHASES,
   parseCheckboxes,
+  parseMarkdownBullets,
   parseMemoryEntries,
   parseRefsList,
   parseStateStageSuffixes,
@@ -6113,6 +6115,13 @@ function handlePracticesPromote(args: string[]): void {
     }
     try {
       newTeamMd = replaceSection(newTeamMd, heading, draftSection);
+      // draftSection is itself extracted up to the next `## ` heading IN THE
+      // DRAFT, so it ends with a blank line only when the draft happens to
+      // have another heading following it. For the last of the five replaced
+      // headings that isn't the case, and the substituted content lands
+      // glued directly against team.md's own next heading (`## Forbidden`)
+      // with no blank line between them. Normalize it regardless.
+      newTeamMd = ensureBlankLineBeforeHeading(newTeamMd, heading);
       sectionsWritten.push(heading.slice(3));
     } catch (e) {
       fail(
@@ -6123,14 +6132,12 @@ function handlePracticesPromote(args: string[]): void {
   }
 
   // Step 4b: Build new project-guardrails.md by appending each rule under the
-  // matching heading with a date stamp. Rules are one-per-line in the draft;
-  // empty/blank lines and comment lines are skipped.
-  const parseRules = (sectionContent: string): string[] => {
-    return sectionContent
-      .split("\n")
-      .map((l) => l.trim())
-      .filter((l) => l.length > 0 && !l.startsWith("<!--") && !l.startsWith("#"));
-  };
+  // matching heading with a date stamp. Rules are markdown bullets in the
+  // draft (`- ALWAYS ...` / `- NEVER ...`), but a single bullet is often a
+  // wrapped multi-line paragraph in the source file — soft-wrapped prose, not
+  // one physical line per rule. parseMarkdownBullets joins continuation lines
+  // onto the in-progress bullet so each logical bullet becomes exactly one
+  // rule string, regardless of how discovered-rules.md wrapped it.
   const mandatedDraft = extractMarkdownSection(
     discoveredRulesDraft,
     "## Mandated"
@@ -6139,8 +6146,8 @@ function handlePracticesPromote(args: string[]): void {
     discoveredRulesDraft,
     "## Forbidden"
   );
-  const mandatedRules = parseRules(mandatedDraft);
-  const forbiddenRules = parseRules(forbiddenDraft);
+  const mandatedRules = parseMarkdownBullets(mandatedDraft);
+  const forbiddenRules = parseMarkdownBullets(forbiddenDraft);
 
   let newGuardrailsMd = guardrailsMd;
   const existingGuardrailLines = new Set(
@@ -6178,6 +6185,18 @@ function handlePracticesPromote(args: string[]): void {
       return;
     }
   }
+
+  // appendUnderHeading inserts each rule immediately before the `## `
+  // heading that follows the target section (e.g. rules appended under
+  // "## Forbidden" land right before "## Mandated"). Any blank line that
+  // used to separate that section's placeholder comments from the next
+  // heading sits ABOVE the insertion point, not below it — so the last
+  // appended bullet ends up glued to the next heading with no blank line
+  // between them. Restore exactly one blank line before the heading that
+  // follows each section we just populated, regardless of how many blank
+  // lines (zero or several) are there now.
+  newGuardrailsMd = ensureBlankLineBeforeHeading(newGuardrailsMd, "## Forbidden");
+  newGuardrailsMd = ensureBlankLineBeforeHeading(newGuardrailsMd, "## Mandated");
 
   // Step 5 & 6: Write project.md first, then team.md.
   // If the project write fails, team.md is untouched. If the team write
