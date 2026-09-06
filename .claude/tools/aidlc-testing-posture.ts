@@ -1500,8 +1500,8 @@ export function recordPlanApprovalReceipt(
   }
   const sourceBefore = workspaceSourceFingerprint(projectDir);
   if (
-    sourceBefore === null ||
-    sourceBefore !== evidence.authority.sourceFloor
+    evidence.authority.sourceFloor !== UNBINDABLE_FINGERPRINT &&
+    (sourceBefore === null || sourceBefore !== evidence.authority.sourceFloor)
   ) {
     throw new Error(
       "Plan Approval requires workspace source to match the Code Generation directive's pre-planning source floor",
@@ -1519,7 +1519,10 @@ export function recordPlanApprovalReceipt(
   };
   writePlanApprovalReceipt(projectDir, receipt);
   const sourceAfter = workspaceSourceFingerprint(projectDir);
-  if (sourceAfter === null || sourceAfter !== sourceBefore) {
+  if (
+    evidence.authority.sourceFloor !== UNBINDABLE_FINGERPRINT &&
+    (sourceAfter === null || sourceAfter !== sourceBefore)
+  ) {
     clearPlanApprovalReceipt(projectDir, identity);
     throw new Error(
       "Plan Approval source changed during receipt certification; present the current plan again",
@@ -1693,10 +1696,15 @@ export function evaluateCodeGenerationApproval(
       runtimeIdentityMatches(receipt, identity) &&
       receipt.choice === "Approve Plan" &&
       receipt.questionsSha256 === questionsSha256 &&
-      receipt.certifiedSourceSha256 === authority.sourceFloor &&
       (
-        receipt.status === "generation" ||
-        workspaceSourceFingerprint(projectDir) === receipt.certifiedSourceSha256
+        authority.sourceFloor === UNBINDABLE_FINGERPRINT ||
+        (
+          receipt.certifiedSourceSha256 === authority.sourceFloor &&
+          (
+            receipt.status === "generation" ||
+            workspaceSourceFingerprint(projectDir) === receipt.certifiedSourceSha256
+          )
+        )
       );
     if (!empty.receiptValid) {
       empty.reason =
@@ -1734,8 +1742,9 @@ export function beginCodeGeneration(
       if (receipt.status === "generation") return;
       const sourceBefore = workspaceSourceFingerprint(projectDir);
       if (
-        sourceBefore === null ||
-        sourceBefore !== receipt.certifiedSourceSha256
+        authority.sourceFloor !== UNBINDABLE_FINGERPRINT &&
+        (sourceBefore === null ||
+          sourceBefore !== receipt.certifiedSourceSha256)
       ) {
         throw new Error(
           "workspace source changed after Plan Approval and before generation began",
@@ -1765,7 +1774,10 @@ export function beginCodeGeneration(
         }
       }
       const sourceAfter = workspaceSourceFingerprint(projectDir);
-      if (sourceAfter === null || sourceAfter !== sourceBefore) {
+      if (
+        authority.sourceFloor !== UNBINDABLE_FINGERPRINT &&
+        (sourceAfter === null || sourceAfter !== sourceBefore)
+      ) {
         clearPlanApprovalReceipt(projectDir, receipt);
         throw new Error(
           "workspace source changed while Code Generation authority was starting",

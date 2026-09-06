@@ -11453,6 +11453,30 @@ export function shapeSourceSnapshotIndex(
 // Recorded in place of a fingerprint when one cannot be computed, so a receipt
 // written against an unbindable workspace stays distinguishable from a
 // pre-#629 receipt that carries no field at all (#646 review).
+//
+// workspaceSourceFingerprint()/workspaceSourceState() NEVER return this
+// string themselves - a live call resolves to a real sha256/sha1 hash or to
+// `null` on failure. This sentinel only ever appears in something already
+// RECORDED (an authority's sourceFloor, a receipt's certifiedSourceSha256,
+// an audit field), written there via `<live fingerprint> ?? UNBINDABLE_FINGERPRINT`.
+// Comparing a fresh live-fingerprint call directly against a recorded
+// sourceFloor/certifiedSourceSha256-shaped value WITHOUT checking for this
+// sentinel first is a structural no-op that always evaluates as a mismatch
+// whenever the recorded side is legitimately unbindable - the live side can
+// never equal the literal string "unbindable", so the comparison silently and
+// permanently fails closed instead of skipping. This exact bug shipped five
+// times in aidlc-testing-posture.ts's Plan Approval -> Code Generation flow
+// (recordPlanApprovalReceipt, evaluateCodeGenerationApproval,
+// beginCodeGeneration) before being fixed; see
+// aidlc-testing-posture.unbindable-source-floor.test.ts for the regression
+// test and repro. Guard every such comparison with
+// `recorded !== UNBINDABLE_FINGERPRINT && <live !== recorded>` (skip the
+// check when unbindable) or `recorded === UNBINDABLE_FINGERPRINT || <live
+// === recorded>` (short-circuit true when unbindable) - pick whichever
+// matches the call site's intent (some call sites instead deliberately
+// REFUSE outright when the recorded value is unbindable, e.g. worktree merge
+// and swarm convergence; that is a valid design choice too, as long as it is
+// an explicit check rather than an accidental one).
 export const UNBINDABLE_FINGERPRINT = "unbindable";
 
 function sourceIdentityBudget(name: string, fallback: number): number {
