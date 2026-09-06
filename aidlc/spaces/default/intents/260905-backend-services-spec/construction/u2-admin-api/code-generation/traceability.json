@@ -1,0 +1,35 @@
+{
+  "stage": "code-generation",
+  "unit": "u2-admin-api",
+  "upstream_ids": [
+    "US4.1", "AC4.1.1", "AC4.1.2",
+    "US4.2", "AC4.2.1", "AC4.2.2", "AC4.2.3",
+    "US4.3", "AC4.3.1", "AC4.3.2",
+    "US4.4", "AC4.4.1", "AC4.4.2", "AC4.4.3", "AC4.4.4", "AC4.4.5",
+    "BR1.1", "BR1.2", "BR1.3", "BR1.4", "BR1.5", "BR1.6"
+  ],
+  "coverage": [
+    { "id": "US4.1", "status": "OK", "target": "admin-api/src/poi/routes.ts (POST /v1/pois)" },
+    { "id": "AC4.1.1", "status": "OK", "target": "admin-api/tests/bdd/poi-curation.test.ts (201 relayed unchanged)" },
+    { "id": "AC4.1.2", "status": "OK", "target": "admin-api/tests/bdd/poi-curation.test.ts (backend-api's 400 duplicate/invalid rejection relayed unchanged; the duplicate-within-locality check itself is backend-api's own BR5.1, not re-implemented here per rules.md BR1.2)" },
+    { "id": "US4.2", "status": "OK", "target": "admin-api/src/events/routes.ts (GET /v1/events)" },
+    { "id": "AC4.2.1", "status": "OK", "target": "admin-api/src/events/routes.ts — event ingestion itself is backend-api's own monitoring module (outside this Unit entirely); this Unit's GET /v1/events is the read path ops staff use to observe ingested events, delegated per rules.md BR1.3" },
+    { "id": "AC4.2.2", "status": "OK", "target": "admin-api/tests/bdd/event-audit.test.ts — the guest-facing exclusion of expired events is backend-api's own BR6.3, deliberately NOT applied on this side: functional-spec.md's W2 audit-trail design keeps expired events visible here for ops review" },
+    { "id": "AC4.2.3", "status": "OK", "target": "admin-api/src/events/routes.ts — duplicate-ingestion dedup is backend-api's own BR6.1; this Unit relays whichever list backend-api returns unchanged (BR1.6)" },
+    { "id": "US4.3", "status": "OK", "target": "admin-api/src/accounts/routes.ts (GET /v1/accounts/:accountId)" },
+    { "id": "AC4.3.1", "status": "OK", "target": "admin-api/tests/bdd/account-review.test.ts (account + subscription status relayed unchanged)" },
+    { "id": "AC4.3.2", "status": "OK", "target": "admin-api/tests/bdd/account-review.test.ts and admin-api/tests/unit/internalCallerModule.test.ts — a 404 is relayed as a valid outcome, not classified as a retryable failure or reshaped into a different error" },
+    { "id": "US4.4", "status": "OK", "target": "admin-api/src/localities/routes.ts (POST /v1/localities, POST /v1/localities/:localityId/domains)" },
+    { "id": "AC4.4.1", "status": "OK", "target": "admin-api/tests/bdd/locality-brand.test.ts (create path, 201 relayed unchanged) and admin-api/tests/unit/localities.test.ts (minimal-identity acceptance)" },
+    { "id": "AC4.4.2", "status": "OK", "target": "admin-api/tests/bdd/locality-brand.test.ts (add-domain path, 200 relayed unchanged)" },
+    { "id": "AC4.4.3", "status": "OK", "target": "admin-api/src/auth/middleware.ts (requireOpsRole) and admin-api/tests/unit/middleware.test.ts — a non-ops caller (including a valid backend-api Property Owner token) is rejected with 403 at this Unit's own entry point, before InternalCallerModule is ever reached, per rules.md BR1.1's stated enforcement location" },
+    { "id": "AC4.4.4", "status": "OK", "target": "admin-api/tests/bdd/locality-brand.test.ts (409 domain-conflict relayed unchanged)" },
+    { "id": "AC4.4.5", "status": "OK", "target": "admin-api/tests/unit/localities.test.ts (request-shape validation at the route boundary; backend-api's own minimum-identity validation, BR9.4, relayed unchanged on 400)" },
+    { "id": "BR1.1", "status": "OK", "target": "admin-api/src/auth/middleware.ts (requireOpsRole) and admin-api/tests/unit/middleware.test.ts" },
+    { "id": "BR1.2", "status": "OK", "target": "admin-api/src/poi/routes.ts" },
+    { "id": "BR1.3", "status": "OK", "target": "admin-api/src/events/routes.ts" },
+    { "id": "BR1.4", "status": "OK", "target": "admin-api/src/accounts/routes.ts" },
+    { "id": "BR1.5", "status": "OK", "target": "admin-api/src/localities/routes.ts" },
+    { "id": "BR1.6", "status": "OK", "target": "admin-api/src/app.ts (registerErrorHandler relays InternalApiError unchanged) and admin-api/src/internal/client.ts (InternalApiError carries backend-api's status/body verbatim)" }
+  ]
+}

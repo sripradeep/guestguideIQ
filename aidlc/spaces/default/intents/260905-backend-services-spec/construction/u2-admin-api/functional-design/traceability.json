@@ -1,0 +1,27 @@
+{
+  "stage": "functional-design",
+  "unit": "u2-admin-api",
+  "upstream_ids": [
+    "AC4.1.1", "AC4.1.2",
+    "AC4.2.1", "AC4.2.2", "AC4.2.3",
+    "AC4.3.1", "AC4.3.2",
+    "AC4.4.1", "AC4.4.2", "AC4.4.3", "AC4.4.4", "AC4.4.5"
+  ],
+  "coverage": [
+    { "id": "AC4.1.1", "status": "OK", "target": "BR1.2" },
+    { "id": "AC4.1.2", "status": "OK", "target": "BR1.2" },
+    { "id": "AC4.2.1", "status": "OK", "target": "BR1.3" },
+    { "id": "AC4.2.2", "status": "OK", "target": "BR1.3" },
+    { "id": "AC4.2.3", "status": "OK", "target": "BR1.3" },
+    { "id": "AC4.3.1", "status": "OK", "target": "BR1.4" },
+    { "id": "AC4.3.2", "status": "OK", "target": "BR1.4" },
+    { "id": "AC4.4.1", "status": "OK", "target": "BR1.5" },
+    { "id": "AC4.4.2", "status": "OK", "target": "BR1.5" },
+    { "id": "AC4.4.3", "status": "OK", "target": "BR1.1" },
+    { "id": "AC4.4.4", "status": "OK", "target": "BR1.5" },
+    { "id": "AC4.4.5", "status": "OK", "target": "BR1.5" }
+  ],
+  "reverse": [
+    { "id": "BR1.6", "status": "N/A", "target": "resolves this stage's Q1 (error-relay behaviour) — a cross-cutting policy applying to all four capabilities, with no distinct numbered AC of its own" }
+  ]
+}

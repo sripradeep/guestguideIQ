@@ -1,0 +1,27 @@
+{
+  "stage": "nfr-design",
+  "unit": "u2-admin-api",
+  "upstream_ids": [
+    "NFR1.2", "NFR1.3",
+    "NFR2.2", "NFR2.3", "NFR2.4", "NFR2.5", "NFR2.6", "NFR2.7",
+    "NFR3.7", "NFR3.8", "NFR3.9", "NFR3.10", "NFR3.11", "NFR3.12",
+    "NFR5.2"
+  ],
+  "coverage": [
+    { "id": "NFR1.2", "status": "OK", "target": "Thin relay path via InternalCallerModule, no independent DB or cache overhead (performance-design.md)" },
+    { "id": "NFR1.3", "status": "OK", "target": "Route handlers add only schema validation + delegation, no business logic (performance-design.md)" },
+    { "id": "NFR2.2", "status": "OK", "target": "Shallow /health check, same pattern as u1-backend-api (reliability-design.md)" },
+    { "id": "NFR2.3", "status": "OK", "target": "No independent backup/recovery needed — admin-api holds no data of its own (reliability-design.md)" },
+    { "id": "NFR2.4", "status": "OK", "target": "InternalCallerModule fails closed with a clear error on backend-api unreachability (reliability-design.md)" },
+    { "id": "NFR2.5", "status": "OK", "target": "Covered by u1-backend-api's backup design — no restatement needed (reliability-design.md)" },
+    { "id": "NFR2.6", "status": "OK", "target": "RED metrics per route, same shape as u1-backend-api at lower volume (observability-design.md)" },
+    { "id": "NFR2.7", "status": "OK", "target": "pino structured logging with ops-identity/operation/outcome per InternalCallerModule call (observability-design.md)" },
+    { "id": "NFR3.7", "status": "OK", "target": "ops-role JWT verification middleware (OpsAuthModule) (security-design.md, logical-components.md)" },
+    { "id": "NFR3.8", "status": "OK", "target": "InternalCallerModule attaches the internal-scoped service JWT to every outbound call (security-design.md)" },
+    { "id": "NFR3.9", "status": "OK", "target": "No independent authorization logic added — delegated entirely to backend-api via InternalCallerModule (security-design.md)" },
+    { "id": "NFR3.10", "status": "OK", "target": "backend-api's ErrorResponse relayed unchanged, no internal detail added (security-design.md)" },
+    { "id": "NFR3.11", "status": "OK", "target": "admin-api is the trusted caller on the shared internal-listener boundary; mechanism deferred to infrastructure-design (security-design.md)" },
+    { "id": "NFR3.12", "status": "OK", "target": "InternalCallerModule forwards the authenticated ops identity for backend-api's audit log (security-design.md, observability-design.md)" },
+    { "id": "NFR5.2", "status": "OK", "target": "Stateless JWT-based design, same as u1-backend-api; no load-driven scaling design needed at this Unit's volume (scalability-design.md)" }
+  ]
+}

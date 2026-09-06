@@ -1,0 +1,30 @@
+{
+  "stage": "infrastructure-design",
+  "unit": "u1-backend-api",
+  "upstream_ids": [
+    "NFR1.6", "NFR1.7",
+    "NFR2.2", "NFR2.3", "NFR2.5", "NFR2.6", "NFR2.7", "NFR2.8", "NFR2.9",
+    "NFR3.8", "NFR3.10", "NFR3.11", "NFR3.12",
+    "NFR5.2", "NFR5.3", "NFR5.4",
+    "NFR6.4"
+  ],
+  "coverage": [
+    { "id": "NFR1.6", "status": "OK", "target": "Application Load Balancer + ECS Fargate auto-scaling (2-6 tasks on CPU>70%/request-count)" },
+    { "id": "NFR1.7", "status": "OK", "target": "Fargate tasks sized 0.5 vCPU / 1GB, Graviton-backed db.t4g.medium RDS instance" },
+    { "id": "NFR2.2", "status": "OK", "target": "ECS health checks (/health, /health/ready) driving ALB routing and Fargate auto-restart" },
+    { "id": "NFR2.3", "status": "OK", "target": "RDS automated backups with point-in-time recovery (RTO<=4h, RPO<=1h)" },
+    { "id": "NFR2.5", "status": "OK", "target": "RDS automated daily backups, 30-day retention" },
+    { "id": "NFR2.6", "status": "OK", "target": "ADOT collector sidecar exporting metrics to CloudWatch" },
+    { "id": "NFR2.7", "status": "OK", "target": "ECS Fargate log driver shipping structured JSON logs to CloudWatch Logs, tiered retention" },
+    { "id": "NFR2.8", "status": "OK", "target": "ADOT collector sidecar exporting traces to AWS X-Ray" },
+    { "id": "NFR2.9", "status": "OK", "target": "CloudWatch Alarms (error-rate, SLO burn, chat failure, RDS pool exhaustion, ECS task health) routed via SNS" },
+    { "id": "NFR3.8", "status": "OK", "target": "JWT signing key stored in AWS Secrets Manager, injected into ECS task definition as a secret" },
+    { "id": "NFR3.10", "status": "OK", "target": "AWS WAF rate-based rules on the ALB, layered with the app-level token-bucket adapter" },
+    { "id": "NFR3.11", "status": "OK", "target": "Same-VPC private subnet + security-group allow-list restricting the internal listener to admin-api's security group" },
+    { "id": "NFR3.12", "status": "OK", "target": "Stripe API key stored in AWS Secrets Manager, never in code or environment files" },
+    { "id": "NFR5.2", "status": "OK", "target": "Initial Fargate task count and RDS instance class sized to the year-one capacity target" },
+    { "id": "NFR5.3", "status": "OK", "target": "Stateless ECS tasks behind the ALB enable horizontal scale-out with zero redesign" },
+    { "id": "NFR5.4", "status": "OK", "target": "RDS storage auto-scaling (gp3); connection pool sized per the formula in performance-design.md" },
+    { "id": "NFR6.4", "status": "OK", "target": "ACM certificates requested via DNS validation, automated as part of admin-api's domain-creation workflow" }
+  ]
+}

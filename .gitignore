@@ -74,3 +74,9 @@ aidlc/diagnostics/
 # which was proven to corrupt the multi-line audit blocks) ·
 # aidlc/spaces/*/intents/*/<phase>/<stage>/*.md (artifacts + diary).
 .claude/settings.local.json
+
+# Nested sibling repo — the separate backend repository (guestguideiq-app),
+# checked out as an AI-DLC multi-repo sibling of aidlc/ per team.md's Q2
+# mandate. It has its own .git and its own commit history; this repo must
+# never track its contents.
+guestguideiq-app/

@@ -1,0 +1,21 @@
+{
+  "stage": "infrastructure-design",
+  "unit": "u2-admin-api",
+  "upstream_ids": [
+    "NFR1.2", "NFR1.3",
+    "NFR2.2", "NFR2.6", "NFR2.7",
+    "NFR3.7", "NFR3.8", "NFR3.11",
+    "NFR5.2"
+  ],
+  "coverage": [
+    { "id": "NFR1.2", "status": "OK", "target": "Single Fargate task (0.25 vCPU/0.5GB) sized to the end-to-end latency budget" },
+    { "id": "NFR1.3", "status": "OK", "target": "Thin-relay design requires no additional infrastructure to meet the overhead budget" },
+    { "id": "NFR2.2", "status": "OK", "target": "ECS health checks on the single task, same pattern as u1-backend-api" },
+    { "id": "NFR2.6", "status": "OK", "target": "ADOT collector sidecar exporting metrics to CloudWatch" },
+    { "id": "NFR2.7", "status": "OK", "target": "ECS Fargate log driver shipping structured JSON logs (including audit entries) to CloudWatch Logs" },
+    { "id": "NFR3.7", "status": "OK", "target": "Ops-role JWT verification key in AWS Secrets Manager; public ALB restricted by AWS WAF IP-allowlist to office/VPN-egress ranges (Q2), a network-layer complement to the JWT check" },
+    { "id": "NFR3.8", "status": "OK", "target": "Internal-scoped service JWT signing material in AWS Secrets Manager" },
+    { "id": "NFR3.11", "status": "OK", "target": "Inherits u1-backend-api's same-VPC private-subnet + security-group isolation as the permitted caller" },
+    { "id": "NFR5.2", "status": "OK", "target": "Single-task Fargate sizing (Q1), no auto-scaling given this Unit's negligible load" }
+  ]
+}

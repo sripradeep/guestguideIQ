@@ -1,9 +1,17 @@
-# Team-Level Rules
+# Team Practices — Confirmed (Step 5: Lead Integration)
 
-> This team's affirmed practices and corrections. Loaded after `org.md` as
-> strict-additive guidance; contradictions with broader policy are rejected.
-> Populated by the practices-discovery affirmation gate. Edit at the gate,
-> not directly.
+> **Status: CONFIRMED.** These practices were drafted from repository
+> evidence (Step 2), reviewed by the quality, developer, and devsecops
+> agents (Step 3), and confirmed by the human interview (Step 4, 8/8
+> questions answered, consolidated summary marked "Looks correct"). This
+> is the version promoted into `aidlc/spaces/default/memory/team.md`.
+>
+> Context carried from the draft: this project is **brownfield** at the
+> workspace level — the existing repository is a six-page static marketing
+> site (Astro) with no backend, no test suite, and no linting configured —
+> but the new backend specified by this intent (`260905-backend-services-spec`)
+> is **greenfield** and, per the interview, will live in its own separate
+> repository. The practices below apply to that new backend and its repo.
 
 ## Way of Working
 
@@ -158,15 +166,3 @@ confirmed this changes for the new backend:
   be wired as a blocking CI gate, not merely installed and left advisory —
   a tool that exists but never blocks a merge (the same failure pattern as
   `astro build` never running `astro check`) provides no real protection.
-
-## Forbidden
-
-<!-- Team-specific forbidden patterns -->
-
-## Mandated
-
-<!-- Team-specific mandates -->
-
-## Corrections
-
-<!-- Self-learning loop appends here. -->

@@ -1,0 +1,43 @@
+{
+  "stage": "nfr-design",
+  "unit": "u1-backend-api",
+  "upstream_ids": [
+    "NFR1.2", "NFR1.3", "NFR1.4", "NFR1.5", "NFR1.6", "NFR1.7",
+    "NFR2.2", "NFR2.3", "NFR2.4", "NFR2.5", "NFR2.6", "NFR2.7", "NFR2.8", "NFR2.9",
+    "NFR3.7", "NFR3.8", "NFR3.9", "NFR3.10", "NFR3.11", "NFR3.12", "NFR3.13",
+    "NFR4.2", "NFR4.3",
+    "NFR5.2", "NFR5.3", "NFR5.4", "NFR5.5",
+    "NFR6.3", "NFR6.4"
+  ],
+  "coverage": [
+    { "id": "NFR1.2", "status": "OK", "target": "Indexed queries, connection pooling, no synchronous external calls on the general API path (performance-design.md)" },
+    { "id": "NFR1.3", "status": "OK", "target": "ChatModule bulkhead, async ChatProvider adapter call, timeout+retry (performance-design.md, logical-components.md)" },
+    { "id": "NFR1.4", "status": "OK", "target": "Single indexed GuideContent read keyed by propertyId, no external dependency (performance-design.md)" },
+    { "id": "NFR1.5", "status": "OK", "target": "Simple validate+insert path via LeadCaptureModule (performance-design.md)" },
+    { "id": "NFR1.6", "status": "OK", "target": "Stateless Fastify instances behind a load balancer, connection-pooled DB access (performance-design.md, scalability-design.md)" },
+    { "id": "NFR1.7", "status": "OK", "target": "Connection pool sized via RPS x duration x 1.5 formula (performance-design.md)" },
+    { "id": "NFR2.2", "status": "OK", "target": "Shallow/deep health checks driving load-balancer routing and auto-restart (reliability-design.md)" },
+    { "id": "NFR2.3", "status": "OK", "target": "Automated daily PostgreSQL backups with point-in-time recovery (reliability-design.md)" },
+    { "id": "NFR2.4", "status": "OK", "target": "Priority-tier failure handling table; ChatModule isolation contains degradation (reliability-design.md, logical-components.md)" },
+    { "id": "NFR2.5", "status": "OK", "target": "Daily backups, 30-day retention, restore tested before launch gate (reliability-design.md)" },
+    { "id": "NFR2.6", "status": "OK", "target": "OpenTelemetry Metrics SDK: RED route metrics, explicit business-event counters (observability-design.md)" },
+    { "id": "NFR2.7", "status": "OK", "target": "pino structured JSON logging with correlation-ID propagation and automatic credential redaction (observability-design.md)" },
+    { "id": "NFR2.8", "status": "OK", "target": "OpenTelemetry distributed tracing with W3C Trace Context across the admin-api boundary (observability-design.md)" },
+    { "id": "NFR2.9", "status": "OK", "target": "Four symptom-based alerts (error-rate, SLO burn, chat failure rate, DB pool exhaustion) with defined severity/escalation (observability-design.md)" },
+    { "id": "NFR3.7", "status": "OK", "target": "bcrypt hashing at signup/password-set (security-design.md)" },
+    { "id": "NFR3.8", "status": "OK", "target": "Fastify JWT plugin issuing 15min access/7d rotating refresh tokens (security-design.md)" },
+    { "id": "NFR3.9", "status": "OK", "target": "Three-layer authorization middleware: requireOwnership, requireStayToken, requireInternalCaller (security-design.md)" },
+    { "id": "NFR3.10", "status": "OK", "target": "Token-bucket rate limiting behind a swappable RateLimitStore interface (security-design.md)" },
+    { "id": "NFR3.11", "status": "OK", "target": "Internal routes on a logically separate listener (InternalAdminAPI component); network mechanism deferred to infrastructure-design (security-design.md, logical-components.md)" },
+    { "id": "NFR3.12", "status": "OK", "target": "Stripe Checkout/tokenization; ChatProvider grounding-context stripping (security-design.md)" },
+    { "id": "NFR3.13", "status": "OK", "target": "Structured audit-log entries on every admin-api-initiated write (security-design.md)" },
+    { "id": "NFR4.2", "status": "OK", "target": "Schema captures only workflow-required fields, enforced via the ORM schema as source of truth (security-design.md)" },
+    { "id": "NFR4.3", "status": "OK", "target": "Manual deletion runbook via admin-api account lookup plus a scripted cascade-delete (security-design.md)" },
+    { "id": "NFR5.2", "status": "OK", "target": "Stateless service + connection pool sized to the year-one capacity target (scalability-design.md)" },
+    { "id": "NFR5.3", "status": "OK", "target": "No server-side session state; JWT-based stateless horizontal scaling (scalability-design.md)" },
+    { "id": "NFR5.4", "status": "OK", "target": "Connection pool formula applied; read-replica identified as the future scaling lever (performance-design.md, scalability-design.md)" },
+    { "id": "NFR5.5", "status": "OK", "target": "ChatModule bulkhead absorbs load pressure first, shielding the critical-path tier (scalability-design.md, logical-components.md)" },
+    { "id": "NFR6.3", "status": "OK", "target": "In-process LRU cache over LocalityEntity.domains (performance-design.md, logical-components.md)" },
+    { "id": "NFR6.4", "status": "OK", "target": "Domain-mutation routes exist only on the internal listener; write-through cache invalidation (performance-design.md, scalability-design.md)" }
+  ]
+}
