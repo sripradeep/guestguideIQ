@@ -431,6 +431,48 @@ function isTrustedRecordTarget(
   }
 }
 
+/**
+ * Every code-generation record dir this session should trust for prep
+ * writes (Steps 2-3, including another applicable unit's own `## Review`
+ * appendix) - one per entry in `units` (null selects the stage-level dir),
+ * the SAME in-scope set gatherApprovalEvidence/knownUnits already compute
+ * for the dispatch-guard branch. Trusting every applicable unit's own dir -
+ * not just the currently active directive's single `unit` - matters because
+ * a multi-unit stage's completion check requires a simultaneously-fresh
+ * review receipt for EVERY applicable unit: once one unit's own
+ * code-generation is complete, the active directive only ever names the
+ * OTHER (still in-progress) unit, so refreshing the completed unit's own
+ * receipt must stay possible without an active directive naming it.
+ */
+export function trustedCodeGenerationRecordDirs(
+  projectDir: string,
+  units: readonly { unit: string | null }[],
+): string[] {
+  return units.map((candidate) =>
+    resolve(codeGenerationRecordDir(projectDir, candidate.unit)),
+  );
+}
+
+/**
+ * The first mutation target that falls outside EVERY trusted code-generation
+ * record dir, or `undefined` when every target is trusted. Exported (pure,
+ * filesystem-only - no directive/state machinery) so this exact boundary is
+ * unit-testable in isolation from the hook's stdin/session wiring.
+ */
+export function outsideTrustedCodeGenerationRecord(
+  projectDir: string,
+  targets: readonly string[],
+  units: readonly { unit: string | null }[],
+): string | undefined {
+  const trustedRecordDirs = trustedCodeGenerationRecordDirs(projectDir, units);
+  return targets.find(
+    (candidate) =>
+      !trustedRecordDirs.some((dir) =>
+        isTrustedRecordTarget(projectDir, candidate, dir),
+      ),
+  );
+}
+
 interface MutationIntent {
   targets: string[];
   opaqueShell: boolean;
@@ -729,10 +771,14 @@ export async function run(input: string): Promise<number> {
       } else {
         const unit = activeDirective.unit?.trim() || null;
         const target: CodeGenerationTarget = { unit };
-        const approvalDir = resolve(codeGenerationRecordDir(projectDir, unit));
-        const outsideRecord = mutation.targets.find(
-          (candidate) =>
-            !isTrustedRecordTarget(projectDir, candidate, approvalDir),
+        // Trust EVERY applicable unit's own code-generation record dir (plus
+        // the stage-level one), not just the active directive's single
+        // `unit` - see trustedCodeGenerationRecordDirs/
+        // outsideTrustedCodeGenerationRecord above.
+        const outsideRecord = outsideTrustedCodeGenerationRecord(
+          projectDir,
+          mutation.targets,
+          units,
         );
         if (!outsideRecord && !mutation.opaqueShell) return 0;
         const approval = evaluateCodeGenerationApproval(projectDir, target);

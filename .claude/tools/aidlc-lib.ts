@@ -13188,7 +13188,28 @@ export function workspaceSourceState(
   const listing: WorkspaceSourceListing = new Map();
   const roofExcluded = multiRepoRoofExcludedTopLevel(projectDir, repos);
   if (roofExcluded === null) return null;
-  const roof = filesystemSourceIdentity(projectDir, true, roofExcluded);
+  // The roof is the dir that carries the CLI/IDE shell for a multi-repo
+  // intent - UNLESS this call is itself running inside a Bolt worktree of the
+  // roof, in which case worktreeSourceExclusionContext (not a hardcoded
+  // `true`) is the one source of truth for whether it carries the shell.
+  // Mirrors the single-repo branch above; skipping this resolution here
+  // previously let a roof-scoped worktree's `.aidlc/worktree-meta.json`
+  // (repoSelector set, carriesWorkspaceShell: false) go unconsulted, so its
+  // exact-path exclusions (the mirrored intent record, the worktree markers)
+  // were silently dropped in favor of the wholesale `aidlc/` name exclusion -
+  // correct only by coincidence when the two overlap.
+  const hasRoofWorktreeContext = existsSync(
+    join(projectDir, ".aidlc", "worktree-meta.json"),
+  );
+  const roofWorktreeContext = hasRoofWorktreeContext
+    ? worktreeSourceExclusionContext(projectDir)
+    : null;
+  if (hasRoofWorktreeContext && roofWorktreeContext === null) return null;
+  const roof = filesystemSourceIdentity(
+    projectDir,
+    roofWorktreeContext?.carriesWorkspaceShell ?? true,
+    roofExcluded,
+  );
   if (roof === null) return null;
   lines.push(`roof=filesystem:${roof.fingerprint}`);
   for (const [key, entry] of prefixedSourceListing(roof.listing)) {
