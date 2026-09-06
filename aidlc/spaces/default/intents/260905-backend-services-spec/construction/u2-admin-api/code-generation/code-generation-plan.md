@@ -105,13 +105,13 @@ Every plan step maps to at least one `USx.y`/`ACx.y.z`/`BRx.y` id from `function
 
 **Verdict:** READY
 **Reviewer:** aidlc-architecture-reviewer-agent
-**Date:** 2026-09-06T09:55:00Z
-**Iteration:** 2
-**Request Challenge:** review:9e60bf44b5a72e36a9f01386eca8aa23
+**Date:** 2026-09-06T20:22:00Z
+**Iteration:** 1
+**Request Challenge:** review:4192ba9dd695cd63ff146723699eb17b
 
-Second recovery pass, immediately following u1-backend-api's own re-attestation, since the two units' review windows do not land atomically and one drifts stale while the other is being refreshed. No content in `guestguideiq-app/admin-api/`, `code-summary.md`, `traceability.json`, or `source-manifest.json` has changed since any prior review pass.
+Re-attestation after committing the generated code to `guestguideiq-app` (previously untracked/uncommitted, which a separate stage-completion evidence check required). No content in `guestguideiq-app/admin-api/`, `code-summary.md`, `traceability.json`, or `source-manifest.json` changed beyond that commit.
 
-Original findings (verified still accurate): the 401-vs-403 ops-role authorization distinction in `src/auth/middleware.ts` runs before any route logic; `InternalCallerModule`'s per-operation retry policy exactly matches `security-design.md`/`contract-summary.md`'s idempotency note, relaying `backend-api`'s `ErrorResponse` unchanged (BR1.6); traceability is complete across all 22 upstream ids with no overclaiming of `backend-api`'s own enforcement logic; `admin-api/` remains a fully independent project with zero imports from `u1-backend-api`. Three advisory, non-blocking notes stand (the `actor`-JWT-claim audit-identity choice, the SSM cross-stack publisher gap deferred to `ci-pipeline`, and the justified `UpstreamUnavailableError` addition). All 50 manifest paths remain confirmed present on disk.
+Findings (verified still accurate): the 401-vs-403 ops-role authorization distinction in `src/auth/middleware.ts` runs before any route logic; `InternalCallerModule`'s per-operation retry policy exactly matches `security-design.md`/`contract-summary.md`'s idempotency note, relaying `backend-api`'s `ErrorResponse` unchanged (BR1.6); traceability is complete across all 22 upstream ids with no overclaiming of `backend-api`'s own enforcement logic; `admin-api/` remains a fully independent project with zero imports from `u1-backend-api`. Three advisory, non-blocking notes stand (the `actor`-JWT-claim audit-identity choice, the SSM cross-stack publisher gap deferred to `ci-pipeline`, and the justified `UpstreamUnavailableError` addition). All 50 manifest paths remain confirmed present on disk.
 
 ### Summary
 
