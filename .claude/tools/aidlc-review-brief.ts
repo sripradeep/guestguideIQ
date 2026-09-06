@@ -42,6 +42,14 @@ export interface ReviewFinding {
   finding: string;
   requiredAction: string;
   status: ReviewFindingStatus;
+  /**
+   * Extra prose a reviewer appended after the recognized Status token (e.g.
+   * `Resolved — FR3.5 now covers this`). The tool folds this into the
+   * rendered cell rather than treating the whole cell as an invalid status;
+   * it carries no meaning beyond display and is dropped whenever a human
+   * disposition (Accepted risk / Rejected: ...) supersedes the status.
+   */
+  statusDetail?: string;
   fingerprint: string;
 }
 
@@ -99,6 +107,34 @@ function validFindingStatus(value: string): value is ReviewFindingStatus {
     value === "Accepted risk" ||
     /^Rejected: \S[\s\S]*$/.test(value)
   );
+}
+
+const FINDING_STATUS_DETAIL_MAX = 200;
+
+// Reviewers occasionally write a valid status token followed by an
+// explanation the tool never asked for (e.g. "Resolved — FR3.5 (added)
+// states ..."). Rather than hard-failing the whole gate-presentation path on
+// that shape, recognize the leading token - delimited by whitespace, a colon,
+// a hyphen, or an em/en dash - and fold the remainder into a display-only
+// detail. A delimiter is required (not merely optional), so a status like
+// "Newer requirement" is still rejected rather than mis-parsed as "New".
+// `Rejected: <reason>` is unaffected: it is already a valid status in full
+// via `validFindingStatus` above, so it never reaches this fallback.
+const FINDING_STATUS_PREFIX =
+  /^(New|Unresolved|Resolved|Accepted risk)[\s:\-–—]+(\S[\s\S]*)$/;
+
+function parseFindingStatusCell(
+  raw: string,
+): { status: ReviewFindingStatus; detail?: string } | null {
+  if (validFindingStatus(raw)) return { status: raw };
+  const match = FINDING_STATUS_PREFIX.exec(raw.trim());
+  if (!match) return null;
+  const status = match[1] as ReviewFindingStatus;
+  let detail = match[2].trim();
+  if (detail.length > FINDING_STATUS_DETAIL_MAX) {
+    detail = `${detail.slice(0, FINDING_STATUS_DETAIL_MAX).trimEnd()}… (truncated)`;
+  }
+  return { status, detail };
 }
 
 export function reviewFindingFingerprint(
@@ -189,10 +225,11 @@ export function parseReviewArtifact(
     if (!/^R-[0-9]+$/.test(id)) {
       throw new Error(`${artifact}: invalid finding ID ${JSON.stringify(id)}`);
     }
-    const status = value("Status");
-    if (!validFindingStatus(status)) {
+    const statusRaw = value("Status");
+    const parsedStatus = parseFindingStatusCell(statusRaw);
+    if (!parsedStatus) {
       throw new Error(
-        `${artifact}#${id}: invalid finding status ${JSON.stringify(status)}`,
+        `${artifact}#${id}: invalid finding status ${JSON.stringify(statusRaw)}`,
       );
     }
     const finding: ReviewFinding = {
@@ -203,7 +240,8 @@ export function parseReviewArtifact(
       location: value("Location"),
       finding: value("Finding"),
       requiredAction: value("Required action"),
-      status,
+      status: parsedStatus.status,
+      ...(parsedStatus.detail ? { statusDetail: parsedStatus.detail } : {}),
       fingerprint: "",
     };
     finding.fingerprint = reviewFindingFingerprint(finding);
@@ -387,7 +425,7 @@ export function hydrateReviewArtifactContexts(
     findings: context.findings.map((finding) => {
       const disposition = dispositions.get(dispositionKey(finding));
       return disposition?.fingerprint === finding.fingerprint
-        ? { ...finding, status: disposition.status }
+        ? { ...finding, status: disposition.status, statusDetail: undefined }
         : finding;
     }),
   }));
@@ -511,10 +549,13 @@ export function renderFindingsContext(
       "|---|---|---|---|---|---|",
     );
     for (const finding of context.findings) {
+      const statusCell = finding.statusDetail
+        ? `${finding.status} — ${finding.statusDetail}`
+        : finding.status;
       lines.push(
         `| ${markdownCell(finding.id)} | ${markdownCell(finding.severity)} | ` +
           `${markdownCell(finding.location)} | ${markdownCell(finding.finding)} | ` +
-          `${markdownCell(finding.requiredAction)} | ${markdownCell(finding.status)} |`,
+          `${markdownCell(finding.requiredAction)} | ${markdownCell(statusCell)} |`,
       );
     }
     if (context.findings.length === 0) {

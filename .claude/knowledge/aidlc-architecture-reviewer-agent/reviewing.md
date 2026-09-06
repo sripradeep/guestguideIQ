@@ -110,7 +110,7 @@ When the dispatch brief includes `Prior findings (carry IDs forward)`:
 - Treat that table as authoritative for prior human dispositions; it is
   rendered from the audit ledger without rewriting the reviewed artifact.
 - Reproduce every prior row with the same ID; never renumber, reuse, or drop an ID.
-- Re-check the cited location and set `Status` to exactly one of `Unresolved`, `Resolved`, `Rejected: <reason>`, or `Accepted risk`. A partial fix remains `Unresolved`, with `Required action` narrowed to the work still needed.
+- Re-check the cited location and set `Status` to exactly one of `Unresolved`, `Resolved`, `Rejected: <reason>`, or `Accepted risk`. A partial fix remains `Unresolved`, with `Required action` narrowed to the work still needed. `Status` is that token alone — never append an explanatory sentence after it (e.g. `Resolved — FR3.5 now covers this`); put the "why" in `Required action` or `Finding` instead, where prose belongs.
 - Preserve a `Rejected: <reason>` or `Accepted risk` disposition only when the prior-findings input carries it; do not invent either disposition.
 - Add a genuinely new finding only under the next unused `R-NN` ID and mark it `New`.
 - Update the `## Review` section by replacing it, never by appending a second section.
