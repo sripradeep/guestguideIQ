@@ -1,0 +1,16 @@
+{
+  "stage": "nfr-requirements",
+  "unit": "u2-admin-api",
+  "upstream_ids": ["NFR1", "NFR2", "NFR3", "NFR4", "NFR5", "NFR6"],
+  "coverage": [
+    { "id": "NFR1", "status": "OK", "target": "NFR1.2, NFR1.3 (performance-requirements.md)" },
+    { "id": "NFR2", "status": "OK", "target": "NFR2.2, NFR2.3, NFR2.4 (reliability-requirements.md); NFR2.5, NFR2.6, NFR2.7 (observability-requirements.md)" },
+    { "id": "NFR3", "status": "OK", "target": "NFR3.7, NFR3.8, NFR3.9, NFR3.10, NFR3.11, NFR3.12 (security-requirements.md)" },
+    { "id": "NFR4", "status": "N/A", "target": "admin-api owns no entities (ADR-004) and holds no PII of its own — all Data Privacy concerns apply to u1-backend-api's database, covered in that Unit's security-requirements.md NFR4.2/NFR4.3 (see security-requirements.md > Data Privacy)" },
+    { "id": "NFR5", "status": "OK", "target": "NFR5.2 (scalability-requirements.md) — a deliberately minimal requirement since this Unit's load does not scale with the customer-facing dimensions NFR5 was written for" },
+    { "id": "NFR6", "status": "N/A", "target": "admin-api performs no request-domain resolution and renders no locality-branded surface — all four workflows (W1-W4) are ops-tool-only (see security-requirements.md > Data Privacy and Multi-Tenancy)" }
+  ],
+  "reverse": [
+    { "id": "TSD.1", "status": "N/A", "target": "tech-stack-decisions.md — inherits u1-backend-api's language/framework/tooling decisions by reference; the only Unit-specific items (no database, distinct JWT scoping) are cross-cutting rather than tied to one inception NFR category" }
+  ]
+}

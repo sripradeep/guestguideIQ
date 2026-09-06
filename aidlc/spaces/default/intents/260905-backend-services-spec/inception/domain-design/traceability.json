@@ -1,0 +1,29 @@
+{
+  "stage": "domain-design",
+  "_confirmed": "Re-confirmed at the Consolidated Summary Confirmation checkpoint after the redo jump.",
+  "upstream_ids": [
+    "US1.1", "US1.2", "US1.3", "US1.4", "US1.5", "US1.6", "US1.7", "US1.8",
+    "US2.1", "US2.2", "US2.3",
+    "US3.1", "US3.2",
+    "US4.1", "US4.2", "US4.3", "US4.4"
+  ],
+  "coverage": [
+    { "id": "US1.1", "status": "OK", "target": "Identity" },
+    { "id": "US1.2", "status": "OK", "target": "Identity" },
+    { "id": "US1.3", "status": "OK", "target": "Onboarding" },
+    { "id": "US1.4", "status": "OK", "target": "Onboarding, PropertyGuide" },
+    { "id": "US1.5", "status": "OK", "target": "PropertyGuide" },
+    { "id": "US1.6", "status": "OK", "target": "PropertyGuide, PointOfInterest, LocalEvent" },
+    { "id": "US1.7", "status": "OK", "target": "Subscription" },
+    { "id": "US1.8", "status": "OK", "target": "Subscription" },
+    { "id": "US2.1", "status": "OK", "target": "GuestAccess, Locality" },
+    { "id": "US2.2", "status": "OK", "target": "GuestAccess, PropertyGuide, Locality" },
+    { "id": "US2.3", "status": "OK", "target": "ItineraryChat" },
+    { "id": "US3.1", "status": "OK", "target": "LeadCapture" },
+    { "id": "US3.2", "status": "OK", "target": "LeadCapture" },
+    { "id": "US4.1", "status": "OK", "target": "Admin, PointOfInterest" },
+    { "id": "US4.2", "status": "OK", "target": "Admin, LocalEvent" },
+    { "id": "US4.3", "status": "OK", "target": "Admin, Identity" },
+    { "id": "US4.4", "status": "OK", "target": "Admin, Locality" }
+  ]
+}

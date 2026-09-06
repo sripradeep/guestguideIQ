@@ -1,0 +1,22 @@
+{
+  "stage": "user-stories",
+  "_confirmed": "Confirmed correct by the human at the Consolidated Summary Confirmation checkpoint.",
+  "upstream_ids": ["FR1", "FR2", "FR3", "FR4", "FR5", "FR6", "FR7", "FR8", "FR9", "NFR1", "NFR2", "NFR3", "NFR4", "NFR5", "NFR6"],
+  "coverage": [
+    { "id": "FR1", "status": "OK", "target": "US3.1, US3.2" },
+    { "id": "FR2", "status": "OK", "target": "US1.1, US1.2, US1.7, US1.8" },
+    { "id": "FR3", "status": "OK", "target": "US1.3, US1.4, US1.1 (FR3.5)" },
+    { "id": "FR4", "status": "OK", "target": "US1.5, US1.6, US2.2" },
+    { "id": "FR5", "status": "OK", "target": "US1.6, US4.1 (FR5.4)" },
+    { "id": "FR6", "status": "OK", "target": "US4.2, US2.2" },
+    { "id": "FR7", "status": "OK", "target": "US2.3" },
+    { "id": "FR8", "status": "OK", "target": "US2.1" },
+    { "id": "FR9", "status": "OK", "target": "US4.4, US1.1, US1.5, US2.2, US2.1" },
+    { "id": "NFR1", "status": "Deferred", "target": "nfr-requirements" },
+    { "id": "NFR2", "status": "Deferred", "target": "nfr-requirements" },
+    { "id": "NFR3", "status": "Deferred", "target": "nfr-requirements (cross-cutting security/CI posture already partly encoded in affirmed team-practices; concrete NFR targets set at nfr-requirements)" },
+    { "id": "NFR4", "status": "Deferred", "target": "nfr-requirements" },
+    { "id": "NFR5", "status": "Deferred", "target": "nfr-requirements" },
+    { "id": "NFR6", "status": "Deferred", "target": "domain-design/infrastructure-design (multi-tenant domain routing mechanics)" }
+  ]
+}

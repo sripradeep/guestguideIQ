@@ -1,0 +1,16 @@
+{
+  "stage": "nfr-requirements",
+  "unit": "u1-backend-api",
+  "upstream_ids": ["NFR1", "NFR2", "NFR3", "NFR4", "NFR5", "NFR6"],
+  "coverage": [
+    { "id": "NFR1", "status": "OK", "target": "NFR1.2, NFR1.3, NFR1.4, NFR1.5, NFR1.6, NFR1.7 (performance-requirements.md)" },
+    { "id": "NFR2", "status": "OK", "target": "NFR2.2, NFR2.3, NFR2.4, NFR2.5 (reliability-requirements.md); NFR2.6, NFR2.7, NFR2.8, NFR2.9 (observability-requirements.md)" },
+    { "id": "NFR3", "status": "OK", "target": "NFR3.7, NFR3.8, NFR3.9, NFR3.10, NFR3.11, NFR3.12, NFR3.13 (security-requirements.md)" },
+    { "id": "NFR4", "status": "OK", "target": "NFR4.2, NFR4.3 (security-requirements.md > Data Privacy)" },
+    { "id": "NFR5", "status": "OK", "target": "NFR5.2, NFR5.3, NFR5.4, NFR5.5 (scalability-requirements.md)" },
+    { "id": "NFR6", "status": "OK", "target": "NFR6.3, NFR6.4 (scalability-requirements.md > Domain Routing Scale Note)" }
+  ],
+  "reverse": [
+    { "id": "tech-stack-decisions.md", "status": "N/A", "target": "cross-cutting technology/tooling decisions (language, framework, database, ORM, LLM adapter shape, billing provider, observability SDK) — resolves requirements.md C4 and OQ1/OQ2/OQ3/OQ4/NFR3.6, none of which is itself a numbered inception NFR category" }
+  ]
+}
