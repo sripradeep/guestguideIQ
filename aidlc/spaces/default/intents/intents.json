@@ -5,5 +5,15 @@
     "dirName": "260905-backend-services-spec",
     "scope": "classic",
     "status": "in-flight"
+  },
+  {
+    "uuid": "01a07cb1-3393-7db5-af08-8fc5e95a9829",
+    "slug": "frontend-app",
+    "dirName": "260907-frontend-app",
+    "scope": "classic",
+    "repos": [
+      "guestguideiq-app"
+    ],
+    "status": "in-flight"
   }
 ]

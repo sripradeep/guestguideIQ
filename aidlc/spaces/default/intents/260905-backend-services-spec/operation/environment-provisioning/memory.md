@@ -2,13 +2,13 @@
 > This file is kept up to date automatically while the stage runs. Add observations at the review step, not by editing here directly.
 
 ## Interpretations
-<!-- example: 2026-05-29T10:14:32Z — chose REST over GraphQL; the consuming team only needs CRUD, revisit if subscriptions land -->
+- 2026-09-07T16:45:00Z — treated this stage as formalizing/documenting an already-completed ad-hoc production deployment rather than driving a fresh provisioning process from scratch; the real AWS work (VPC/RDS/ECS/ALB/ACM/DNS, plus 5 genuine bug fixes) happened via direct execution earlier in the session, before this stage's formal ritual was resumed.
 
 ## Deviations
-<!-- example: 2026-05-29T10:14:32Z — skipped the optional caching layer the stage prose suggested; the dataset is small enough that it adds risk -->
+- 2026-09-07T16:45:00Z — the deployed production stack diverges from `infrastructure-specification.md` in four places (no WAF, no ECS auto-scaling, DNS via an external provider not Route 53, ACM cert requested manually not programmatically). All four were surfaced as explicit questions (Q2, Q3, Q4, Q5) and confirmed by the user as accepted deviations/deferrals, not silently absorbed.
 
 ## Tradeoffs
-<!-- example: 2026-05-29T10:14:32Z — picked TDD over BDD this run; the team is unit-first and the domain is well-understood -->
+- 2026-09-07T16:45:00Z — for RDS deletion protection (Q7), chose to make the actual code fix + open a PR immediately rather than just recording "re-enable later" as a follow-up, since the user's answer was an explicit "yes, now" and the fix is a one-line, low-risk change with an existing PR workflow already established this session.
 
 ## Open questions
-<!-- example: 2026-05-29T10:14:32Z — confirm the retention window with compliance before the next stage hardens the schema -->
+- 2026-09-07T16:45:00Z — WAF and ECS auto-scaling are both deferred pending real traffic; revisit before onboarding any real paying customers, not on a fixed calendar date.

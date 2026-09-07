@@ -1,11 +1,16 @@
-# Team-Level Rules
+# Team Practices — Frontend (Property Owner + Guest app)
 
-> This team's affirmed practices and corrections. Loaded after `org.md` as
-> strict-additive guidance; contradictions with broader policy are rejected.
-> Populated by the practices-discovery affirmation gate. Edit at the gate,
-> not directly.
+> Final. Lead: `aidlc-pipeline-deploy-agent`. This is a re-run of practices
+> discovery for the frontend intent (`260907-frontend-app`), integrating the
+> completed human interview (`practices-discovery-questions.md`) with three
+> independent reviews (`contributions/`). These five sections replace the
+> matching sections of `memory/team.md` on promotion, so they describe the
+> team's complete current practice — backend and frontend work together, not
+> frontend alone. See `evidence.md` for the full carry-over analysis, every
+> reviewer objection and its disposition, and everything still open.
 
 ## Way of Working
+
 - **Branching model**: short-lived feature branches, merged via pull request
   after review. Confirmed for backend work on 2026-09-05 and now confirmed
   (Q3) to apply to frontend work as well — this is a team-wide habit, not a
@@ -35,6 +40,7 @@
   existed to depart from this.
 
 ## Walking Skeleton
+
 - **Confirmed (Q2): Yes — prove the Owner path.** Build a thin end-to-end
   slice first — signup through to a published guide — as Bolt 1, solo and
   gated, approved by the user before remaining Bolts run. Record
@@ -53,6 +59,7 @@
   system's integration points before building out logic).
 
 ## Testing Posture
+
 - **Methodology**: custom
 - **Ordering**: write the BDD scenario (given/when/then) first, implement the
   code to satisfy it, then add lower-level unit tests after implementation.
@@ -144,6 +151,7 @@
   `evidence.md`.
 
 ## Deployment
+
 - **Staging + manual production approval (confirmed, Q6): yes, same as the
   backend.** Every frontend deploy (Owner and Guest surfaces together, not
   split) goes to a staging environment first; production requires manual
@@ -235,6 +243,7 @@
   key sitting in repo secrets is a bigger blast radius than on the backend.
 
 ## Code Style
+
 - **Tech stack is not chosen; most of this section is provisional pending
   `domain-design`/`infrastructure-design`.** What follows is either
   stack-agnostic (and therefore decidable now) or explicitly marked
@@ -340,15 +349,3 @@
 - **Layer boundaries, state management, and file organization beyond the API
   boundary above**: genuinely new ground, dependent on the framework choice,
   and correctly deferred to `domain-design`/`functional-design`.
-
-## Forbidden
-
-<!-- Team-specific forbidden patterns -->
-
-## Mandated
-
-<!-- Team-specific mandates -->
-
-## Corrections
-
-<!-- Self-learning loop appends here. -->

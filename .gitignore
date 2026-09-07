@@ -78,5 +78,9 @@ aidlc/diagnostics/
 # Nested sibling repo — the separate backend repository (guestguideiq-app),
 # checked out as an AI-DLC multi-repo sibling of aidlc/ per team.md's Q2
 # mandate. It has its own .git and its own commit history; this repo must
-# never track its contents.
-guestguideiq-app/
+# never track its contents. Anchored with a leading slash so it matches ONLY the
+# sibling clone at the repo root — an unanchored `guestguideiq-app/` also matches
+# `aidlc/spaces/*/codekb/guestguideiq-app/`, silently excluding the shared code
+# knowledge base that is meant to travel by git. Apply the same anchoring to any
+# future sibling (e.g. `/guestguideiq-ui/`).
+/guestguideiq-app/
