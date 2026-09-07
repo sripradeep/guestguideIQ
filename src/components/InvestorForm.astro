@@ -1,28 +1,21 @@
 ---
-import { FORMS, SITE } from '../site.config';
+import { LEADS } from '../site.config';
 
 interface Props {
   id?: string;
 }
 
 const { id = 'investor-form' } = Astro.props;
-// Formspree's _next redirect requires a fully-qualified URL — a relative
-// path like "/thank-you/" is silently ignored and it falls back to its own
-// generic success page.
-const thankYouUrl = new URL('/thank-you/', SITE.url).toString();
 ---
 
 <form
-  action={FORMS.investor}
+  action={LEADS.investor}
   method="POST"
   class="investor-form"
   id={id}
   data-ajax-form
   data-success-url="/thank-you/"
 >
-  <input type="hidden" name="_subject" value="New GuestGuideIQ investor/press inquiry" />
-  <input type="hidden" name="_next" value={thankYouUrl} />
-
   <div class="field-row">
     <div class="field">
       <label for={`${id}-name`}>Name</label>
@@ -30,7 +23,7 @@ const thankYouUrl = new URL('/thank-you/', SITE.url).toString();
     </div>
     <div class="field">
       <label for={`${id}-org`}>Organization</label>
-      <input id={`${id}-org`} type="text" name="organization" autocomplete="organization" />
+      <input id={`${id}-org`} type="text" name="org" required autocomplete="organization" />
     </div>
   </div>
 
@@ -41,7 +34,7 @@ const thankYouUrl = new URL('/thank-you/', SITE.url).toString();
 
   <div class="field">
     <label for={`${id}-message`}>Message</label>
-    <textarea id={`${id}-message`} name="message" placeholder="What would you like to know?"></textarea>
+    <textarea id={`${id}-message`} name="message" required placeholder="What would you like to know?"></textarea>
   </div>
 
   <button class="btn btn-primary" type="submit">Request Info</button>

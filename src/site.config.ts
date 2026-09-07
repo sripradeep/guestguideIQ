@@ -1,6 +1,6 @@
 // Central place for the handful of values that change between "just scaffolded"
 // and "actually live". Update these, not the pages, when you:
-//   - create real Formspree forms (see README.md "Forms" section)
+//   - point the lead-capture forms at a real backend deployment (see README.md "Forms" section)
 //   - pick a real contact inbox
 //   - add analytics
 //   - confirm the domain
@@ -13,14 +13,25 @@ export const SITE = {
   contactEmail: 'hello@guestguideiq.com', // TODO: point this at a real inbox before launch
 };
 
-// Formspree endpoints. Create a free account at https://formspree.io, create
-// one form per row below, and paste in the real form IDs. Until then these
-// point at placeholders and submissions will fail with a clear Formspree error
-// rather than silently going nowhere.
-export const FORMS = {
-  waitlist: 'https://formspree.io/f/xbgjkwkp',
-  partner: 'https://formspree.io/f/xjyvolol',
-  investor: 'https://formspree.io/f/maeybvbz',
+// The GuestGuideIQ backend's base URL, used by the lead-capture forms below.
+// Configure via the PUBLIC_API_BASE_URL env var at build time (see
+// README.md "Forms" section and .env.example) — never hardcode the real
+// backend domain here. Falls back to a local dev placeholder so `npm run
+// dev`/`npm run build` don't require it; requests simply fail against a
+// backend that isn't running, same as any other unconfigured integration.
+const DEFAULT_API_BASE_URL = 'http://localhost:8080';
+
+export const API = {
+  baseUrl: import.meta.env.PUBLIC_API_BASE_URL || DEFAULT_API_BASE_URL,
+};
+
+// Lead-capture endpoints on the backend (contract 3 of
+// aidlc/spaces/default/intents/260905-backend-services-spec/inception/contract-design/contract-summary.md).
+// Each accepts a JSON POST body matching the form's field names below.
+export const LEADS = {
+  waitlist: `${API.baseUrl}/v1/leads/waitlist`,
+  partner: `${API.baseUrl}/v1/leads/partner`,
+  investor: `${API.baseUrl}/v1/leads/investor`,
 };
 
 // Set to a real GA4 measurement ID ("G-XXXXXXX") or Plausible domain to wire
