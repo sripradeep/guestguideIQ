@@ -69,11 +69,14 @@ const canonicalURL = new URL(Astro.url.pathname, SITE.url);
     </main>
     <Footer />
     <script>
-      // Submit forms via fetch instead of a plain POST. Formspree's `_next`
-      // redirect (in the hidden field on each form) is a no-JS fallback, but
-      // it's plan-gated and often silently ignored — this is the reliable
-      // path, and it's what lets us land on our own /thank-you/ page instead
-      // of Formspree's generic one regardless of account tier.
+      // Submit forms via fetch as JSON, matching the GuestGuideIQ backend's
+      // lead-capture contract (REST/HTTP + JSON, see
+      // aidlc/spaces/default/intents/260905-backend-services-spec/inception/contract-design/contract-summary.md,
+      // Contract 3). Each form's field `name`s are written to match that
+      // contract's request-body keys exactly, so a plain FormData -> object
+      // conversion needs no per-form mapping. On success we redirect
+      // ourselves to `/thank-you/` (or the form's `data-success-url`) rather
+      // than relying on any server-side redirect.
       function bindAjaxForms() {
         document.querySelectorAll<HTMLFormElement>('form[data-ajax-form]').forEach((form) => {
           if (form.dataset.ajaxBound === 'true') return;
@@ -94,12 +97,26 @@ const canonicalURL = new URL(Astro.url.pathname, SITE.url);
             }
 
             try {
-              const response = await fetch(form.action, {
-                method: 'POST',
-                body: new FormData(form),
-                headers: { Accept: 'application/json' },
+              const payload: Record<string, string> = {};
+              new FormData(form).forEach((value, key) => {
+                if (typeof value === 'string') payload[key] = value;
               });
 
+              const response = await fetch(form.action, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  Accept: 'application/json',
+                },
+                body: JSON.stringify(payload),
+              });
+
+              // Any non-2xx (validation error, backend outage, network
+              // failure surfaced as a rejected fetch below) falls through to
+              // the same generic, entered-data-preserving error message —
+              // the contract explicitly doesn't require distinguishing them
+              // client-side (see Contract 3's "On backend outage/network
+              // failure" note).
               if (!response.ok) throw new Error(`Form submission failed (${response.status})`);
 
               window.location.assign(form.dataset.successUrl || '/thank-you/');

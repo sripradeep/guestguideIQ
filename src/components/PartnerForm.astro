@@ -1,5 +1,5 @@
 ---
-import { FORMS, SITE } from '../site.config';
+import { LEADS } from '../site.config';
 
 interface Props {
   id?: string;
@@ -7,10 +7,6 @@ interface Props {
 }
 
 const { id = 'partner-form', defaultType } = Astro.props;
-// Formspree's _next redirect requires a fully-qualified URL — a relative
-// path like "/thank-you/" is silently ignored and it falls back to its own
-// generic success page.
-const thankYouUrl = new URL('/thank-you/', SITE.url).toString();
 
 const orgTypes = [
   { value: 'str-operator', label: 'STR operator / property manager' },
@@ -21,16 +17,13 @@ const orgTypes = [
 ---
 
 <form
-  action={FORMS.partner}
+  action={LEADS.partner}
   method="POST"
   class="partner-form"
   id={id}
   data-ajax-form
   data-success-url="/thank-you/"
 >
-  <input type="hidden" name="_subject" value="New GuestGuideIQ partner inquiry" />
-  <input type="hidden" name="_next" value={thankYouUrl} />
-
   <div class="field-row">
     <div class="field">
       <label for={`${id}-name`}>Name</label>
@@ -38,18 +31,24 @@ const orgTypes = [
     </div>
     <div class="field">
       <label for={`${id}-company`}>Company / property</label>
-      <input id={`${id}-company`} type="text" name="company" autocomplete="organization" />
+      <input id={`${id}-company`} type="text" name="company" required autocomplete="organization" />
     </div>
   </div>
 
   <div class="field-row">
     <div class="field">
       <label for={`${id}-role`}>Role</label>
-      <input id={`${id}-role`} type="text" name="role" placeholder="e.g. Host, Property Manager, Guide" />
+      <input
+        id={`${id}-role`}
+        type="text"
+        name="role"
+        required
+        placeholder="e.g. Host, Property Manager, Guide"
+      />
     </div>
     <div class="field">
       <label for={`${id}-type`}>I am a…</label>
-      <select id={`${id}-type`} name="organization_type" required>
+      <select id={`${id}-type`} name="organizationType" required>
         <option value="" disabled selected={!defaultType}>Select one</option>
         {orgTypes.map((opt) => (
           <option value={opt.value} selected={defaultType === opt.value}>{opt.label}</option>
@@ -68,6 +67,7 @@ const orgTypes = [
     <textarea
       id={`${id}-message`}
       name="message"
+      required
       placeholder="Tell us about your properties, your listings, or the experiences you offer."
     ></textarea>
   </div>

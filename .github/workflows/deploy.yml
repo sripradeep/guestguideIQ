@@ -31,6 +31,13 @@ jobs:
         run: npm ci
 
       - name: Build
+        env:
+          # Baked into the static build at compile time (this is a public,
+          # non-secret value — see src/site.config.ts and README.md
+          # "Forms"). Override by setting a repository variable named
+          # PUBLIC_API_BASE_URL under Settings -> Secrets and variables ->
+          # Actions -> Variables if the backend's URL ever changes.
+          PUBLIC_API_BASE_URL: ${{ vars.PUBLIC_API_BASE_URL || 'https://api.guestguideiq.com' }}
         run: npm run build
 
       - name: Setup Pages

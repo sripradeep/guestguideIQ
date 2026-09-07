@@ -32,17 +32,27 @@ Everything below is also tracked as an open item in [docs/SPEC.md §13](docs/SPE
 
 ### 1. Forms
 
-The site has no backend (GitHub Pages is static), so the waitlist, partner, and investor forms
-submit to [Formspree](https://formspree.io):
+The waitlist, partner, and investor forms submit directly to the GuestGuideIQ backend's
+lead-capture API (`POST /v1/leads/{waitlist,partner,investor}` — see
+`aidlc/spaces/default/intents/260905-backend-services-spec/inception/contract-design/contract-summary.md`,
+Contract 3) via `fetch`, as JSON matching each endpoint's documented request body.
 
-1. Create a free Formspree account.
-2. Create three forms (waitlist, partner inquiries, investor/press).
-3. Copy each form's endpoint into [`src/site.config.ts`](src/site.config.ts) — the `FORMS`
-   object. Until you do this, submissions will hit a placeholder URL and Formspree will show a
-   clear "form not found" error rather than silently going nowhere.
+1. Set the `PUBLIC_API_BASE_URL` env var to the backend's base URL (e.g.
+   `https://api.guestguideiq.com`) — see [`.env.example`](.env.example). It's read in
+   [`src/site.config.ts`](src/site.config.ts) and falls back to a local dev placeholder
+   (`http://localhost:8080`) when unset, so `npm run dev`/`npm run build` don't require it.
+2. The production build (`.github/workflows/deploy.yml`) sets this at build time — override it by
+   adding a repository variable named `PUBLIC_API_BASE_URL` under **Settings → Secrets and
+   variables → Actions → Variables** if the backend's URL ever changes.
+3. The backend must allow cross-origin requests (CORS) from this site's origin
+   (`https://guestguideiq.com`) — that's a backend-side configuration item, not something this
+   repo controls.
 
-Each form redirects to `/thank-you/` on success (via Formspree's `_next` field) and requires no
-JavaScript to work.
+Each form redirects to `/thank-you/` on success via the shared client-side handler in
+`BaseLayout.astro`; on any non-2xx response or network failure it shows a generic inline error and
+keeps the visitor's entered data, per the contract's documented failure behavior. This now
+requires JavaScript (the backend only accepts JSON bodies, so the earlier no-JS
+`<form action>` fallback no longer applies).
 
 ### 2. Contact email
 
