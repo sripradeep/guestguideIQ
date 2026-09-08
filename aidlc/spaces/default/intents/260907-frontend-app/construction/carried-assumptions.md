@@ -238,8 +238,40 @@ if the revert is reported as a bug.
 ### D1 — `delivery-planning/bolt-plan.md` sequences eight units
 
 `u9-guest-guide-view` was added at `functional-design`. The Bolt plan predates it
-and has not been revised. **Revisit trigger:** before Construction sequencing is
-used to schedule work.
+and has not been revised.
+
+**Resolved in practice, 2026-09-08, without amending the plan.** `u9` was built
+inside B1 rather than scheduled separately, because `u5-owner-guide`'s
+publication preview (`AC1.8.4`) renders it — B1 could not be finished without it.
+That is the answer the plan would have reached: `u9` belongs wherever its first
+consumer is, and its first consumer is an owner screen, not the guest app.
+
+**Still worth amending before B2–B4 are scheduled**, since the plan's unit counts
+and sizes are now wrong in a document someone will read as authoritative.
+**Revisit trigger:** when B2 is picked up.
+
+### D2 — B1 is complete
+
+All five units built, plus `u9`. 144 tests, 92% lines, every gate green.
+
+**What B1's confidence hypothesis asked, and what it answered:** whether the
+layering survives contact with five real units — one module reaching the
+network, one parsing errors, one owning tokens — and specifically whether the
+deliberate `ApiClient`/`SessionManager` cycle resolves cleanly. **It does.**
+Injecting the auth calls at construction means no circular import at module
+level, and the cycle stays invisible to consumers.
+
+**What it did not answer, exactly as predicted:** whether any of it matches the
+real API. Every unit is built against hand-written fixtures that have never met
+the deployed backend. That stays open until M1 and M2 land.
+
+**The override's cost, assessed honestly.** B1 dropped the "thin" third of the
+walking-skeleton mandate and built five complete units before demoing. The
+mitigation was ordering — build the skeleton path first and demo there — and it
+worked: **the skeleton's first run found a real defect** (signup never adopting
+its tokens) that would otherwise have surfaced much later and against more code.
+The deferred discovery the override risked did not materialise, but that is one
+sample, not a vindication of the general trade.
 
 ---
 
