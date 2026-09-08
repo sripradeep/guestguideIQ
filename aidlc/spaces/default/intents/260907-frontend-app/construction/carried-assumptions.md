@@ -319,6 +319,52 @@ a genuine gap in the stage's inputs, not a formality. **Revisit trigger:** if
 ---
 ---
 
+## G. Environment-provisioning items
+
+Added 2026-09-08. The stage was run **out of sequence** (it is 4.2; the workflow
+pointer is still at 3.1) and **could not complete**: nothing is provisioned, the
+session had no AWS credentials, and its second declared input `cd-config` does not
+exist because `deployment-pipeline` has not run. Its artifacts are a target and a
+set of defined checks, both labelled as such.
+
+### G1 — Seven provisioning decisions carried as assumptions
+
+All seven answers in `environment-provisioning-questions.md` are
+**orchestrator-selected, not human-chosen**, per the standing instruction to carry
+forward on documented assumptions. Two want a human before anything is created:
+
+- **Q4 — which domains exist.** No locality domain has been named anywhere in this
+  intent, and `AC1.9.4` requires guest links to live on one. The certificate SAN
+  list and the distribution aliases both derive from it, and adding a domain later
+  means certificate re-issue + DNS validation + distribution update — the slowest
+  loop in provisioning. **Revisit trigger:** before the certificate is requested.
+- **Q6 — no WAF.** Carried from the backend's deferral, but the reasoning is
+  weaker here: the guest surface is public and unauthenticated, the backend's rate
+  limiter is per-process across 2–6 tasks, and a stay token is non-revocable, so
+  brute force against `/s/*` has no mitigation anywhere today. **Revisit trigger:**
+  before the first real locality goes live with real guests.
+
+### G2 — Rollback has never been exercised, and there is no mechanism that would
+
+Recorded in F3 as a design fact; it becomes a **testable obligation** here as
+check V16. The backend has genuine rollback evidence because its ECS circuit
+breaker really fired. There is no equivalent here, so the only way to know
+rollback works is to perform one deliberately in staging.
+
+**Revisit trigger:** at provisioning. Do not let V16 be the check that gets
+skipped because everything else passed.
+
+### G3 — The frontend repository does not exist
+
+`project.md` stamps `ALWAYS build the frontend in its own new repository`. Only
+`guestguideiq-app` is checked out. This blocks `code-generation` (3.5) and
+everything after it, and it is the single most upstream missing thing in the whole
+build — ahead of every backend blocker in section B.
+
+**Revisit trigger:** immediately, if the build is to continue in stage order.
+
+---
+
 ## How to use this document
 
 - **Before `infrastructure-design`:** ~~read A1, A2 and A3~~ — **that stage has
