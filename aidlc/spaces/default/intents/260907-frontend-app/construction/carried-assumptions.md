@@ -369,6 +369,40 @@ rollback works is to perform one deliberately in staging.
 **Revisit trigger:** at provisioning. Do not let V16 be the check that gets
 skipped because everything else passed.
 
+### G4 — M3 (the cross-tab refresh lock) is **BUILT** 2026-09-08
+
+`u3-foundation`'s `refreshLock.ts` implements BR1.6 with the Web Locks API, and
+`sessionManager.ts` re-reads the token store *after* acquiring the lock — so a
+tab that queued behind another tab's refresh uses the token that tab obtained
+rather than rotating a valid one away. That re-read is what makes the lock
+cooperation rather than mere serialisation, and it is easy to omit.
+
+Covered by tests for the collapse, the two session-ending paths, and the
+post-refresh-retry rule. **Not yet verified across two real browser tabs** —
+`jsdom` has no Web Locks, so the unit tests exercise the *fallback* path, not
+the locked one.
+
+**Revisit trigger:** during `build-and-test`, open two real tabs and confirm one
+refresh goes out. This is the single most valuable manual check in the build,
+because the failure mode is an owner being signed out at random.
+
+### G5 — The Web Locks fallback runs unlocked
+
+Where `navigator.locks` is unavailable (Safari before 15.4, and `jsdom`),
+`withRefreshLock` runs the task without a lock rather than failing.
+
+**Why that direction:** the alternative is that such a browser cannot refresh at
+all and the session ends on the first `401`. Degrading to *today's behaviour* —
+in-document single-flight, cross-tab race still present — beats degrading to
+*signed out*.
+
+**What it costs:** on those browsers M3 is not actually fixed, silently. Nothing
+reports it.
+
+**Revisit trigger:** if the supported-browser floor (`NFR9`) is ever written
+down precisely. If Safari 15.4+ is the floor, the fallback can become an error
+instead, which would make the gap visible rather than silent.
+
 ### G3 — The frontend repository: **RESOLVED 2026-09-08**
 
 Created as `sripradeep/guestguideiq-frontend` (private, matching the backend),
