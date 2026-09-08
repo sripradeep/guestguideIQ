@@ -1,0 +1,36 @@
+{
+  "stage": "infrastructure-design",
+  "unit": "all-units",
+  "note": "One infrastructure specification for one deployable, per unit-of-work.md's statement that units are build-time and ownership boundaries rather than deployment targets. This stage's formal consumes are the five nfr-design artifacts, and nfr-design has run for u1-api-contract only; coverage below is therefore asserted against requirements.md's NFR1-NFR9 and the M1-M4 constraints in oq3-oq4-decisions.md, which is the derivation recorded in the specification's input note and in carried-assumptions.md. Revised 2026-09-08: the hosting target changed from ECS Fargate + ALB to S3 + CloudFront, and OQ4 was re-decided to Vite + React as a consequence. Rows affected by that change say so.",
+  "upstream_ids": [
+    "NFR1",
+    "NFR2",
+    "NFR3",
+    "NFR4",
+    "NFR5",
+    "NFR6",
+    "NFR7",
+    "NFR8",
+    "NFR9",
+    "M1",
+    "M2",
+    "M3",
+    "M4"
+  ],
+  "coverage": [
+    { "id": "NFR1", "status": "N/A", "target": "Accessibility is owned by u2-design-system and each feature unit's accessibility obligations. Infrastructure neither helps nor hinders it. Listed so the absence is deliberate rather than an omission" },
+    { "id": "NFR2", "status": "OK", "target": "cicd-pipeline.md > Scan — the automated accessibility check runs in the pipeline as advisory, which is the time-boxed exception recorded in project.md with a stated intent to become blocking. OQ6 (when it becomes blocking) remains open and is listed in cicd-pipeline.md > What this does not decide" },
+    { "id": "NFR3", "status": "N/A", "target": "Per-locality contrast is a design-token concern owned by u3-foundation's visualStyling parsing and u2-design-system's contrast rules. Infrastructure serves the same bundle to every locality; brand resolution is data, not deployment (infrastructure-specification.md > 2)" },
+    { "id": "NFR4", "status": "OK", "target": "infrastructure-specification.md > 4, Build shape — code splitting per route is specified as an infrastructure-adjacent concern precisely because there is no server tier to compensate: the mobile-first guest must not download the Owner app. This became load-bearing under the S3 + CloudFront revision, where it was previously softened by server rendering" },
+    { "id": "NFR5", "status": "Deferred", "target": "infrastructure-specification.md > 4, Rendering per surface, and monitoring-design.md > 1 — perceived responsiveness is watched (guest LCP on /s/*) but not designed for beyond caching and code splitting. The static-hosting revision made the guest first paint measurably slower than the superseded SSR design would have been; that cost is stated in oq3-oq4-decisions.md > Why this changed and is accepted, since AC2.1.1 is met by AC2.5.1's skeleton plus u9's identity-first paint order. Revisit if the measured guest LCP misses NFR5" },
+    { "id": "NFR6", "status": "N/A", "target": "Degraded-connectivity loading and retry states are owned by u8-guest-app (GuestSkeleton, FailedLoadNotice, RateLimitedNotice) and u3-foundation's retry policy (BR3.4). Offline support and installability are explicitly out of scope per requirements.md" },
+    { "id": "NFR7", "status": "OK", "target": "infrastructure-specification.md > 5, Security headers, and > 1, The proxy correction. Session security under OQ3's bearer-token answer rests on CSP as the primary XSS mitigation (M4), which CloudFront response headers policies deliver. The token-handling boundary itself is u3-foundation's. Recorded honestly: this is mitigation, not resolution - the same-origin proxy would have removed the exposure, and infrastructure-specification.md > 1 keeps that route open at the cost of one distribution change" },
+    { "id": "NFR8", "status": "OK", "target": "cicd-pipeline.md > Verify, step 4 — the 80% line-coverage floor is enforced in the test runner's own config rather than only in the workflow, so the gate fires locally and survives a workflow edit. The include/exclude set declared in component-category terms at domain-design is translated to globs here now that the framework exists" },
+    { "id": "NFR9", "status": "N/A", "target": "Browser support is a build-target concern (the Vite browserslist target) rather than an infrastructure one. Noted because the static-hosting revision removes any server-side transform that could have compensated for an older browser - what ships is what runs" },
+    { "id": "M1", "status": "Deferred", "target": "infrastructure-specification.md > 2, The operational coupling, and cicd-pipeline.md > 5 — the explicit tenant mechanism is backend work (carried-assumptions.md > B0) and cannot be resolved here. Infrastructure's contribution is twofold: the per-locality-domain 404/410 alerting in monitoring-design.md > 2 that makes a tenancy misconfiguration visible rather than looking like an application bug, and the second-origin proxy in infrastructure-specification.md > 1 that would resolve M1 with no backend change at all if it is ever adopted" },
+    { "id": "M2", "status": "OK", "target": "infrastructure-specification.md > 2 — the CORS coupling is named as a two-repository change with a runbook rather than a code change, and cicd-pipeline.md > 7 records that per-PR preview deployments would each need a backend CORS entry, which is why they are deferred rather than treated as free" },
+    { "id": "M3", "status": "N/A", "target": "The cross-document refresh lock is application code belonging to u3-foundation (BR1.6). Infrastructure surfaces it only as a monitored signal - monitoring-design.md > 1 watches the refresh failure and session-end rate, which is where a failing Web Locks mitigation shows up first" },
+    { "id": "M4", "status": "OK", "target": "infrastructure-specification.md > 5 in full. CSP is delivered by a CloudFront response headers policy, which satisfies team.md's arbitrary-response-headers constraint. Changed materially under the revision: nonce-based CSP required a server that renders HTML and is unavailable on a static host, so the policy is hash-based with hashes generated by the build and applied by the deploy. That build/deploy coupling is the new risk, and cicd-pipeline.md > 5 covers it with a post-deploy check that loads a real page and asserts no CSP violation fires - a header-presence check alone would pass while the app is blank" }
+  ],
+  "reverse": []
+}

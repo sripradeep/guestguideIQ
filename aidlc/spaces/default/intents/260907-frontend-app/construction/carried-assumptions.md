@@ -17,33 +17,43 @@ index, and each entry says where the real record lives.
 These were deliberately deferred at earlier stages. They are listed first because
 `infrastructure-design` and `code-generation` cannot complete without them.
 
-> **A1 and A2 were DECIDED on 2026-09-08** — see `oq3-oq4-decisions.md`. Next.js
-> App Router with TypeScript; cross-origin bearer tokens with no same-origin
-> proxy. The entries below are kept for the reasoning that led there; the
-> decision record supersedes their "open" status and adds **four new mandatory
-> items (M1–M4)**, of which **M1 — an explicit tenant mechanism — now blocks
-> signup and every guest link outright**.
+> **A1 and A2 were DECIDED on 2026-09-08** — see `oq3-oq4-decisions.md`.
+> Cross-origin bearer tokens with no same-origin proxy, and **Vite + React with
+> TypeScript** (A1 was decided twice the same day: Next.js first, then re-decided
+> after the hosting choice landed — see A1 and section F). The entries below are
+> kept for the reasoning that led there; the decision record supersedes their
+> "open" status and adds **four new mandatory items (M1–M4)**, of which **M1 — an
+> explicit tenant mechanism — now blocks signup and every guest link outright**.
 
 ### A1 — OQ4: the frontend framework and language
 
-**Status:** ~~genuinely unchosen~~ **DECIDED: Next.js App Router, TypeScript.**
-Every functional-design artifact is deliberately framework-neutral, which remains
-useful: the specs need no rewrite, only translation at code generation.
+**Status:** ~~genuinely unchosen~~ ~~DECIDED: Next.js App Router~~ **DECIDED:
+Vite + React, TypeScript — a static single-page build.** Every functional-design
+artifact is deliberately framework-neutral, which is what made re-deciding this
+cheap: **the framework changed and no unit's spec needed a word altered.**
 
-**Why it is still open:** `infrastructure-design` owns it, and that stage has not
-run. Choosing early would have written nine units' worth of specs in a notation
-the eventual choice might not survive — which is exactly why Contract Design
-deferred the component specification to `functional-design` (its Q4 = A).
+**Why it was re-decided:** the hosting target became S3 + CloudFront (F1), which
+serves a static build only. Next.js under `output: 'export'` loses route
+handlers, middleware and SSR — its entire server half — so it would have been
+chosen for capabilities and then stripped of them. Full reasoning in
+`oq3-oq4-decisions.md` § "Why this changed".
 
-**What it blocks:** all of `code-generation`. Also the coverage tooling that
+**Revisit trigger:** if the §1 CloudFront proxy is ever adopted *and* a server
+tier is wanted with it, the framework question genuinely reopens. Not otherwise —
+a static build is a deliberate fit for this hosting choice, not a compromise.
+
+**The reasoning that kept it open, kept because it was vindicated.** The argument
+for deferring was that choosing early would write nine units' worth of specs in a
+notation the eventual choice might not survive — the same reasoning that led
+Contract Design to defer the component specification to `functional-design` (its
+Q4 = A). **The framework was then chosen and re-chosen within a day, and the
+specs absorbed both without a single edit.** Worth recording as evidence that the
+framework-neutral discipline paid for itself, rather than as a still-open item.
+
+**What it blocked:** all of `code-generation`, plus the coverage tooling that
 enforces the 80% floor, the linter and type-check configuration, and the
-component/E2E test tooling.
-
-**Cost of assuming it now:** high and hard to reverse. Nine units' specs would be
-re-expressed in one framework's idiom.
-
-**Revisit trigger:** `infrastructure-design` (stage 3.4). It must also settle
-hosting, which `team.md` constrains — see A2.
+component/E2E test tooling. Those are now unblocked and specified in
+`infrastructure-design/cicd-pipeline.md`.
 
 ### A2 — OQ3: where the session tokens live
 
@@ -67,6 +77,14 @@ somewhere it survives a reload.
 foreclose a same-origin proxy. A same-origin `HttpOnly` cookie is the one
 persistent mechanism that keeps that token out of JavaScript's reach. A
 static-only host would decide OQ3 against the safest option, silently.
+
+> **Corrected 2026-09-08, and the correction matters.** That last sentence
+> conflates "static host" with "bare bucket". **CloudFront is a static host that
+> can also be the proxy** — the ALB as a second origin behind `/v1/*`. The
+> constraint was satisfied, not violated, by choosing S3 + CloudFront; what would
+> genuinely have foreclosed the proxy is S3 website hosting with no distribution.
+> `infrastructure-specification.md` §1 carries the full correction, and F1 below
+> records why it is worth remembering.
 
 **Also unresolved by it:** `u3-foundation`'s **BR1.6** — the refresh single-flight
 must be scoped to the token store, not the document. Two tabs sharing a persistent
@@ -215,10 +233,101 @@ fixed yet. None is hidden in prose.
 
 ---
 
+## F. Infrastructure-design decisions and their open edges
+
+Added 2026-09-08 when `infrastructure-design` ran. The stage's own artifacts are
+the record; these are the rows that should come back.
+
+### F1 — Hosting: S3 + CloudFront, chosen by the human
+
+**Not an assumption** — chosen deliberately after the alternative was put and its
+cost stated. Recorded here because two things follow from it that are easy to
+lose.
+
+**The correction it forced.** An earlier draft of `infrastructure-specification.md`
+chose ECS Fargate partly on the claim that S3 + CloudFront had "no real Node
+runtime for a future proxy". **That was wrong.** CloudFront can be the proxy
+itself — the ALB as a second origin behind `/v1/*`, forwarding the viewer's
+`Host`. The correction is disclosed in place at the top of that specification.
+
+**The escape route this keeps open, and why it matters.** Adopting that proxy
+would make the API same-origin, allow `HttpOnly` cookies, **resolve M1 with no
+backend change at all**, and dissolve M2. It is one distribution change, not a
+migration. `OQ3` was decided against it and that stands — but this is the
+cheapest available answer to the M1 blocker, and it should be on the table the
+moment M1 becomes painful rather than rediscovered then.
+
+**Revisit trigger:** when M1 is scoped as backend work. Compare "backend accepts
+`X-Locality-Domain`" against "CloudFront proxies `/v1/*`" before starting, since
+the second requires no backend change.
+
+### F2 — CSP moved from nonces to build-generated hashes
+
+A nonce must be unique per response, which needs a server rendering the HTML.
+There isn't one. Hashes are generated by the build and applied by the deploy.
+
+**Why this is a carried risk rather than a settled detail:** it is a build/deploy
+coupling with **no CI-visible failure mode**. A hand-edited header policy, or an
+inline script added without regenerating hashes, breaks the app in the browser
+and passes every test. The mitigation is the post-deploy check asserting a real
+page load produces no CSP violation (`cicd-pipeline.md` §5) — **that check is the
+only thing standing between a bad hash and a blank production app.**
+
+**Revisit trigger:** before `code-generation` wires the build. If emitting zero
+inline scripts turns out to be straightforward in Vite, take that instead — it
+removes the coupling entirely.
+
+### F3 — Rollback has no automatic trigger
+
+The backend's ECS circuit breaker has genuinely fired and rolled back a bad
+deploy. **Nothing equivalent exists here.** Rollback is re-uploading the previous
+`index.html` and invalidating it, triggered by a failing post-deploy check, and
+it works only because superseded assets are never deleted.
+
+**Recorded as honest rather than solved:** a documented two-command rollback for
+a single responder is a real capability; a half-built automation that has never
+fired is not. **Revisit trigger:** if a failed deploy is ever handled slowly
+enough to matter, or when asset retention (below) is decided.
+
+### F4 — Asset retention is undecided, and rollback depends on it
+
+Superseded builds' assets must outlive the longest plausible in-flight session,
+because both rollback and mid-session asset loads depend on them. No lifecycle
+policy is specified. **Revisit trigger:** `environment-provisioning`. Decide it
+with the rollback runbook, not separately.
+
+### F5 — The live-backend E2E suite cannot run yet
+
+`team.md`'s Q5 answer requires it as the drift detector against hand-written
+fixtures. It is blocked on M1 (signup and guest links both fail) and M2 (no
+origin is allowlisted). **Specified in `cicd-pipeline.md` §5 and deliberately not
+stubbed with an `echo`**, which is the exact anti-pattern `team.md` names in the
+backend's pipeline. **Revisit trigger:** when M1 and M2 land.
+
+### F6 — `nfr-design` did not run for eight of nine units
+
+`infrastructure-design` formally consumes five `nfr-design` artifacts;
+`nfr-design` has run for `u1-api-contract` only. The specification is therefore
+derived from `requirements.md`'s NFR1–NFR9, `team.md`, and M1–M4, with each
+derivation named where used.
+
+**Cost if wrong:** a per-unit NFR could surface a requirement the single shared
+specification does not meet. Low risk, since there is one deployable — but it is
+a genuine gap in the stage's inputs, not a formality. **Revisit trigger:** if
+`nfr-design` is later run for the remaining units, re-read §4 and §5 against it.
+
+---
+---
+
 ## How to use this document
 
-- **Before `infrastructure-design`:** read A1, A2 and A3. That stage settles the
-  two decisions everything else waits on.
+- **Before `infrastructure-design`:** ~~read A1, A2 and A3~~ — **that stage has
+  run.** Its decisions and their open edges are section F.
+- **Before wiring the build and deploy:** read F2 and F3. F2 is the one with no
+  CI-visible failure mode, which makes it the likeliest to bite.
+- **When M1 is scoped as backend work:** read F1 first. The CloudFront proxy
+  resolves M1 with no backend change, and comparing the two is a five-minute
+  exercise that is worthless once the backend change is half-built.
 - **Before `code-generation` for a given unit:** read section C for that unit.
   C2 and C3 are the two that would produce wrong behaviour rather than imprecise
   documentation.

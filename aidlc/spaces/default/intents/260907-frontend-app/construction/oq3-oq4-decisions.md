@@ -13,26 +13,57 @@ decisions do not depend on it.
 
 ## OQ4 — Framework and language
 
-> **Decision: Next.js, App Router. TypeScript throughout.**
+> **Decision: Vite + React, TypeScript. A static single-page build.**
+> *Superseded Next.js App Router the same day — see "Why this changed".*
 
 TypeScript was never in question — `team.md` already requires type-aware linting
 and a **blocking type-check step distinct from build**, which was the explicit fix
 for the `astro build`-vs-`astro check` gap the marketing site never closed.
 
-**Why Next.js was chosen:** the largest ecosystem and hiring pool of the
-candidates, route handlers and middleware for any server-side work, and SSR
-available where it helps.
+### Why this changed
 
-**What it does not buy under OQ3's answer** — see the interaction below. This is
-the one consequence worth reading twice.
+Next.js was chosen first, for its ecosystem and hiring pool and for SSR where it
+helps. Then the hosting question was asked properly, and the answer moved to
+**S3 + CloudFront** (see `infrastructure-specification.md` §1).
+
+S3 + CloudFront can only serve a **static build**. Under Next.js that means
+`output: 'export'`, which removes route handlers, middleware and SSR — that is,
+Next.js's entire server half. **Choosing a framework for capabilities and then
+amputating them is not a trade-off, it is a mismatch.** Vite + React produces the
+same static bundle with far less machinery in the way.
+
+**What the switch actually costs:** the server-rendered Guest first paint. That was
+Next.js's one remaining benefit under `OQ3`'s answer, and it is a *speed*
+improvement rather than a requirement — `AC2.1.1` is satisfied by the skeleton
+that `AC2.5.1` already specifies, followed by the identity-first paint order that
+`u9-guest-guide-view` owns. **No functional-design artifact changes.**
+
+**What the switch avoids:** a Next.js app whose route handlers, middleware and
+rendering model are all unused, and whose learning curve buys nothing.
 
 ### Alternatives rejected
 
 | Option | Why not |
 |---|---|
-| React Router 7 (Remix) | Recommended by this analysis — loaders/actions are BFF-shaped and cookie sessions are a core competency — but those are advantages of the *proxy* architecture that OQ3 did not take |
-| Vite + React SPA behind a Fastify BFF | Reuses the team's existing Fastify expertise with no framework lock-in; rejected for the bespoke routing and data-loading conventions it would require |
+| **Next.js App Router** | Chosen first, then superseded. Under a static export its server half is unused, so its main advantages do not apply |
+| React Router 7 (Remix) | Recommended in the original analysis — loaders/actions are BFF-shaped and cookie sessions a core competency — but those are advantages of the *proxy* architecture that `OQ3` did not take, and of a server tier this hosting choice does not have |
 | SvelteKit | Smallest bundles and good ergonomics; rejected for having no precedent anywhere in the workspace and the smallest hiring pool |
+
+### What Vite + React must supply that a framework would have
+
+These are the conventions the team now owns rather than inherits. None is hard;
+all are easy to leave inconsistent:
+
+- **Routing** — a client router, with the route table `u4-owner-shell` specifies.
+- **Data loading and caching** — `u3-foundation` already owns the API client and
+  its typed methods, so this is thinner than usual. Its BR3.5 requires
+  refetch-on-focus and prefetch to be **off**, which is a configuration decision
+  that must be made explicitly rather than inherited from a framework default.
+- **Code splitting** — per route, so the Guest surface does not ship the Owner
+  app. This matters: the guest is mobile-first and often on hotel wifi.
+- **The build's static-hosting shape** — SPA fallback routing, so
+  `/s/<token>` and every Owner route resolve to the app shell (see
+  `infrastructure-specification.md` §4).
 
 ---
 
@@ -88,17 +119,26 @@ attacker-influenceable values already reach this frontend — LLM chat replies a
 `locality.visualStyling` — and the blocking lint rule banning raw-HTML sinks is
 the other half of the defence.
 
-### The Next.js interaction, stated plainly
+### The rendering interaction, stated plainly
 
-Next.js was chosen partly for SSR. **Under bearer tokens, SSR cannot authenticate
-the Owner app**: the token is in browser storage, unreachable by the server on the
-first request, so every authenticated page is effectively client-rendered after
-hydration. The server tier's value is largely unrealised for the Owner surface.
+This is the reasoning that connects `OQ3` to `OQ4`, and it is why the framework
+switch costs so little.
 
-**The Guest surface is the exception, and a useful one.** The stay token is in the
-URL path, so a server-side fetch *can* resolve the stay before first paint —
-directly serving `AC2.1.1`'s identity-first requirement. But that server fetch
-faces the same tenancy problem (M1) and must send the tenant signal itself.
+**Under bearer tokens, server rendering cannot authenticate the Owner app.** The
+token is in browser storage, unreachable by a server on the first request, so
+every authenticated page is client-rendered after hydration no matter which
+framework serves it. A server tier earns nothing on the Owner surface.
+
+**The Guest surface was the exception.** The stay token is in the URL path, so a
+server-side fetch *could* resolve the stay before first paint. Under a static
+build it does not, and the guest gets the `AC2.5.1` skeleton followed by an
+identity-first paint instead — slower to the first real content, and still
+correct. That server fetch would also have faced the same tenancy problem (M1)
+and had to send the tenant signal itself, so it was never free.
+
+**Net:** `OQ3`'s answer removed most of the value of a server tier, and the
+hosting decision removed the rest. That is the honest reason `OQ4` could be
+re-decided without touching a single functional-design artifact.
 
 ### Assumption carried, for revisit
 
@@ -118,10 +158,26 @@ replaced by `HttpOnly` cookies and M1–M4 mostly dissolve.
 
 ## What is now unblocked
 
-`infrastructure-design` can proceed: the framework is chosen, and the hosting
-target needs a Node runtime for Next.js plus the ability to set arbitrary response
-headers (M4). Static-only hosting is ruled out by the header requirement even
-though the proxy is not being built.
+`infrastructure-design` can proceed. The framework is chosen, and the hosting
+target's two hard requirements are settled:
+
+1. **It must set arbitrary response headers** (M4). CloudFront response-headers
+   policies do this, so the constraint that ruled out naive static hosting is
+   satisfied — the requirement was never "a Node process", it was "control of
+   the response".
+2. **It must not foreclose the same-origin proxy**, per `team.md`. **It does
+   not.** CloudFront can *be* the proxy: add the ALB as a second origin behind a
+   `/v1/*` cache behaviour, with an origin request policy forwarding the
+   viewer's `Host`. That is a distribution change, not a platform migration —
+   see `infrastructure-specification.md` §1. This is worth stating plainly
+   because the earlier draft of that spec said the opposite.
+
+**The consequence worth carrying:** because CloudFront can become the proxy
+later, M1–M4 have a cheap escape route that this hosting choice deliberately
+keeps open. Adopting it would move the frontend to same-origin, allow `HttpOnly`
+cookies, resolve the `Host`-header tenancy problem without a backend change, and
+dissolve the CORS coupling. **It is not being built now** — `OQ3` was decided
+the other way — but it is one distribution change away rather than a rebuild.
 
 `code-generation` is unblocked on the language and framework question. It remains
 blocked on the backend prerequisites in `carried-assumptions.md` § B, to which M1
