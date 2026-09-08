@@ -19341,3 +19341,262 @@
 **Context**: construction > carried-assumptions.md
 
 ---
+
+## Subagent Completed
+**Timestamp**: 2026-09-08T22:58:32Z
+**Event**: SUBAGENT_COMPLETED
+**Agent Type**: 
+**Agent ID**: a8c6cffa78d1eb92b
+**Message**: continue
+
+---
+
+## Human Turn
+**Timestamp**: 2026-09-08T23:04:19Z
+**Event**: HUMAN_TURN
+**Session**: 37443ca2-00ca-4ba9-8042-61a7c51b818f
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T23:05:02Z
+**Event**: SENSOR_FIRED
+**Fire id**: a8fa168e
+**Sensor ID**: linter
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/mocks/backend.ts
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T23:05:06Z
+**Event**: SENSOR_PASSED
+**Fire id**: a8fa168e
+**Sensor ID**: linter
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/mocks/backend.ts
+**Duration ms**: 4096
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T23:05:07Z
+**Event**: SENSOR_FIRED
+**Fire id**: 57dc2c9b
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/mocks/backend.ts
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T23:05:07Z
+**Event**: SENSOR_PASSED
+**Fire id**: 57dc2c9b
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/mocks/backend.ts
+**Duration ms**: 460
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T23:05:47Z
+**Event**: SENSOR_FIRED
+**Fire id**: f4cd38da
+**Sensor ID**: linter
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/mocks/handlers.ts
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T23:05:51Z
+**Event**: SENSOR_FAILED
+**Fire id**: f4cd38da
+**Sensor ID**: linter
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/mocks/handlers.ts
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/linter-f4cd38da.md
+**Findings count**: 6
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T23:05:51Z
+**Event**: SENSOR_FIRED
+**Fire id**: be6877ad
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/mocks/handlers.ts
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T23:05:51Z
+**Event**: SENSOR_PASSED
+**Fire id**: be6877ad
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/mocks/handlers.ts
+**Duration ms**: 414
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T23:06:34Z
+**Event**: SENSOR_FIRED
+**Fire id**: ed875508
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/owner/skeleton.test.tsx
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T23:06:34Z
+**Event**: SENSOR_PASSED
+**Fire id**: ed875508
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/owner/skeleton.test.tsx
+**Duration ms**: 435
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T23:07:16Z
+**Event**: SENSOR_FIRED
+**Fire id**: 581f4ef4
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/owner/shell/AppShell.tsx
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T23:07:16Z
+**Event**: SENSOR_PASSED
+**Fire id**: 581f4ef4
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/owner/shell/AppShell.tsx
+**Duration ms**: 419
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T23:08:10Z
+**Event**: SENSOR_FIRED
+**Fire id**: ebe06aa0
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/owner/guide/GuideEditor.tsx
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T23:08:10Z
+**Event**: SENSOR_PASSED
+**Fire id**: ebe06aa0
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/owner/guide/GuideEditor.tsx
+**Duration ms**: 441
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T23:09:05Z
+**Event**: SENSOR_FIRED
+**Fire id**: ed200e95
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/owner/OwnerApp.tsx
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T23:09:06Z
+**Event**: SENSOR_PASSED
+**Fire id**: ed200e95
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/owner/OwnerApp.tsx
+**Duration ms**: 442
+
+---
+
+## Subagent Completed
+**Timestamp**: 2026-09-08T23:13:21Z
+**Event**: SUBAGENT_COMPLETED
+**Agent Type**: 
+**Agent ID**: a38c928370cb82ba8
+**Message**: continue
+
+---
+
+## Human Turn
+**Timestamp**: 2026-09-08T23:13:41Z
+**Event**: HUMAN_TURN
+**Session**: 37443ca2-00ca-4ba9-8042-61a7c51b818f
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T23:17:53Z
+**Event**: SENSOR_FIRED
+**Fire id**: 91b8390c
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/owner/OwnerApp.tsx
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T23:17:53Z
+**Event**: SENSOR_PASSED
+**Fire id**: 91b8390c
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/owner/OwnerApp.tsx
+**Duration ms**: 288
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T23:19:26Z
+**Event**: SENSOR_FIRED
+**Fire id**: d52d9472
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/owner/shell.test.tsx
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T23:19:26Z
+**Event**: SENSOR_PASSED
+**Fire id**: d52d9472
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/owner/shell.test.tsx
+**Duration ms**: 274
+
+---
+
+## Subagent Completed
+**Timestamp**: 2026-09-08T23:19:34Z
+**Event**: SUBAGENT_COMPLETED
+**Agent Type**: 
+**Agent ID**: aa11ddfee1794021b
+**Message**: continue
+
+---
+
+## Human Turn
+**Timestamp**: 2026-09-08T23:19:41Z
+**Event**: HUMAN_TURN
+**Session**: 37443ca2-00ca-4ba9-8042-61a7c51b818f
+
+---

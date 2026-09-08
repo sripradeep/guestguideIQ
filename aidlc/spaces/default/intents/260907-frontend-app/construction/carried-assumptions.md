@@ -151,7 +151,21 @@ from the owner surfaces to the guest surface without re-checking, and it
 contradicted `u1-api-contract`, which types the very field. If a similar claim
 appears downstream, check it against `u1` first.
 
-### C2 — `u4-owner-shell`: the provisional state's failure exit
+### C2 — RESOLVED 2026-09-08
+
+Built in `useShell`: the background onboarding retry is bounded, and on
+exhaustion the restriction **stays** with wording that says the app has stopped
+trying. A session ending mid-retry abandons it, so a late success cannot drag
+the shell back. Covered by two scenarios.
+
+**One thing the tests revealed that the design did not anticipate:** a single
+`500` on the onboarding read never reaches the shell at all, because
+`u3-foundation`'s BR3.4 retries an indeterminate read up to three times first.
+The provisional state is therefore rarer than the design implies — it needs the
+whole read budget to fail. That is better behaviour, but it means anyone testing
+this path has to exhaust the client's retries to see it.
+
+### C2 (original) — `u4-owner-shell`: the provisional state's failure exit
 
 `authenticated-provisional` has no transition for the background onboarding retry
 **itself** failing, nor for a session ending while it is in flight.
@@ -164,19 +178,35 @@ that exhausts its attempts leaves the restriction in place and says so, because
 **Cost if unfixed:** an un-onboarded owner could be left able to author a guide.
 **Revisit trigger:** before `code-generation` for `u4`.
 
-### C3 — `u4-owner-shell`: `AC1.10.3`'s second half is unowned
+### C3 — RESOLVED 2026-09-08
+
+Assigned to **`u5-owner-guide`**, which owns the editor and therefore owns the
+indicator. A failed save leaves no success indication of any kind.
+
+The implementation detail that matters: the indicator is cleared when a save
+**starts**, not when one fails. Clearing on failure still leaves a window in
+which a failing save displays the previous save's success — which is exactly the
+misleading state the criterion exists to prevent.
+
+### C3 (original) — `AC1.10.3`'s second half is unowned
 
 The criterion has two halves: the editor state is preserved **and** no success
 indication is shown for the failed save. `u4` claims both; nothing in `u4` or
-`u5` specifies the second. **Revisit trigger:** before `code-generation` for `u4`
-or `u5` — assign it explicitly to one of them.
+`u5` specifies the second.
 
-### C4 — `u4-owner-shell`: two unspecified values
+### C4 — RESOLVED 2026-09-08 with stated defaults
 
-The cold-load timeout has no value (`NFR5`'s ~300ms governs when the loading
-treatment appears, not how long to wait), and the `routing` state has no listed
-screen treatment on the cold-load path. **Revisit trigger:** `nfr-design`, or
-`code-generation` with a stated default.
+Both values chosen at code generation and named in the source rather than left
+implicit:
+
+- **Cold-load timeout: 8s** (`RESOLUTION_TIMEOUT_MS`). A stated default, not an
+  inherited one — `NFR5`'s ~300ms governs when a loading treatment appears, not
+  how long to wait.
+- **The `routing` state now has a screen treatment** — a distinct status message
+  from `resolving`, so the two blocking states are not silently the same one.
+
+**Revisit trigger:** `nfr-design`, if it ever wants a different number. The
+values are constants precisely so that is a one-line change.
 
 ### C5 — `u7-guest-links`: `[assumed]` provenance
 
