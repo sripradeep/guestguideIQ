@@ -1,0 +1,38 @@
+{
+  "stage": "functional-design",
+  "unit": "u6-owner-locality-billing",
+  "note": "Re-confirmed 2026-09-08 after the functional-design redo jump, and re-saved following that confirmation. Coverage unchanged.",
+  "upstream_ids": [
+    "AC1.12.1",
+    "AC1.12.2",
+    "AC1.12.3",
+    "AC1.12.4",
+    "AC1.12.5",
+    "AC1.12.6",
+    "AC1.13.1",
+    "AC1.13.2",
+    "AC1.14.1",
+    "AC1.14.2",
+    "AC1.14.3",
+    "AC1.14.4",
+    "AC1.14.5",
+    "AC1.14.6"
+  ],
+  "coverage": [
+    { "id": "AC1.12.1", "status": "OK", "target": "functional-spec.md > State machine, and frontend-components.md > FavoriteToggle — a single click marks a favourite, with no confirmation step anywhere in the toggle's transitions" },
+    { "id": "AC1.12.2", "status": "OK", "target": "functional-spec.md > Workflow 1 steps 5 and 7b, and the state machine's revert row; frontend-components.md > FavoriteToggle — the display updates immediately and reverts with an inline notice on failure. The known out-of-order race this introduces is recorded in both files rather than left implicit, per the human's Q1 = B decision" },
+    { "id": "AC1.12.3", "status": "OK", "target": "frontend-components.md > FavoriteToggle — unfavouriting stops the item appearing in the guide. The endpoint returns the whole OwnerGuideView, so the removal is reflected in the reconciled view rather than inferred locally" },
+    { "id": "AC1.12.4", "status": "OK", "target": "functional-spec.md > Workflow 1 step 2, and frontend-components.md > ServerEmptyState — the component carries no hardcoded copy of its own, so the backend's emptyMessage cannot be competed with. Verified the backend supplies real strings for both lists: 'Content is being added for this locality.' and 'No events yet — check back soon.' Never a blank grid" },
+    { "id": "AC1.12.5", "status": "OK", "target": "functional-spec.md > Workflow 1 step 7c, and frontend-components.md > FavoriteToggle — a 400 for an item outside the locality reverts the toggle and shows the inline error" },
+    { "id": "AC1.12.6", "status": "OK", "target": "functional-spec.md > Workflow 1 step 6, and frontend-components.md > FavoriteToggle — every favourite request carries a complete body. Enforced upstream by u3-foundation's BR3.1, which refuses a bodyless request before it leaves, because this handler alone in its file has no ?? {} fallback and returns 500 rather than 400" },
+    { "id": "AC1.13.1", "status": "OK", "target": "functional-spec.md > Workflow 2 step 3a, and frontend-components.md > PlanControls — a successful start shows the returned plan and status as the RESULT of that action. Deliberately not re-presented later as current state, which the screen cannot know (Q2 = C)" },
+    { "id": "AC1.13.2", "status": "OK", "target": "functional-spec.md > Workflow 2 step 3b, and frontend-components.md > PlanControls — a 402 renders a banner stating plainly that no changes were made to the account" },
+    { "id": "AC1.14.1", "status": "Deferred", "target": "functional-spec.md > Workflow 2 and > Traceability. Blocked on AC4.1.2: there is no GET /v1/subscriptions at all — verified against api-documentation.md § A.6 and guestguideiq-app/src/subscription/routes.ts, which registers only app.post and app.patch. The plan and status cannot be read without mutating, and there is no safe probe: PATCH cancels on anything unrecognised and POST creates. Per Q2 = C the screen makes no claim rather than inventing one" },
+    { "id": "AC1.14.2", "status": "OK", "target": "frontend-components.md > PlanControls, the Upgrade and Downgrade rows — both render disabled, and the screen asserts no plan change. The criterion's own note records why: upgrade and downgrade set status to active and touch no plan field, and only one tier — standard — exists, so a plan change can never be observed" },
+    { "id": "AC1.14.3", "status": "OK", "target": "functional-spec.md > Workflow 2 step 5, and frontend-components.md > CancelConfirmDialog — cancelling confirms first and states plainly that guide content stays intact and resubscribing restores access. Verified rather than assumed: cancel only sets status and never touches guide content" },
+    { "id": "AC1.14.4", "status": "Deferred", "target": "functional-spec.md > Workflow 2 and > Traceability. The criterion's SHAPE is delivered — upgrade and downgrade are disabled with a reachable reason, and Start is available — but its CONDITION is unknowable without AC4.1.2, so the controls are disabled for a different, knowable reason ('only one plan exists') rather than for the criterion's ('start a subscription first'). Claiming this OK would claim the screen distinguishes a case it cannot see" },
+    { "id": "AC1.14.5", "status": "Deferred", "target": "functional-spec.md > Workflow 2 step 7, and frontend-components.md > PlanControls. The criterion has two clauses and only one is deliverable. The no-retry clause is fully met and enforced in depth: u3-foundation's BR3.4 makes no-retry the default for indeterminate write failures, and its BR2.3 additionally excludes this endpoint from the post-re-authentication replay path — a speculative retry here is a silent billing event. The second clause, 'it re-reads my subscription state and asks me', CANNOT be met: there is no GET /v1/subscriptions, the same gap that defers AC1.14.1 and AC1.14.4. The screen asks the owner; it cannot re-read. Blocked on AC4.1.2 for that half. Corrected at review — this row previously read OK with no caveat, which claimed more than the design can do" },
+    { "id": "AC1.14.6", "status": "OK", "target": "frontend-components.md > PlanControls — the action comes from a closed typed set and the request always carries a body. Enforced in three layers: u1-api-contract's BR2.2 at the type level, u3-foundation's BR3.3 as a runtime assertion before the request leaves, and this screen offering no control that could produce an unrecognised value. The endpoint's final else branch cancels the subscription on anything it does not recognise, and a missing body reaches that branch" }
+  ],
+  "reverse": []
+}

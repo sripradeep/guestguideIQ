@@ -1,0 +1,18 @@
+{
+  "stage": "nfr-requirements",
+  "unit": "u1-api-contract",
+  "upstream_ids": [
+    "NFR1", "NFR2", "NFR3", "NFR4", "NFR5", "NFR6", "NFR7", "NFR8", "NFR9"
+  ],
+  "coverage": [
+    { "id": "NFR7", "status": "OK", "target": "NFR7.1, NFR7.2, NFR7.3, NFR7.4, NFR7.5, NFR7.6, NFR7.7, NFR7.8, NFR7.9, NFR7.10, NFR7.11, NFR7.12, NFR7.13, NFR7.14" },
+    { "id": "NFR1", "status": "N/A", "target": "accessibility — this unit renders nothing. It is a spec unit with no runtime and no surface; WCAG 2.1 AA applies to u2-design-system and the five ui units" },
+    { "id": "NFR2", "status": "N/A", "target": "accessibility enforcement in CI — no rendered output exists here for an automated accessibility check to scan" },
+    { "id": "NFR3", "status": "N/A", "target": "per-locality contrast — this unit types visualStyling as an opaque map and deliberately never interprets a colour value; contrast validation belongs to u3-foundation's brand-token parsing and to whoever seeds brands" },
+    { "id": "NFR4", "status": "N/A", "target": "responsive behaviour — no layout, no breakpoints, no rendered output" },
+    { "id": "NFR5", "status": "N/A", "target": "perceived responsiveness — this unit executes nothing at run time, so it contributes no latency to any interaction" },
+    { "id": "NFR6", "status": "N/A", "target": "degraded connectivity — this unit makes no requests; loading, retry and rate-limited states belong to u3-foundation and the ui units that render them" },
+    { "id": "NFR8", "status": "N/A", "target": "test coverage floor — this unit's output is generated or transcribed code, excluded from the 80% floor by ADR-007. Its correctness is verified by review of the diff against api-documentation.md (NFR7.5) and by the scheduled regeneration check (NFR7.6), not by unit tests over generated types" },
+    { "id": "NFR9", "status": "N/A", "target": "browser support — types are erased before anything reaches a browser. The build target that governs emitted syntax is a stack-level concern owned by infrastructure-design, constrained here only by TS1-TS3" }
+  ]
+}

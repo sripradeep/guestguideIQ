@@ -88,3 +88,7 @@ that has been dropped from the screens is easy to forget as a precondition.
 2. **Sam (Guest)** — second. Depends on Priya's guide existing and on a stay link
    being generated, which itself depends on the backend follow-up (US4.1).
 3. **Ops** — not a user of this frontend; a precondition supplier to both.
+
+Story IDs in `stories.md` follow this ranking: `US1.x` are Priya's, `US2.x` are
+Sam's, and `US4.1` is the backend prerequisite neither persona owns. There is no
+`US3.x` group — it would have been Ops', and no Ops screen is built here.

@@ -1,6 +1,7 @@
 {
   "stage": "user-stories",
   "upstream_ids": [
+    "FR1", "FR2", "FR3", "FR4", "FR5", "FR6", "FR7", "FR8", "FR9", "FR10", "FR11",
     "FR1.1", "FR1.2", "FR1.3", "FR1.4", "FR1.5", "FR1.6", "FR1.7", "FR1.8", "FR1.9",
     "FR2.1", "FR2.2", "FR2.3", "FR2.4", "FR2.5",
     "FR3.1", "FR3.2", "FR3.3", "FR3.4", "FR3.5",
@@ -15,6 +16,18 @@
     "NFR1", "NFR2", "NFR3", "NFR4", "NFR5", "NFR6", "NFR7", "NFR8", "NFR9"
   ],
   "coverage": [
+    { "id": "FR1", "status": "N/A", "target": "section heading, not a separately testable requirement — account and session coverage is asserted per sub-requirement at FR1.1-FR1.9 below" },
+    { "id": "FR2", "status": "N/A", "target": "section heading, not a separately testable requirement — onboarding coverage is asserted per sub-requirement at FR2.1-FR2.5 below" },
+    { "id": "FR3", "status": "N/A", "target": "section heading, not a separately testable requirement — guide-authoring coverage is asserted per sub-requirement at FR3.1-FR3.5 below" },
+    { "id": "FR4", "status": "N/A", "target": "section heading, not a separately testable requirement — locality-content curation coverage is asserted per sub-requirement at FR4.1-FR4.5 below" },
+    { "id": "FR5", "status": "N/A", "target": "section heading, not a separately testable requirement — subscription coverage is asserted per sub-requirement at FR5.1-FR5.6 below" },
+    { "id": "FR6", "status": "N/A", "target": "section heading, not a separately testable requirement — guest-link coverage is asserted per sub-requirement at FR6.1-FR6.4 below" },
+    { "id": "FR7", "status": "N/A", "target": "section heading, not a separately testable requirement — guest-guide coverage is asserted per sub-requirement at FR7.1-FR7.6 below" },
+    { "id": "FR8", "status": "N/A", "target": "section heading, not a separately testable requirement — itinerary-chat coverage is asserted per sub-requirement at FR8.1-FR8.7 below" },
+    { "id": "FR9", "status": "N/A", "target": "section heading, not a separately testable requirement — the backend follow-up is consumed rather than built; its items are asserted per sub-requirement at FR9.1-FR9.7 below" },
+    { "id": "FR10", "status": "N/A", "target": "section heading, not a separately testable requirement — locality-branding coverage is asserted per sub-requirement at FR10.1-FR10.6 below" },
+    { "id": "FR11", "status": "N/A", "target": "section heading, not a separately testable requirement — error-handling and API-boundary coverage is asserted per sub-requirement at FR11.1-FR11.6 below" },
+
     { "id": "FR1.1", "status": "OK", "target": "US1.1" },
     { "id": "FR1.2", "status": "OK", "target": "US1.2" },
     { "id": "FR1.3", "status": "OK", "target": "US1.1" },

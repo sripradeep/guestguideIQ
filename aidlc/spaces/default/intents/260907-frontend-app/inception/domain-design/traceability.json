@@ -1,0 +1,38 @@
+{
+  "stage": "domain-design",
+  "upstream_ids": [
+    "US1.1", "US1.2", "US1.3", "US1.4", "US1.5", "US1.6", "US1.7", "US1.8",
+    "US1.9", "US1.10", "US1.11", "US1.12", "US1.13", "US1.14", "US1.15",
+    "US2.1", "US2.2", "US2.3", "US2.4", "US2.5",
+    "US4.1"
+  ],
+  "coverage": [
+    { "id": "US1.1", "status": "OK", "target": "SessionManager" },
+    { "id": "US1.2", "status": "OK", "target": "LocalityBrandResolver" },
+    { "id": "US1.3", "status": "OK", "target": "SessionManager" },
+    { "id": "US1.4", "status": "OK", "target": "SessionManager" },
+    { "id": "US1.5", "status": "OK", "target": "OnboardingFlow" },
+    { "id": "US1.6", "status": "OK", "target": "OnboardingFlow" },
+    { "id": "US1.7", "status": "OK", "target": "GuideAuthoring" },
+    { "id": "US1.8", "status": "OK", "target": "GuideAuthoring" },
+    { "id": "US1.9", "status": "OK", "target": "GuestLinkManagement" },
+    { "id": "US1.10", "status": "OK", "target": "SessionManager" },
+    { "id": "US1.11", "status": "OK", "target": "SessionManager" },
+    { "id": "US1.12", "status": "OK", "target": "LocalityCuration" },
+    { "id": "US1.13", "status": "OK", "target": "SubscriptionManagement" },
+    { "id": "US1.14", "status": "OK", "target": "SubscriptionManagement" },
+    { "id": "US1.15", "status": "OK", "target": "AccountView" },
+    { "id": "US2.1", "status": "OK", "target": "GuestGuide" },
+    { "id": "US2.2", "status": "OK", "target": "GuestGuide" },
+    { "id": "US2.3", "status": "OK", "target": "GuestGuide" },
+    { "id": "US2.4", "status": "OK", "target": "ItineraryChat" },
+    { "id": "US2.5", "status": "OK", "target": "GuestGuide" },
+    { "id": "US4.1", "status": "N/A", "target": "backend prerequisite consumed rather than built — US4.1 is one team's single piece of backend work and has no frontend component that realizes it; every frontend component blocked by it names the specific AC4.1.x in its behaviour" }
+  ],
+  "reverse": [
+    { "id": "ApiClient", "status": "N/A", "target": "structural boundary rather than a story realization — the affirmed single point of network contact, used by nine components; every story reaching the backend passes through it" },
+    { "id": "ApiErrorCatalog", "status": "N/A", "target": "structural boundary — the typed error union every component branches on; realizes no story alone but is required by FR11.2 and by the error criteria of US1.1, US1.13, US2.2 and US2.5" },
+    { "id": "AppShell", "status": "N/A", "target": "routing, route guarding and the persistent frame; carries AC1.11.3's shell-level logout control but realizes no story on its own" },
+    { "id": "DesignSystem", "status": "N/A", "target": "shared presentational and interaction primitives; the single home for the WCAG 2.1 AA behaviour NFR1 requires across every story, rather than the realization of any one of them" }
+  ]
+}

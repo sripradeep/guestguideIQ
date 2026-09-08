@@ -11,6 +11,13 @@
 >
 > Confirmed correct by the human at the Consolidated Summary Confirmation
 > checkpoint (see `user-stories-questions.md`), including the mob integration.
+>
+> **Where coverage is recorded**: element-level traceability from every `FR`/`NFR`
+> in `requirements.md` to the story IDs below lives in `traceability.json`. That
+> file records each `FR{n}` section heading as `N/A` — a heading names a section
+> rather than a separately testable requirement, so coverage is asserted against
+> its `FR{n}.{m}` sub-requirements instead. Requirements deliberately left to a
+> later stage carry `Deferred` with the owning stage named.
 
 ## What the mob changed
 
@@ -652,3 +659,22 @@ largest epic-level stories and will need splitting at `units-generation`.
 caveats rather than silent uncertainty: AC1.4.2 (no mailer), AC2.4.x (no chat provider),
 AC1.7.3 (needs a full-replace network double, not a fixture), AC2.5.3 (mocked-network
 only), AC1.9.x (no design yet), AC1.15.x (screen contents constrained by a sparse API).
+
+## Review
+
+**Verdict:** READY
+**Reviewer:** aidlc-product-lead-agent
+**Date:** 2026-09-07T20:45:59Z
+**Iteration:** 1
+
+### Findings
+
+| ID | Severity | Location | Finding | Required action | Status |
+|---|---|---|---|---|---|
+| R-01 | Major | `inception/requirements-analysis/requirements.md` > FR2.2, vs. `stories.md` > US1.5 (AC1.5.2, AC1.5.3) | FR2.2 in the reviewed-READY `requirements.md` states the app "shall resume an incomplete wizard at the last completed step **with prior entries intact**." The mob's own finding #5 (echoed in AC1.5.2's caveat) establishes this is unbuildable as written: `GET /v1/onboarding` returns only `{ currentStep, completed }`, no owner route reads back a submitted property name, and the step machine is strictly forward so a mistyped entry cannot even be corrected. `stories.md` quietly reinterprets FR2.2 into a weaker, conditional criterion (resume from client-held draft state where retained, visibly empty otherwise) without flagging that the upstream FR is now known to assert something the deployed backend cannot support — unlike the R-01/R-02 pattern, where a correction to an already-approved artifact is disclosed explicitly, here no correction note is added to `requirements.md` and no reviewer-style finding ID is opened for it. A reader of `requirements.md` alone still sees FR2.2 asserted as buildable fact. | Add a correction note to `requirements.md` FR2.2 (matching the disclosed-correction pattern used for R-01/R-02) recording that "prior entries intact" is not achievable via any existing owner route, and cross-reference `stories.md` AC1.5.2/AC1.5.3 as the corrected statement of scope. | New |
+| R-02 | Major | `stories.md` > US1.5 (AC1.5.2) and US1.10 (AC1.10.3) | Both criteria explicitly defer a real product decision to "the gate" — where unsubmitted onboarding entries are held (client-held draft state, and for how long/where), and whether a mid-session refresh failure blocks-and-preserves the edit buffer or re-authenticates in place and replays the save. Checking `user-stories-questions.md`, the only human interaction recorded is a single "Looks correct" on the Consolidated Summary Confirmation, which lists the mob's factual findings but never surfaces either of these two specific product decisions for a choice. Neither decision is resolved anywhere in this stage's artifacts. As written, AC1.5.2 and AC1.10.3 are not yet criteria QA could write a deterministic test plan against — the two very different implementations they gesture at ("empty and visibly so" vs. a specific draft-persistence mechanism; "block" vs. "re-authenticate and replay") would produce different UI and different tests. | Either resolve both decisions now (they are cheap, framework-agnostic product calls) and rewrite the ACs as concrete pass/fail conditions, or explicitly carry them forward as named open questions to `nfr-design`/`domain-design` (the way OQ1–OQ8 are carried in `requirements.md`) rather than leaving "see the gate" as if a decision already happened. | New |
+| R-03 | Minor | `stories.md` > US1.15 (Account screen, closing reviewer finding R-02 on `requirements.md`) | US1.15 defines the API-imposed *constraints* on the Account screen (no email collected, no password-change endpoint, no property-name edit endpoint) and two acceptance criteria for its content, but the screen itself is "named in PO-5's SideNav but never drawn," with the actual design still deferred to `refined-mockups`. This is a genuine, disclosed improvement over `requirements.md`'s R-02 (which had nothing at all), but it is a partial closure, not a full one — worth the human's attention distinctly from R-01, which US1.10 does close with concrete, implementable acceptance criteria. | None required to proceed — recorded for the human's awareness that R-02 is narrowed, not fully closed, pending a `refined-mockups` design pass. | New |
+
+### Summary
+
+The stage does real, verified work: it does not paper over the backend's limits, it names five concrete unbuildable-as-drafted behaviours with source-level evidence, and it correctly consolidates all of that risk into a single sequenced prerequisite story (US4.1) that Delivery Planning can schedule. The walking-skeleton boundary (US1.1→US1.3→US1.5→US1.6→US1.7→US1.8) is unambiguous, dependencies on US4.1 are named at the acceptance-criterion level throughout, and INVEST is assessed honestly rather than asserted. What holds this at READY rather than higher confidence: a discovered-but-undisclosed inconsistency between `requirements.md` FR2.2 and this stage's own corrected understanding of onboarding resume (R-01 here), and two product decisions ("see the gate") that were never actually put to the human and so remain genuinely open despite reading as settled (R-02 here). Neither blocks a developer from starting the walking-skeleton Bolt, which is why this is READY rather than NOT-READY, but both should be resolved before the stories that depend on them (US1.5, US1.10) are pulled into a Bolt.

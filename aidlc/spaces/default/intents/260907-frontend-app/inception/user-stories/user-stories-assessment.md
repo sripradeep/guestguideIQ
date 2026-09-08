@@ -57,5 +57,8 @@ perspective. Those stories are upstream context, not a substitute: they describe
 what the system must do, while this stage's stories describe what the *frontend*
 must do to deliver it, against an API whose actual shape is now known.
 
-Whether this stage reuses those IDs or mints new ones traced back to them is a
-question put to the human in `user-stories-questions.md` (Q1), not decided here.
+Whether this stage reuses those IDs or mints new ones traced back to them was
+put to the human as Q1 in `user-stories-questions.md`. **Resolved: new IDs.**
+`stories.md` mints its own `US1.x`/`US2.x`/`US4.1` and each story names the prior
+intent's story and acceptance criteria it realises, so no two intents own the
+same ID.

@@ -1,0 +1,26 @@
+{
+  "stage": "functional-design",
+  "unit": "u7-guest-links",
+  "note": "Re-confirmed 2026-09-08 after the functional-design redo jump, and re-saved following that confirmation. Coverage unchanged.",
+  "upstream_ids": [
+    "AC1.9.1",
+    "AC1.9.2",
+    "AC1.9.3",
+    "AC1.9.4",
+    "AC1.9.5",
+    "AC1.9.6",
+    "AC1.9.7",
+    "AC1.9.8"
+  ],
+  "coverage": [
+    { "id": "AC1.9.1", "status": "OK", "target": "functional-spec.md > Workflow 1 steps 1-2, and frontend-components.md > NewLinkForm and StayWindowFields — a dated form rather than a button, taking check-in and check-out, with both fields fully operable by typing and no picker required. Enforced upstream by u2-design-system's BR3.2, since a pointer-only calendar would be a hard keyboard failure on the path an owner uses to host a guest" },
+    { "id": "AC1.9.2", "status": "OK", "target": "functional-spec.md > Workflow 1 steps 3-4 and the state machine's invalid row, and frontend-components.md > NewLinkForm > Validation — checkout before check-in, or a past date, produces a specific inline error on the offending field and NO request is sent. Keeping it unsent is AC1.9.8's rule as much as this one's: a half-formed link is worse than none because the owner may send it" },
+    { "id": "AC1.9.3", "status": "OK", "target": "functional-spec.md > Workflow 3 step 5, and frontend-components.md > LinkRow — the copy control puts the link on the clipboard and confirms visibly, alongside the polite announcement AC1.9.7 requires. u2-design-system's BR3.5 requires the confirmation to sit alongside the value rather than replace it" },
+    { "id": "AC1.9.4", "status": "Deferred", "target": "functional-spec.md > The three assumptions (A2), and frontend-components.md > LinkRow. Blocked twice over: the endpoint must return the full absolute link rather than a bare token, which is unknown because POST /v1/stays is unwritten (AC4.1.1), AND the property's own locality domain is unknown to the frontend until AC4.1.7. This is the one assumption whose failure this unit cannot absorb — no client code can construct the link from a token it cannot place on a domain it does not know" },
+    { "id": "AC1.9.5", "status": "Deferred", "target": "functional-spec.md > Workflow 3 ('Why the list is not persisted'), and frontend-components.md > SessionScopeNotice. The readable half — stay window, validity, copyability — is delivered within a session. Surviving a return to the dashboard cannot be delivered: there is no GET /v1/stays, so only the client could keep the list, and per the human's Q3 = C browser storage was rejected because a guest link is a live, non-revocable credential. An owner-scoped GET /v1/stays is recorded as a backend requirement this design generates" },
+    { "id": "AC1.9.6", "status": "OK", "target": "functional-spec.md > Workflow 3 steps 2 and 6, and frontend-components.md > LinkRow — the full link is always present as selectable text and the copy control is never the only path. Structural via u2-design-system's BR3.1. This matters more here than anywhere else in the product: there is no recovery path, since a stay link cannot be re-derived from anything the owner can reach, so a silently failing copy control would mean a permanently lost link rather than an inconvenience" },
+    { "id": "AC1.9.7", "status": "OK", "target": "functional-spec.md > Workflow 3 step 5, and frontend-components.md > LinkRow and > Accessibility obligations — the confirmation announces via a polite live region, never by colour alone and never by a vanishing toast alone. u2-design-system's BR2.4 exposes no assertive mode at all, so an assertive announcement is unreachable" },
+    { "id": "AC1.9.8", "status": "OK", "target": "functional-spec.md > Workflow 1 step 6b and the state machine's generating-failure row, and frontend-components.md > NewLinkForm — a generation failure produces a clear error and no list entry. 'No partial link' is enforced as a rendering rule as well as an error rule: the list gains an entry only on a success carrying a full link, so there is no half-created state to display" }
+  ],
+  "reverse": []
+}

@@ -4,13 +4,23 @@
     "slug": "backend-services-spec",
     "dirName": "260905-backend-services-spec",
     "scope": "classic",
-    "status": "in-flight"
+    "status": "complete"
   },
   {
     "uuid": "01a07cb1-3393-7db5-af08-8fc5e95a9829",
     "slug": "frontend-app",
     "dirName": "260907-frontend-app",
     "scope": "classic",
+    "repos": [
+      "guestguideiq-app"
+    ],
+    "status": "in-flight"
+  },
+  {
+    "uuid": "01a07d8d-6853-7405-87b0-c01e92f51576",
+    "slug": "post-stays-endpoint",
+    "dirName": "260907-post-stays-endpoint",
+    "scope": "express",
     "repos": [
       "guestguideiq-app"
     ],
