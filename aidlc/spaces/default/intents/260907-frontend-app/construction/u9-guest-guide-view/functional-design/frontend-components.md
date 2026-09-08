@@ -1,7 +1,7 @@
 # Frontend Components — `u9-guest-guide-view`
 
-*Re-confirmed 2026-09-08 after the functional-design redo jump, and re-saved
-following that confirmation. Content unchanged.*
+*Revised 2026-09-08 under a human Request Changes decision: the guest-guide
+theming misclassification is corrected. Every change is marked in place.*
 
 **Framework-neutral.** The framework is OQ4 and unchosen, so nothing here is
 expressed as props, hooks or lifecycle. "Inputs" means values a component is
@@ -46,10 +46,18 @@ tabs, then panel content, with theme tokens applied to accent surfaces whenever
 they arrive (AC2.1.1). Guaranteeing that here rather than in each consumer is
 half the reason the unit exists.
 
-**`ThemeTokens` is optional and its absence is a supported state, not a
-degraded one.** `AC4.1.7` does not exist, so no brand currently resolves — the
-unthemed rendering is what every guest actually sees today, and it must be a
-finished design rather than a placeholder (AC2.1.3).
+**`ThemeTokens` is optional, and its absence is a supported state rather than a
+degraded one** — but it is the exception, not the norm. The guest stay payload
+carries `locality: { id, name, tagline, visualStyling }` inline, so `u8-guest-app`
+normally has tokens to pass down. Absence happens when `visualStyling` is `null`
+or a brand carries only a name and tagline, which `AC2.1.3` requires to render the
+clean default look plus that name — a finished design, not a placeholder.
+
+> **Corrected 2026-09-08.** This previously said `AC4.1.7` does not exist "so no
+> brand currently resolves", inherited from `u8-guest-app`'s functional design.
+> `AC4.1.7` is the domain-keyed read the *owner* screens need; the guest surface
+> has its brand inline. The unthemed rendering is a real supported case, not the
+> only case.
 
 **There is no preview-mode input, and none may be added.** The moment this
 component knows whether it is inside an owner's preview, the two renderings can

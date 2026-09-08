@@ -311,21 +311,50 @@ will recur identically for `u5` through `u8`, which are all `ui`.
 
 **Verdict:** READY
 **Reviewer:** aidlc-architecture-reviewer-agent
-**Iteration:** 1
+**Iteration:** 2
 **Date:** 2026-09-08
-**Request Challenge:** review:7eb7d2c5a77fbf01769a57f32ee58166
+**Request Challenge:** review:6a5f7218c0c9d816befc31c42d734f7d
 
-This unit was fully reviewed earlier in the stage. A redo jump then reset the
-stage for bookkeeping reasons unrelated to the designs, clearing the receipts.
-This pass re-verified that the recorded verdict still stands.
+Re-verification after the guest-guide theming correction was applied to
+`u3-foundation`, `u8-guest-app` and `u9-guest-guide-view` under a
+human Request Changes decision. This unit was not among those revised.
 
 ### Findings
 
 | ID | Severity | Location | Finding | Required action | Status |
 |---|---|---|---|---|---|
-| — | — | — | Nothing invalidates the verdict recorded below. The only changes since it were a disclosed provenance line and, in six units, the finding-status vocabulary remap. | None. | Resolved |
+| R-01 | Minor | (whole unit) | Unchanged by the correction; the verdict recorded below still stands. | None. | Resolved |
 
-### What was re-verified
+### What was checked
+
+That nothing in this unit's artifacts changed as part of the theming correction,
+and that its recorded findings keep their dispositions - each `Resolved`
+finding's fix still present, each `Accepted risk` finding still genuinely
+unapplied and accurately described.
+
+---
+
+### The review this supersedes, retained in full
+
+#### Review
+
+**Recorded verdict (superseded):** READY
+**Prior reviewer:** aidlc-architecture-reviewer-agent
+**Prior iteration:** 1
+**Date:** 2026-09-08
+**Prior request challenge:** review:7eb7d2c5a77fbf01769a57f32ee58166
+
+This unit was fully reviewed earlier in the stage. A redo jump then reset the
+stage for bookkeeping reasons unrelated to the designs, clearing the receipts.
+This pass re-verified that the recorded verdict still stands.
+
+##### Findings
+
+| ID | Severity | Location | Finding | Required action | Status |
+|---|---|---|---|---|---|
+| R-01 | Minor | (whole unit) | Nothing invalidates the verdict recorded below. The only changes since it were a disclosed provenance line and, in six units, the finding-status vocabulary remap. | None. | Resolved |
+
+##### What was re-verified
 
 Every finding recorded as **Resolved** below has its fix genuinely present in
 the artifacts, and every finding recorded as **Accepted risk** genuinely remains
@@ -337,7 +366,7 @@ touch-target tokens.
 
 ---
 
-### The review this supersedes, retained in full
+##### The review this supersedes, retained in full
 
 #### Review
 

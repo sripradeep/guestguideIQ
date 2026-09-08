@@ -311,9 +311,9 @@ verified inline. Checked directly rather than assumed:
 
 **Verdict:** READY
 **Reviewer:** aidlc-architecture-reviewer-agent
-**Iteration:** 1
+**Iteration:** 2
 **Date:** 2026-09-08
-**Request Challenge:** review:cde9acbc41ebe520326b5e1890ea1e09
+**Request Challenge:** review:1a8afbbf89f2f17c4c1edc7d2d0319a0
 
 This unit was fully reviewed earlier in the stage. A redo jump then reset the
 stage for bookkeeping reasons unrelated to the designs, clearing the receipts.
@@ -323,7 +323,7 @@ This pass re-verified that the recorded verdict still stands.
 
 | ID | Severity | Location | Finding | Required action | Status |
 |---|---|---|---|---|---|
-| — | — | — | Nothing invalidates the verdict recorded below. The only changes since it were a disclosed provenance line and, in six units, the finding-status vocabulary remap. | None. | Resolved |
+| R-01 | Minor | (whole unit) | Nothing invalidates the verdict recorded below. The only changes since it were a disclosed provenance line and, in six units, the finding-status vocabulary remap. | None. | Resolved |
 
 ### What was re-verified
 
@@ -350,7 +350,7 @@ touch-target tokens.
 
 | ID | Severity | Location | Finding | Required action | Status |
 |---|---|---|---|---|---|
-| — | — | — | No findings. Every checked claim verified against source rather than accepted as asserted. | — | — |
+| R-01 | Minor | (whole unit) | No findings. Every checked claim verified against source rather than accepted as asserted. | — | — |
 
 ##### What the review added to this design
 

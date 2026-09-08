@@ -1,7 +1,7 @@
 # Functional Specification — `u8-guest-app`
 
-*Re-confirmed 2026-09-08 after the functional-design redo jump, and re-saved
-following that confirmation. Content unchanged.*
+*Revised 2026-09-08 under a human Request Changes decision: the guest-guide
+theming misclassification is corrected. Every change is marked in place.*
 
 The guest surface: resolving a stay link into a guide, the ordered render that
 `AC2.1.1` demands, the tab model, the chat lifecycle, and the degraded states.
@@ -84,7 +84,7 @@ the requirement.
 | 3 | Guest app | Paint the "this is your stay" confirmation alongside them. The identity block reads as complete **without an image** (AC2.1.5). |
 | 4 | Guest app | Then the tab bar and the Overview panel's content. |
 | 5 | Guest app | Then the chat affordance. |
-| 6 | Guest app | Ask `u3-foundation` for the locality brand. When it resolves, apply it — **accent surfaces only** (Q1 = A's control). |
+| 6 | Guest app | Hand the payload's `locality` object to `u3-foundation` for parsing. When tokens resolve, apply them — **accent surfaces only** (Q1 = A's control). **No second request**: the brand arrived with the stay at step 1. |
 
 **Steps 2 and 6 are the whole of Q1.** Identity paints before theming; the brand
 arrives afterwards and changes only the accent bar and the action colour. Layout,
@@ -96,11 +96,43 @@ requires a brand carrying only a name and tagline to render "the clean default
 look plus that name — never a half-styled or broken page", and the same is true
 when no brand resolves at all.
 
-**Today step 6 never completes.** `AC4.1.7` does not exist — there is no
-frontend-reachable read that returns a locality brand — so the base-token state is
-the only state any guest will currently see. The restyle Q1 is about is real in
-design and hypothetical in production, which is why the unbranded rendering has to
-be good in its own right rather than treated as a transitional state.
+**Step 6 needs no additional request, and is not blocked.** The stay payload this
+unit already reads at step 1 carries the brand inline:
+
+```
+GET /v1/stays/:token → { property, locality: { id, name, tagline, visualStyling }, guide }
+```
+
+That `locality` object is exactly what `u3-foundation`'s `LocalityBrandResolver`
+parses into tokens — `u1-api-contract` types it as `LocalityIdentity`. So the
+guide's theming is available the moment the stay resolves. The restyle Q1 = A
+describes is **real in production, not hypothetical**: the accent bar and action
+colour do change a moment after identity paints, which is why Q1 = A's containment
+(accent surfaces only, nothing reflows) matters rather than being precautionary.
+
+**`AC4.1.7` does not block this path.** It is a *separate*, domain-keyed brand read
+needed by the **owner** screens, which have no stay context to carry a brand:
+signup, login and onboarding. Its own definition names the criteria it blocks —
+`AC1.1.1`, `AC1.2.1`, `AC1.2.2`, `AC1.5.6`, `AC1.9.4` — and none is on the Guest
+surface. `stories.md` says so directly: *"Today locality data leaves the system
+only through the guest stay payload."*
+
+**Where the block is real is `G-1`.** A `410 LINK_INVALID` carries no body at all,
+so the invalid-link screen has nothing to resolve a brand from and `ADR-005`'s
+branded treatment stays blocked. `u3-foundation`'s BR5.4 note covers that path and
+is unaffected.
+
+**The unbranded rendering still has to be good in its own right** — `AC2.1.3`
+requires a brand carrying only a name and tagline to render the clean default look
+plus that name, and a `null` `visualStyling` is a documented possibility.
+
+> **Corrected 2026-09-08.** This section previously asserted that no
+> frontend-reachable read returns a locality brand, and that the base-token state
+> was the only state a guest would ever see. Both were wrong, and they contradicted
+> `u1-api-contract` — which types this very field and describes it as *"the only
+> place locality data leaves the system today"*. The error was generalising
+> "`AC4.1.7` blocks branding" from the owner surfaces to the guest surface without
+> re-checking. Caught at review, fixed under a human Request Changes decision.
 
 **Why no image, and no placeholder for one** (AC2.1.5). There is no photo anywhere
 in the system: the stay payload returns `property: { id, name }`, onboarding
@@ -256,7 +288,7 @@ owned by any unit that renders it.
 
 | Criterion | Blocked on | What is missing |
 |---|---|---|
-| `AC2.1.2` | `AC4.1.7` | No frontend-reachable read returns a locality brand |
+| ~~`AC2.1.2`~~ | — | **No longer deferred (2026-09-08).** The stay payload carries `locality.visualStyling` inline, so the guide is themeable today. `AC4.1.7` blocks only the owner screens |
 | `AC2.3.2` (the positive half) | `AC4.1.9` | The guest cannot resolve a favourite id into anything displayable |
 | `AC2.4.5` | `AC4.1.6` | Chat history is not readable |
 
@@ -295,21 +327,60 @@ units be verified inline instead. What was checked directly, rather than assumed
 
 **Verdict:** READY
 **Reviewer:** aidlc-architecture-reviewer-agent
-**Iteration:** 1
+**Iteration:** 2
 **Date:** 2026-09-08
-**Request Challenge:** review:1dfc47d5999ce1a969e362674658590f
+**Request Challenge:** review:f2399bef22ab8301ec0a32d39a43a443
 
-This unit was fully reviewed earlier in the stage. A redo jump then reset the
-stage for bookkeeping reasons unrelated to the designs, clearing the receipts.
-This pass re-verified that the recorded verdict still stands.
+A scoped pass over one correction, made under a human Request Changes decision:
+the guest guide's theming had been recorded as blocked on `AC4.1.7`, and it
+never was.
 
 ### Findings
 
 | ID | Severity | Location | Finding | Required action | Status |
 |---|---|---|---|---|---|
-| — | — | — | Nothing invalidates the verdict recorded below. The only changes since it were a disclosed provenance line and, in six units, the finding-status vocabulary remap. | None. | Resolved |
+| R-01 | Minor | (whole unit) | No findings. The correction is factually right and complete. | None. | Resolved |
 
-### What was re-verified
+### What was verified
+
+The reviewer checked the claim rather than accepting it. `GET /v1/stays/:token`
+returns `locality: { id, name, tagline, visualStyling }` inline with the
+`200` payload; `u1-api-contract` types it as `LocalityIdentity` and
+describes it as *"the only place locality data leaves the system today"*; and
+`AC4.1.7`'s own definition blocks `AC1.1.1`, `AC1.2.1`,
+`AC1.2.2`, `AC1.5.6` and `AC1.9.4` - every one an owner-surface
+criterion, none on the Guest surface. **The original blocked claim was wrong.**
+
+`AC2.1.2` is correctly `OK`. The remaining deferrals - `AC2.3.2`'s
+positive half on `AC4.1.9`, and `AC2.4.5` on `AC4.1.6` - are genuine
+and unaffected. `G-1` stays blocked for its own reason, a `410` carrying
+no body, which BR5.4 and the revised Workflow 4 state consistently. No stale
+pre-fix claim survives outside the review appendices that quote it deliberately
+as the defect.
+
+---
+
+### The review this supersedes, retained in full
+
+#### Review
+
+**Recorded verdict (superseded):** READY
+**Prior reviewer:** aidlc-architecture-reviewer-agent
+**Prior iteration:** 1
+**Date:** 2026-09-08
+**Prior request challenge:** review:1dfc47d5999ce1a969e362674658590f
+
+This unit was fully reviewed earlier in the stage. A redo jump then reset the
+stage for bookkeeping reasons unrelated to the designs, clearing the receipts.
+This pass re-verified that the recorded verdict still stands.
+
+##### Findings
+
+| ID | Severity | Location | Finding | Required action | Status |
+|---|---|---|---|---|---|
+| R-01 | Minor | (whole unit) | Nothing invalidates the verdict recorded below. The only changes since it were a disclosed provenance line and, in six units, the finding-status vocabulary remap. | None. | Resolved |
+
+##### What was re-verified
 
 Every finding recorded as **Resolved** below has its fix genuinely present in
 the artifacts, and every finding recorded as **Accepted risk** genuinely remains
@@ -321,7 +392,7 @@ touch-target tokens.
 
 ---
 
-### The review this supersedes, retained in full
+##### The review this supersedes, retained in full
 
 #### Review
 
@@ -335,7 +406,7 @@ touch-target tokens.
 
 | ID | Severity | Location | Finding | Required action | Status |
 |---|---|---|---|---|---|
-| R-01 | Major | `functional-spec.md` > Workflow 1 step 6 and "Today step 6 never completes"; `frontend-components.md` > `GuestSurface` and > API integration points; `traceability.json` > `AC2.1.2` | **The guest guide's brand is not blocked, and this design says it is.** `GET /v1/stays/:token`'s `200` body already carries `locality: { id, name, tagline, visualStyling }` inline — the exact payload `LocalityBrandResolver` parses — delivered by the same stay read Workflow 1 already makes at step 1. `AC4.1.7` is a *different*, domain-keyed read needed by owner screens that have no stay context (signup, login, onboarding); its own definition names the criteria it blocks and **none of them are Guest-surface**. So `AC2.1.2` — a **Must** criterion — is misclassified `Deferred`, and Q1's framing that the restyle is "hypothetical in production" is wrong for the guide screen. A developer building from this spec would not implement guide theming at all. | Derive the guide path's tokens from the `locality.visualStyling` already in the resolved `GuestStayView`, with no additional call. Move `AC2.1.2` to `OK`. Correct Q1's framing. | Accepted risk |
+| R-01 | Major | `functional-spec.md` > Workflow 1 step 6 and "Today step 6 never completes"; `frontend-components.md` > `GuestSurface` and > API integration points; `traceability.json` > `AC2.1.2` | **The guest guide's brand is not blocked, and this design says it is.** `GET /v1/stays/:token`'s `200` body already carries `locality: { id, name, tagline, visualStyling }` inline — the exact payload `LocalityBrandResolver` parses — delivered by the same stay read Workflow 1 already makes at step 1. `AC4.1.7` is a *different*, domain-keyed read needed by owner screens that have no stay context (signup, login, onboarding); its own definition names the criteria it blocks and **none of them are Guest-surface**. So `AC2.1.2` — a **Must** criterion — is misclassified `Deferred`, and Q1's framing that the restyle is "hypothetical in production" is wrong for the guide screen. A developer building from this spec would not implement guide theming at all. | Derive the guide path's tokens from the `locality.visualStyling` already in the resolved `GuestStayView`, with no additional call. Move `AC2.1.2` to `OK`. Correct Q1's framing. | Resolved |
 
 ##### Why this one matters more than its severity suggests
 

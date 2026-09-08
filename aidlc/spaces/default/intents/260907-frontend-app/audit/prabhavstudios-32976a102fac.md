@@ -13859,3 +13859,3678 @@
 **Session**: 37443ca2-00ca-4ba9-8042-61a7c51b818f
 
 ---
+
+## Human Turn
+**Timestamp**: 2026-09-08T16:56:29Z
+**Event**: HUMAN_TURN
+**Session**: 37443ca2-00ca-4ba9-8042-61a7c51b818f
+
+---
+
+## Subagent Completed
+**Timestamp**: 2026-09-08T16:56:57Z
+**Event**: SUBAGENT_COMPLETED
+**Agent Type**: 
+**Agent ID**: ab37a0015da7f7657
+**Message**: open a PR
+
+---
+
+## Human Turn
+**Timestamp**: 2026-09-08T17:02:33Z
+**Event**: HUMAN_TURN
+**Session**: 37443ca2-00ca-4ba9-8042-61a7c51b818f
+
+---
+
+## Subagent Completed
+**Timestamp**: 2026-09-08T17:03:33Z
+**Event**: SUBAGENT_COMPLETED
+**Agent Type**: 
+**Agent ID**: ae0a75b6bc2f2d0e1
+**Message**: fix the u8/u9 theming issue
+
+---
+
+## Human Turn
+**Timestamp**: 2026-09-08T17:17:57Z
+**Event**: HUMAN_TURN
+**Session**: 37443ca2-00ca-4ba9-8042-61a7c51b818f
+
+---
+
+## Review Freeze Blocked
+**Timestamp**: 2026-09-08T17:18:39Z
+**Event**: REVIEW_FREEZE_BLOCKED
+**Tool**: Edit
+**Target**: <project-dir>\aidlc\spaces\default\intents\260907-frontend-app\construction\u8-guest-app\functional-design\functional-spec.md
+**Stage**: functional-design
+**Unit**: u8-guest-app
+
+---
+
+## Gate Rejected
+**Timestamp**: 2026-09-08T17:18:58Z
+**Event**: GATE_REJECTED
+**Stage**: functional-design
+**Feedback**: Fix the guest-guide theming misclassification in u8-guest-app and u9-guest-guide-view: the stay payload carries locality.visualStyling inline, so the guide can be themed today and AC2.1.2 is not blocked on AC4.1.7. Correct u3-foundation's brand-resolution workflow to name both sources. G-1's branded invalid-link screen stays blocked.
+
+---
+
+## Stage Revising
+**Timestamp**: 2026-09-08T17:18:58Z
+**Event**: STAGE_REVISING
+**Stage**: functional-design
+**Revision count**: 5
+**Feedback**: Fix the guest-guide theming misclassification in u8-guest-app and u9-guest-guide-view: the stay payload carries locality.visualStyling inline, so the guide can be themed today and AC2.1.2 is not blocked on AC4.1.7. Correct u3-foundation's brand-resolution workflow to name both sources. G-1's branded invalid-link screen stays blocked.
+
+---
+
+## Artifact Updated
+**Timestamp**: 2026-09-08T17:19:13Z
+**Event**: ARTIFACT_UPDATED
+**Tool**: Edit
+**File**: <project-dir>/aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/functional-spec.md
+**Context**: construction > u8-guest-app > functional-design > functional-spec.md
+
+---
+
+## Artifact Updated
+**Timestamp**: 2026-09-08T17:19:24Z
+**Event**: ARTIFACT_UPDATED
+**Tool**: Edit
+**File**: <project-dir>/aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/functional-spec.md
+**Context**: construction > u8-guest-app > functional-design > functional-spec.md
+
+---
+
+## Artifact Updated
+**Timestamp**: 2026-09-08T17:19:30Z
+**Event**: ARTIFACT_UPDATED
+**Tool**: Edit
+**File**: <project-dir>/aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/functional-spec.md
+**Context**: construction > u8-guest-app > functional-design > functional-spec.md
+
+---
+
+## Artifact Updated
+**Timestamp**: 2026-09-08T17:19:39Z
+**Event**: ARTIFACT_UPDATED
+**Tool**: Edit
+**File**: <project-dir>/aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/traceability.json
+**Context**: construction > u8-guest-app > functional-design > traceability.json
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T17:19:39Z
+**Event**: SENSOR_FIRED
+**Fire id**: 6fc84704
+**Sensor ID**: traceability
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/traceability.json
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T17:19:39Z
+**Event**: SENSOR_FAILED
+**Fire id**: 6fc84704
+**Sensor ID**: traceability
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/traceability.json
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/traceability-6fc84704.md
+**Findings count**: 24
+
+---
+
+## Artifact Updated
+**Timestamp**: 2026-09-08T17:19:48Z
+**Event**: ARTIFACT_UPDATED
+**Tool**: Edit
+**File**: <project-dir>/aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/frontend-components.md
+**Context**: construction > u8-guest-app > functional-design > frontend-components.md
+
+---
+
+## Artifact Updated
+**Timestamp**: 2026-09-08T17:19:53Z
+**Event**: ARTIFACT_UPDATED
+**Tool**: Edit
+**File**: <project-dir>/aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/frontend-components.md
+**Context**: construction > u8-guest-app > functional-design > frontend-components.md
+
+---
+
+## Artifact Updated
+**Timestamp**: 2026-09-08T17:20:03Z
+**Event**: ARTIFACT_UPDATED
+**Tool**: Edit
+**File**: <project-dir>/aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/frontend-components.md
+**Context**: construction > u9-guest-guide-view > functional-design > frontend-components.md
+
+---
+
+## Artifact Updated
+**Timestamp**: 2026-09-08T17:20:11Z
+**Event**: ARTIFACT_UPDATED
+**Tool**: Edit
+**File**: <project-dir>/aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/traceability.json
+**Context**: construction > u9-guest-guide-view > functional-design > traceability.json
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T17:20:11Z
+**Event**: SENSOR_FIRED
+**Fire id**: 57a8eed1
+**Sensor ID**: traceability
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/traceability.json
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T17:20:11Z
+**Event**: SENSOR_FAILED
+**Fire id**: 57a8eed1
+**Sensor ID**: traceability
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/traceability.json
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/traceability-57a8eed1.md
+**Findings count**: 12
+
+---
+
+## Artifact Updated
+**Timestamp**: 2026-09-08T17:20:19Z
+**Event**: ARTIFACT_UPDATED
+**Tool**: Edit
+**File**: <project-dir>/aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/functional-spec.md
+**Context**: construction > u9-guest-guide-view > functional-design > functional-spec.md
+
+---
+
+## Artifact Updated
+**Timestamp**: 2026-09-08T17:20:25Z
+**Event**: ARTIFACT_UPDATED
+**Tool**: Edit
+**File**: <project-dir>/aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/functional-spec.md
+**Context**: construction > u3-foundation > functional-design > functional-spec.md
+
+---
+
+## Artifact Updated
+**Timestamp**: 2026-09-08T17:20:32Z
+**Event**: ARTIFACT_UPDATED
+**Tool**: Edit
+**File**: <project-dir>/aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/functional-spec.md
+**Context**: construction > u3-foundation > functional-design > functional-spec.md
+
+---
+
+## Artifact Updated
+**Timestamp**: 2026-09-08T17:21:10Z
+**Event**: ARTIFACT_UPDATED
+**Tool**: Edit
+**File**: <project-dir>/aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/frontend-components.md
+**Context**: construction > u8-guest-app > functional-design > frontend-components.md
+
+---
+
+## Human Turn
+**Timestamp**: 2026-09-08T18:29:36Z
+**Event**: HUMAN_TURN
+**Session**: 37443ca2-00ca-4ba9-8042-61a7c51b818f
+
+---
+
+## Artifact Updated
+**Timestamp**: 2026-09-08T18:29:54Z
+**Event**: ARTIFACT_UPDATED
+**Tool**: Edit
+**File**: <project-dir>/aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/frontend-components.md
+**Context**: construction > u8-guest-app > functional-design > frontend-components.md
+
+---
+
+## Subagent Completed
+**Timestamp**: 2026-09-08T18:30:36Z
+**Event**: SUBAGENT_COMPLETED
+**Agent Type**: 
+**Agent ID**: a1cf4f9f1dd6c08b8
+**Message**: commit this
+
+---
+
+## Human Turn
+**Timestamp**: 2026-09-08T18:31:34Z
+**Event**: HUMAN_TURN
+**Session**: 37443ca2-00ca-4ba9-8042-61a7c51b818f
+
+---
+
+## Workflow Unparked
+**Timestamp**: 2026-09-08T18:31:47Z
+**Event**: WORKFLOW_UNPARKED
+
+---
+
+## Unit Started
+**Timestamp**: 2026-09-08T18:32:25Z
+**Event**: UNIT_STARTED
+**Stage**: functional-design
+**Unit**: u1-api-contract
+**Run floor**: GATE_REJECTED:2026-09-08T17:18:58Z#3
+**Next Action**: close out
+
+---
+
+## Unit Completed
+**Timestamp**: 2026-09-08T18:32:25Z
+**Event**: UNIT_COMPLETED
+**Stage**: functional-design
+**Unit**: u1-api-contract
+**Run floor**: GATE_REJECTED:2026-09-08T17:18:58Z#3
+**Next Action**: gate
+
+---
+
+## Unit Started
+**Timestamp**: 2026-09-08T18:32:42Z
+**Event**: UNIT_STARTED
+**Stage**: functional-design
+**Unit**: u2-design-system
+**Run floor**: GATE_REJECTED:2026-09-08T17:18:58Z#3
+**Next Action**: close out
+
+---
+
+## Unit Completed
+**Timestamp**: 2026-09-08T18:32:42Z
+**Event**: UNIT_COMPLETED
+**Stage**: functional-design
+**Unit**: u2-design-system
+**Run floor**: GATE_REJECTED:2026-09-08T17:18:58Z#3
+**Next Action**: gate
+
+---
+
+## Unit Started
+**Timestamp**: 2026-09-08T18:32:46Z
+**Event**: UNIT_STARTED
+**Stage**: functional-design
+**Unit**: u3-foundation
+**Run floor**: GATE_REJECTED:2026-09-08T17:18:58Z#3
+**Next Action**: close out
+
+---
+
+## Unit Completed
+**Timestamp**: 2026-09-08T18:32:46Z
+**Event**: UNIT_COMPLETED
+**Stage**: functional-design
+**Unit**: u3-foundation
+**Run floor**: GATE_REJECTED:2026-09-08T17:18:58Z#3
+**Next Action**: gate
+
+---
+
+## Unit Started
+**Timestamp**: 2026-09-08T18:32:49Z
+**Event**: UNIT_STARTED
+**Stage**: functional-design
+**Unit**: u9-guest-guide-view
+**Run floor**: GATE_REJECTED:2026-09-08T17:18:58Z#3
+**Next Action**: close out
+
+---
+
+## Unit Completed
+**Timestamp**: 2026-09-08T18:32:50Z
+**Event**: UNIT_COMPLETED
+**Stage**: functional-design
+**Unit**: u9-guest-guide-view
+**Run floor**: GATE_REJECTED:2026-09-08T17:18:58Z#3
+**Next Action**: gate
+
+---
+
+## Unit Started
+**Timestamp**: 2026-09-08T18:32:53Z
+**Event**: UNIT_STARTED
+**Stage**: functional-design
+**Unit**: u4-owner-shell
+**Run floor**: GATE_REJECTED:2026-09-08T17:18:58Z#3
+**Next Action**: close out
+
+---
+
+## Unit Completed
+**Timestamp**: 2026-09-08T18:32:53Z
+**Event**: UNIT_COMPLETED
+**Stage**: functional-design
+**Unit**: u4-owner-shell
+**Run floor**: GATE_REJECTED:2026-09-08T17:18:58Z#3
+**Next Action**: gate
+
+---
+
+## Unit Started
+**Timestamp**: 2026-09-08T18:32:57Z
+**Event**: UNIT_STARTED
+**Stage**: functional-design
+**Unit**: u8-guest-app
+**Run floor**: GATE_REJECTED:2026-09-08T17:18:58Z#3
+**Next Action**: close out
+
+---
+
+## Unit Completed
+**Timestamp**: 2026-09-08T18:32:57Z
+**Event**: UNIT_COMPLETED
+**Stage**: functional-design
+**Unit**: u8-guest-app
+**Run floor**: GATE_REJECTED:2026-09-08T17:18:58Z#3
+**Next Action**: gate
+
+---
+
+## Unit Started
+**Timestamp**: 2026-09-08T18:33:01Z
+**Event**: UNIT_STARTED
+**Stage**: functional-design
+**Unit**: u5-owner-guide
+**Run floor**: GATE_REJECTED:2026-09-08T17:18:58Z#3
+**Next Action**: close out
+
+---
+
+## Unit Completed
+**Timestamp**: 2026-09-08T18:33:02Z
+**Event**: UNIT_COMPLETED
+**Stage**: functional-design
+**Unit**: u5-owner-guide
+**Run floor**: GATE_REJECTED:2026-09-08T17:18:58Z#3
+**Next Action**: gate
+
+---
+
+## Unit Started
+**Timestamp**: 2026-09-08T18:33:05Z
+**Event**: UNIT_STARTED
+**Stage**: functional-design
+**Unit**: u6-owner-locality-billing
+**Run floor**: GATE_REJECTED:2026-09-08T17:18:58Z#3
+**Next Action**: close out
+
+---
+
+## Unit Completed
+**Timestamp**: 2026-09-08T18:33:06Z
+**Event**: UNIT_COMPLETED
+**Stage**: functional-design
+**Unit**: u6-owner-locality-billing
+**Run floor**: GATE_REJECTED:2026-09-08T17:18:58Z#3
+**Next Action**: gate
+
+---
+
+## Unit Started
+**Timestamp**: 2026-09-08T18:33:10Z
+**Event**: UNIT_STARTED
+**Stage**: functional-design
+**Unit**: u7-guest-links
+**Run floor**: GATE_REJECTED:2026-09-08T17:18:58Z#3
+**Next Action**: close out
+
+---
+
+## Unit Completed
+**Timestamp**: 2026-09-08T18:33:10Z
+**Event**: UNIT_COMPLETED
+**Stage**: functional-design
+**Unit**: u7-guest-links
+**Run floor**: GATE_REJECTED:2026-09-08T17:18:58Z#3
+**Next Action**: gate
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:33:31Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u3-foundation --reviewer aidlc-architecture-reviewer-agent --iteration 1
+**Error**: Cannot start review iteration 1 for "functional-design" because the next iteration is 2. Retry with --iteration 2.
+
+---
+
+## Review Requested
+**Timestamp**: 2026-09-08T18:33:32Z
+**Event**: REVIEW_REQUESTED
+**Stage**: functional-design
+**Reviewer**: aidlc-architecture-reviewer-agent
+**Unit**: u3-foundation
+**Iteration**: 2
+**Recovery**: stale-receipt
+**Recovery Cause**: artifact
+**Artifact Fingerprint**: sha256:1336890e50e48e736ba4079734f337e9ab5bab86afa4753d29ce8fc1a8e1b764
+**Review Appendix Artifact**: construction/u3-foundation/functional-design/functional-spec.md
+**Review Appendix Offset**: 16380
+**Review Appendix Prior Digest**: sha256:bf8c1cd1ee403a1e2c16c2f2dc6c28969fed33439b458388eb4940205696911f
+**Review Appendix Prior Length**: 7924
+**Review Challenge**: review:561d78421076943b7f143c5b2d6807e4
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:33:32Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u8-guest-app --reviewer aidlc-architecture-reviewer-agent --iteration 1
+**Error**: Cannot start review iteration 1 for "functional-design" because the next iteration is 2. Retry with --iteration 2.
+
+---
+
+## Review Requested
+**Timestamp**: 2026-09-08T18:33:32Z
+**Event**: REVIEW_REQUESTED
+**Stage**: functional-design
+**Reviewer**: aidlc-architecture-reviewer-agent
+**Unit**: u8-guest-app
+**Iteration**: 2
+**Recovery**: stale-receipt
+**Recovery Cause**: artifact
+**Artifact Fingerprint**: sha256:7ae449e8352c4d107f4b7fabea1411b8b215a8a0d93a8c3abcc5d2eb36afe8ce
+**Review Appendix Artifact**: construction/u8-guest-app/functional-design/functional-spec.md
+**Review Appendix Offset**: 17864
+**Review Appendix Prior Digest**: sha256:8e5af4877f2e8aa8e1d7e367f8c21ae5c3dc0b1f145b5a616a2648ea88cdc7a8
+**Review Appendix Prior Length**: 6698
+**Review Challenge**: review:f2399bef22ab8301ec0a32d39a43a443
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:33:33Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u9-guest-guide-view --reviewer aidlc-architecture-reviewer-agent --iteration 1
+**Error**: Cannot start review iteration 1 for "functional-design" because the next iteration is 2. Retry with --iteration 2.
+
+---
+
+## Review Requested
+**Timestamp**: 2026-09-08T18:33:33Z
+**Event**: REVIEW_REQUESTED
+**Stage**: functional-design
+**Reviewer**: aidlc-architecture-reviewer-agent
+**Unit**: u9-guest-guide-view
+**Iteration**: 2
+**Recovery**: stale-receipt
+**Recovery Cause**: artifact
+**Artifact Fingerprint**: sha256:cc3abea7a17c7647e71cc8766556918044f0096e765167d1ffd518947e0ae890
+**Review Appendix Artifact**: construction/u9-guest-guide-view/functional-design/functional-spec.md
+**Review Appendix Offset**: 9499
+**Review Appendix Prior Digest**: sha256:8214cd18920565e7e84b7d9ad8614b51da59fcf348ac64b20c6044af65c514f0
+**Review Appendix Prior Length**: 5986
+**Review Challenge**: review:2f417a20cf77e4601350cf9cc24dee15
+
+---
+
+## Subagent Completed
+**Timestamp**: 2026-09-08T18:35:19Z
+**Event**: SUBAGENT_COMPLETED
+**Agent Type**: aidlc-architecture-reviewer-agent
+**Agent ID**: a2e513dc3dc0850aa
+**Message**: ## Findings\n\nVerification confirms the correction is factually sound and complete.\n\n1. **API check** — `GET /v1/stays/:token` (`api-documentation.md` § A.7) returns `locality: { id, name, tagline, vis
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:36:09Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u3-foundation --reviewer aidlc-architecture-reviewer-agent --iteration 2 --verdict READY
+**Error**: Refusing REVIEW_COMPLETED for "functional-design": the reviewer appendix must be terminal and contain no later rendered H1 or H2 heading.
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:36:09Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u8-guest-app --reviewer aidlc-architecture-reviewer-agent --iteration 2 --verdict READY
+**Error**: Refusing REVIEW_COMPLETED for "functional-design": the reviewer appendix must be terminal and contain no later rendered H1 or H2 heading.
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:36:10Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u9-guest-guide-view --reviewer aidlc-architecture-reviewer-agent --iteration 2 --verdict READY
+**Error**: Refusing REVIEW_COMPLETED for "functional-design": the reviewer appendix must be terminal and contain no later rendered H1 or H2 heading.
+
+---
+
+## Review Completed
+**Timestamp**: 2026-09-08T18:36:41Z
+**Event**: REVIEW_COMPLETED
+**Stage**: functional-design
+**Reviewer**: aidlc-architecture-reviewer-agent
+**Unit**: u3-foundation
+**Iteration**: 2
+**Verdict**: READY
+**Request Fingerprint**: sha256:1336890e50e48e736ba4079734f337e9ab5bab86afa4753d29ce8fc1a8e1b764
+**Artifact Fingerprint**: sha256:f0e7f41d938fcdb181f80ee4cab7ee43b9d67fb9947674b749ded704a986eaeb
+**Review Appendix Artifact**: construction/u3-foundation/functional-design/functional-spec.md
+**Review Appendix Offset**: 16380
+**Review Appendix Prior Digest**: sha256:bf8c1cd1ee403a1e2c16c2f2dc6c28969fed33439b458388eb4940205696911f
+**Review Appendix Prior Length**: 7924
+**Review Challenge**: review:561d78421076943b7f143c5b2d6807e4
+
+---
+
+## Review Completed
+**Timestamp**: 2026-09-08T18:36:41Z
+**Event**: REVIEW_COMPLETED
+**Stage**: functional-design
+**Reviewer**: aidlc-architecture-reviewer-agent
+**Unit**: u8-guest-app
+**Iteration**: 2
+**Verdict**: READY
+**Request Fingerprint**: sha256:7ae449e8352c4d107f4b7fabea1411b8b215a8a0d93a8c3abcc5d2eb36afe8ce
+**Artifact Fingerprint**: sha256:a368158670d737bd856bdebc0bb2addff8a56f3eb4c09a134aaba36354009720
+**Review Appendix Artifact**: construction/u8-guest-app/functional-design/functional-spec.md
+**Review Appendix Offset**: 17864
+**Review Appendix Prior Digest**: sha256:8e5af4877f2e8aa8e1d7e367f8c21ae5c3dc0b1f145b5a616a2648ea88cdc7a8
+**Review Appendix Prior Length**: 6698
+**Review Challenge**: review:f2399bef22ab8301ec0a32d39a43a443
+
+---
+
+## Review Completed
+**Timestamp**: 2026-09-08T18:36:41Z
+**Event**: REVIEW_COMPLETED
+**Stage**: functional-design
+**Reviewer**: aidlc-architecture-reviewer-agent
+**Unit**: u9-guest-guide-view
+**Iteration**: 2
+**Verdict**: READY
+**Request Fingerprint**: sha256:cc3abea7a17c7647e71cc8766556918044f0096e765167d1ffd518947e0ae890
+**Artifact Fingerprint**: sha256:77c254b08d4dccc5357553ff1ce870cdc13afac360d044a36706005a9af946a1
+**Review Appendix Artifact**: construction/u9-guest-guide-view/functional-design/functional-spec.md
+**Review Appendix Offset**: 9499
+**Review Appendix Prior Digest**: sha256:8214cd18920565e7e84b7d9ad8614b51da59fcf348ac64b20c6044af65c514f0
+**Review Appendix Prior Length**: 5986
+**Review Challenge**: review:2f417a20cf77e4601350cf9cc24dee15
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:36:47Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-state
+**Command**: aidlc-state revise functional-design --project-dir <project-dir>
+**Error**: Cannot present "functional-design" for approval because 6 of 9 applicable units do not have a current review from aidlc-architecture-reviewer-agent (u1-api-contract, u2-design-system, u4-owner-shell, u5-owner-guide, u6-owner-locality-billing, u7-guest-links). Changed after review: u1-api-contract, u2-design-system, u4-owner-shell, u6-owner-locality-billing, u7-guest-links. Not yet reviewed: u5-owner-guide. For invalidated units with recovery available (u1-api-contract, u2-design-system, u4-owner-shell, u6-owner-locality-billing, u7-guest-links), run `aidlc-log.ts review --stage functional-design --unit <unit> --reviewer aidlc-architecture-reviewer-agent --iteration <next ordinal>`, then record the verdict with the same command plus `--verdict <READY|NOT-READY>` and stop editing this stage's output documents, that unit's source-manifest.json, and that unit's claimed source paths. For never-reviewed units (u5-owner-guide), run the normal `aidlc-log.ts review --stage functional-design --unit <unit> --reviewer aidlc-architecture-reviewer-agent --iteration <next ordinal>` request and record its verdict.
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:36:59Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u1-api-contract --reviewer aidlc-architecture-reviewer-agent --iteration 1
+**Error**: Cannot start review iteration 1 for "functional-design" because the next iteration is 2. Retry with --iteration 2.
+
+---
+
+## Review Requested
+**Timestamp**: 2026-09-08T18:36:59Z
+**Event**: REVIEW_REQUESTED
+**Stage**: functional-design
+**Reviewer**: aidlc-architecture-reviewer-agent
+**Unit**: u1-api-contract
+**Iteration**: 2
+**Recovery**: stale-receipt
+**Recovery Cause**: artifact
+**Artifact Fingerprint**: sha256:5a8ced20e81231f581794d4f6343c8451409f26a3b3dd14885c34457a4800f49
+**Review Appendix Artifact**: construction/u1-api-contract/functional-design/functional-spec.md
+**Review Appendix Offset**: 9653
+**Review Appendix Prior Digest**: sha256:f6236643d86e6fab7fe6e2a52f3e2d570ad04133102bd045554968fde770461a
+**Review Appendix Prior Length**: 3291
+**Review Challenge**: review:a537be7ef86782a6a9bbb7013638fbfb
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:36:59Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u2-design-system --reviewer aidlc-architecture-reviewer-agent --iteration 1
+**Error**: Cannot start review iteration 1 for "functional-design" because the next iteration is 2. Retry with --iteration 2.
+
+---
+
+## Review Requested
+**Timestamp**: 2026-09-08T18:37:00Z
+**Event**: REVIEW_REQUESTED
+**Stage**: functional-design
+**Reviewer**: aidlc-architecture-reviewer-agent
+**Unit**: u2-design-system
+**Iteration**: 2
+**Recovery**: stale-receipt
+**Recovery Cause**: artifact
+**Artifact Fingerprint**: sha256:b3cacc9e4b2b50425f265168f2e399a263e0fb2889583bebb7bedc70a05f5ed7
+**Review Appendix Artifact**: construction/u2-design-system/functional-design/functional-spec.md
+**Review Appendix Offset**: 13660
+**Review Appendix Prior Digest**: sha256:71533a4a3a6c9564db70368c1e2117b1ff3ce547c48bac7fdf8ec083b7ec81ee
+**Review Appendix Prior Length**: 6229
+**Review Challenge**: review:e8f5d860e0bafe24b3c96a3c5d10cbf1
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:37:00Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u4-owner-shell --reviewer aidlc-architecture-reviewer-agent --iteration 1
+**Error**: Cannot start review iteration 1 for "functional-design" because the next iteration is 2. Retry with --iteration 2.
+
+---
+
+## Review Requested
+**Timestamp**: 2026-09-08T18:37:00Z
+**Event**: REVIEW_REQUESTED
+**Stage**: functional-design
+**Reviewer**: aidlc-architecture-reviewer-agent
+**Unit**: u4-owner-shell
+**Iteration**: 2
+**Recovery**: stale-receipt
+**Recovery Cause**: artifact
+**Artifact Fingerprint**: sha256:00d2fe4af428b7d67290a43f9202d6114f5b34d7727899ff187d55df11ba203b
+**Review Appendix Artifact**: construction/u4-owner-shell/functional-design/functional-spec.md
+**Review Appendix Offset**: 17319
+**Review Appendix Prior Digest**: sha256:9cd891885358240d9a27733169ac7a2556d9a8af0c79f78eb1585f7bd3e299da
+**Review Appendix Prior Length**: 7265
+**Review Challenge**: review:6a5f7218c0c9d816befc31c42d734f7d
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:37:01Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u5-owner-guide --reviewer aidlc-architecture-reviewer-agent --iteration 1
+**Error**: Cannot start another review for "functional-design" because iteration 1 is still waiting for a verdict. Record that verdict, or repeat the same iteration with --retry-pending if the reviewer did not run.
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:37:01Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u6-owner-locality-billing --reviewer aidlc-architecture-reviewer-agent --iteration 1
+**Error**: Cannot start review iteration 1 for "functional-design" because the next iteration is 2. Retry with --iteration 2.
+
+---
+
+## Review Requested
+**Timestamp**: 2026-09-08T18:37:01Z
+**Event**: REVIEW_REQUESTED
+**Stage**: functional-design
+**Reviewer**: aidlc-architecture-reviewer-agent
+**Unit**: u6-owner-locality-billing
+**Iteration**: 2
+**Recovery**: stale-receipt
+**Recovery Cause**: artifact
+**Artifact Fingerprint**: sha256:d04d49d2c6c2fbcf599f697668677bf197693fb949135a606ce23e0c43264058
+**Review Appendix Artifact**: construction/u6-owner-locality-billing/functional-design/functional-spec.md
+**Review Appendix Offset**: 13543
+**Review Appendix Prior Digest**: sha256:f2684d9851660fd1264fcdd3b046062e76bc39e93ce721f40b9fb1e878b2119e
+**Review Appendix Prior Length**: 7240
+**Review Challenge**: review:cb002adf33f5bfbc9fae2ce4a415f9b1
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:37:02Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u7-guest-links --reviewer aidlc-architecture-reviewer-agent --iteration 1
+**Error**: Cannot start review iteration 1 for "functional-design" because the next iteration is 2. Retry with --iteration 2.
+
+---
+
+## Review Requested
+**Timestamp**: 2026-09-08T18:37:02Z
+**Event**: REVIEW_REQUESTED
+**Stage**: functional-design
+**Reviewer**: aidlc-architecture-reviewer-agent
+**Unit**: u7-guest-links
+**Iteration**: 2
+**Recovery**: stale-receipt
+**Recovery Cause**: artifact
+**Artifact Fingerprint**: sha256:2c13e443491a1b341d449a55fbc09b828dd4832b545cfcc2a71d8ad6b2c8c28a
+**Review Appendix Artifact**: construction/u7-guest-links/functional-design/functional-spec.md
+**Review Appendix Offset**: 11978
+**Review Appendix Prior Digest**: sha256:316cc6b24d72057e127f0b80099082a32c597d2b990c1af8da037ff2aaacb183
+**Review Appendix Prior Length**: 5721
+**Review Challenge**: review:8218480009ac6756f3e78c440d949c01
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:37:08Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u5-owner-guide --reviewer aidlc-architecture-reviewer-agent --iteration 1 --retry-pending
+**Error**: Refusing review retry for "functional-design": declared artifacts no longer match the bytes from REVIEW_REQUESTED iteration 1. A retry re-dispatches that exact request and cannot rebaseline changed content. Remove any partial reviewer appendix and restore the requested artifact bytes before retrying.
+
+---
+
+## Human Turn
+**Timestamp**: 2026-09-08T18:41:29Z
+**Event**: HUMAN_TURN
+**Session**: 37443ca2-00ca-4ba9-8042-61a7c51b818f
+
+---
+
+## Human Turn
+**Timestamp**: 2026-09-08T18:41:29Z
+**Event**: HUMAN_TURN
+**Session**: 37443ca2-00ca-4ba9-8042-61a7c51b818f
+
+---
+
+## Review Completed
+**Timestamp**: 2026-09-08T18:42:08Z
+**Event**: REVIEW_COMPLETED
+**Stage**: functional-design
+**Reviewer**: aidlc-architecture-reviewer-agent
+**Unit**: u5-owner-guide
+**Iteration**: 1
+**Verdict**: READY
+**Request Fingerprint**: sha256:fd46fd75acb7e41a697a1c2f0a3664ba83271b1ef4283be52b2416e032a64bca
+**Artifact Fingerprint**: sha256:f53c4f5558904c79051b67cbba4f1997bd5b39d442759d28200f287fbd37bd1e
+**Review Appendix Artifact**: construction/u5-owner-guide/functional-design/functional-spec.md
+**Review Appendix Offset**: 15718
+**Review Appendix Prior Digest**: sha256:ee7a6271a80147e9f57abd9de05f167049bc19f52f9dfd915bc3756600f8733d
+**Review Appendix Prior Length**: 2898
+**Review Challenge**: review:cde9acbc41ebe520326b5e1890ea1e09
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:42:35Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u1-api-contract --reviewer aidlc-architecture-reviewer-agent --iteration 2 --verdict READY
+**Error**: Cannot record the verdict for "functional-design" because its output documents changed outside the reviewer-authored appendix after review iteration 2 started. Restore the bytes the reviewer was dispatched on and re-run that exact iteration; --retry-pending cannot rebaseline changed content.
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:42:35Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u2-design-system --reviewer aidlc-architecture-reviewer-agent --iteration 2 --verdict READY
+**Error**: Cannot record the verdict for "functional-design" because its output documents changed outside the reviewer-authored appendix after review iteration 2 started. Restore the bytes the reviewer was dispatched on and re-run that exact iteration; --retry-pending cannot rebaseline changed content.
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:42:35Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u4-owner-shell --reviewer aidlc-architecture-reviewer-agent --iteration 2 --verdict READY
+**Error**: Cannot record the verdict for "functional-design" because its output documents changed outside the reviewer-authored appendix after review iteration 2 started. Restore the bytes the reviewer was dispatched on and re-run that exact iteration; --retry-pending cannot rebaseline changed content.
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:42:35Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u6-owner-locality-billing --reviewer aidlc-architecture-reviewer-agent --iteration 2 --verdict READY
+**Error**: Cannot record the verdict for "functional-design" because its output documents changed outside the reviewer-authored appendix after review iteration 2 started. Restore the bytes the reviewer was dispatched on and re-run that exact iteration; --retry-pending cannot rebaseline changed content.
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:42:35Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u7-guest-links --reviewer aidlc-architecture-reviewer-agent --iteration 2 --verdict READY
+**Error**: Cannot record the verdict for "functional-design" because its output documents changed outside the reviewer-authored appendix after review iteration 2 started. Restore the bytes the reviewer was dispatched on and re-run that exact iteration; --retry-pending cannot rebaseline changed content.
+
+---
+
+## Review Completed
+**Timestamp**: 2026-09-08T18:42:47Z
+**Event**: REVIEW_COMPLETED
+**Stage**: functional-design
+**Reviewer**: aidlc-architecture-reviewer-agent
+**Unit**: u1-api-contract
+**Iteration**: 2
+**Verdict**: READY
+**Request Fingerprint**: sha256:5a8ced20e81231f581794d4f6343c8451409f26a3b3dd14885c34457a4800f49
+**Artifact Fingerprint**: sha256:3fc988e44d583123f7fb161b9161f86f99d3449edb9e563b9d3ee53c33d2af60
+**Review Appendix Artifact**: construction/u1-api-contract/functional-design/functional-spec.md
+**Review Appendix Offset**: 9653
+**Review Appendix Prior Digest**: sha256:f6236643d86e6fab7fe6e2a52f3e2d570ad04133102bd045554968fde770461a
+**Review Appendix Prior Length**: 3291
+**Review Challenge**: review:a537be7ef86782a6a9bbb7013638fbfb
+
+---
+
+## Review Completed
+**Timestamp**: 2026-09-08T18:42:48Z
+**Event**: REVIEW_COMPLETED
+**Stage**: functional-design
+**Reviewer**: aidlc-architecture-reviewer-agent
+**Unit**: u2-design-system
+**Iteration**: 2
+**Verdict**: READY
+**Request Fingerprint**: sha256:b3cacc9e4b2b50425f265168f2e399a263e0fb2889583bebb7bedc70a05f5ed7
+**Artifact Fingerprint**: sha256:35daa17a28def245361c7de87737ff86072c526da9903dd4bc2a032d6b9c4b6e
+**Review Appendix Artifact**: construction/u2-design-system/functional-design/functional-spec.md
+**Review Appendix Offset**: 13660
+**Review Appendix Prior Digest**: sha256:71533a4a3a6c9564db70368c1e2117b1ff3ce547c48bac7fdf8ec083b7ec81ee
+**Review Appendix Prior Length**: 6229
+**Review Challenge**: review:e8f5d860e0bafe24b3c96a3c5d10cbf1
+
+---
+
+## Review Completed
+**Timestamp**: 2026-09-08T18:42:48Z
+**Event**: REVIEW_COMPLETED
+**Stage**: functional-design
+**Reviewer**: aidlc-architecture-reviewer-agent
+**Unit**: u4-owner-shell
+**Iteration**: 2
+**Verdict**: READY
+**Request Fingerprint**: sha256:00d2fe4af428b7d67290a43f9202d6114f5b34d7727899ff187d55df11ba203b
+**Artifact Fingerprint**: sha256:d8db2dc1f0d78bca41f72c03e5d057a64865ccec685052542d775ef179aca105
+**Review Appendix Artifact**: construction/u4-owner-shell/functional-design/functional-spec.md
+**Review Appendix Offset**: 17319
+**Review Appendix Prior Digest**: sha256:9cd891885358240d9a27733169ac7a2556d9a8af0c79f78eb1585f7bd3e299da
+**Review Appendix Prior Length**: 7265
+**Review Challenge**: review:6a5f7218c0c9d816befc31c42d734f7d
+
+---
+
+## Review Completed
+**Timestamp**: 2026-09-08T18:42:48Z
+**Event**: REVIEW_COMPLETED
+**Stage**: functional-design
+**Reviewer**: aidlc-architecture-reviewer-agent
+**Unit**: u6-owner-locality-billing
+**Iteration**: 2
+**Verdict**: READY
+**Request Fingerprint**: sha256:d04d49d2c6c2fbcf599f697668677bf197693fb949135a606ce23e0c43264058
+**Artifact Fingerprint**: sha256:f8353bbc4d2b9b2daa0c6c3a98bcef5a0126edb7b78a6d388113ad80b59cfa9a
+**Review Appendix Artifact**: construction/u6-owner-locality-billing/functional-design/functional-spec.md
+**Review Appendix Offset**: 13543
+**Review Appendix Prior Digest**: sha256:f2684d9851660fd1264fcdd3b046062e76bc39e93ce721f40b9fb1e878b2119e
+**Review Appendix Prior Length**: 7240
+**Review Challenge**: review:cb002adf33f5bfbc9fae2ce4a415f9b1
+
+---
+
+## Review Completed
+**Timestamp**: 2026-09-08T18:42:48Z
+**Event**: REVIEW_COMPLETED
+**Stage**: functional-design
+**Reviewer**: aidlc-architecture-reviewer-agent
+**Unit**: u7-guest-links
+**Iteration**: 2
+**Verdict**: READY
+**Request Fingerprint**: sha256:2c13e443491a1b341d449a55fbc09b828dd4832b545cfcc2a71d8ad6b2c8c28a
+**Artifact Fingerprint**: sha256:da018926fddeb21bed29d895ae3295f0834354a8099ea5d03f6b8e3f3fff56fa
+**Review Appendix Artifact**: construction/u7-guest-links/functional-design/functional-spec.md
+**Review Appendix Offset**: 11978
+**Review Appendix Prior Digest**: sha256:316cc6b24d72057e127f0b80099082a32c597d2b990c1af8da037ff2aaacb183
+**Review Appendix Prior Length**: 5721
+**Review Challenge**: review:8218480009ac6756f3e78c440d949c01
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:42:56Z
+**Event**: SENSOR_FIRED
+**Fire id**: 9042c280
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/entities.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:42:56Z
+**Event**: SENSOR_PASSED
+**Fire id**: 9042c280
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/entities.md
+**Duration ms**: 67
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:42:56Z
+**Event**: SENSOR_FIRED
+**Fire id**: 1656789a
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/rules.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:42:56Z
+**Event**: SENSOR_PASSED
+**Fire id**: 1656789a
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/rules.md
+**Duration ms**: 63
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:42:56Z
+**Event**: SENSOR_FIRED
+**Fire id**: 4ae4d5b1
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/functional-spec.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:42:56Z
+**Event**: SENSOR_PASSED
+**Fire id**: 4ae4d5b1
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/functional-spec.md
+**Duration ms**: 64
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:42:57Z
+**Event**: SENSOR_FIRED
+**Fire id**: b4806ad9
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/traceability.json
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:42:57Z
+**Event**: SENSOR_PASSED
+**Fire id**: b4806ad9
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/traceability.json
+**Duration ms**: 62
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:42:57Z
+**Event**: SENSOR_FIRED
+**Fire id**: 66ff493e
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/entities.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:42:57Z
+**Event**: SENSOR_PASSED
+**Fire id**: 66ff493e
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/entities.md
+**Duration ms**: 65
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:42:57Z
+**Event**: SENSOR_FIRED
+**Fire id**: dd30f966
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/rules.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:42:57Z
+**Event**: SENSOR_PASSED
+**Fire id**: dd30f966
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/rules.md
+**Duration ms**: 64
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:42:57Z
+**Event**: SENSOR_FIRED
+**Fire id**: edbada36
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/functional-spec.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:42:57Z
+**Event**: SENSOR_PASSED
+**Fire id**: edbada36
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/functional-spec.md
+**Duration ms**: 65
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:42:57Z
+**Event**: SENSOR_FIRED
+**Fire id**: 319334b6
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/traceability.json
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:42:57Z
+**Event**: SENSOR_PASSED
+**Fire id**: 319334b6
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/traceability.json
+**Duration ms**: 63
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:42:58Z
+**Event**: SENSOR_FIRED
+**Fire id**: ae64fdf7
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/entities.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:42:58Z
+**Event**: SENSOR_PASSED
+**Fire id**: ae64fdf7
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/entities.md
+**Duration ms**: 66
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:42:58Z
+**Event**: SENSOR_FIRED
+**Fire id**: c899c290
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/rules.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:42:58Z
+**Event**: SENSOR_PASSED
+**Fire id**: c899c290
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/rules.md
+**Duration ms**: 64
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:42:58Z
+**Event**: SENSOR_FIRED
+**Fire id**: 9b24f85b
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/functional-spec.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:42:58Z
+**Event**: SENSOR_PASSED
+**Fire id**: 9b24f85b
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/functional-spec.md
+**Duration ms**: 64
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:42:58Z
+**Event**: SENSOR_FIRED
+**Fire id**: 85fd2825
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/traceability.json
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:42:58Z
+**Event**: SENSOR_PASSED
+**Fire id**: 85fd2825
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/traceability.json
+**Duration ms**: 61
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:42:58Z
+**Event**: SENSOR_FIRED
+**Fire id**: 660e55cc
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u4-owner-shell/functional-design/functional-spec.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:42:58Z
+**Event**: SENSOR_PASSED
+**Fire id**: 660e55cc
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u4-owner-shell/functional-design/functional-spec.md
+**Duration ms**: 66
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:42:59Z
+**Event**: SENSOR_FIRED
+**Fire id**: cb98d68c
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u4-owner-shell/functional-design/traceability.json
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:42:59Z
+**Event**: SENSOR_PASSED
+**Fire id**: cb98d68c
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u4-owner-shell/functional-design/traceability.json
+**Duration ms**: 61
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:42:59Z
+**Event**: SENSOR_FIRED
+**Fire id**: 4e4b2ad5
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u4-owner-shell/functional-design/frontend-components.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:42:59Z
+**Event**: SENSOR_PASSED
+**Fire id**: 4e4b2ad5
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u4-owner-shell/functional-design/frontend-components.md
+**Duration ms**: 63
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:42:59Z
+**Event**: SENSOR_FIRED
+**Fire id**: 500f7769
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u5-owner-guide/functional-design/functional-spec.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:42:59Z
+**Event**: SENSOR_PASSED
+**Fire id**: 500f7769
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u5-owner-guide/functional-design/functional-spec.md
+**Duration ms**: 65
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:42:59Z
+**Event**: SENSOR_FIRED
+**Fire id**: 3f72d364
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u5-owner-guide/functional-design/traceability.json
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:42:59Z
+**Event**: SENSOR_PASSED
+**Fire id**: 3f72d364
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u5-owner-guide/functional-design/traceability.json
+**Duration ms**: 64
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:42:59Z
+**Event**: SENSOR_FIRED
+**Fire id**: c7f710cb
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u5-owner-guide/functional-design/frontend-components.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:42:59Z
+**Event**: SENSOR_PASSED
+**Fire id**: c7f710cb
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u5-owner-guide/functional-design/frontend-components.md
+**Duration ms**: 64
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:00Z
+**Event**: SENSOR_FIRED
+**Fire id**: f41184f1
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u6-owner-locality-billing/functional-design/functional-spec.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:00Z
+**Event**: SENSOR_PASSED
+**Fire id**: f41184f1
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u6-owner-locality-billing/functional-design/functional-spec.md
+**Duration ms**: 64
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:00Z
+**Event**: SENSOR_FIRED
+**Fire id**: 74ac7832
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u6-owner-locality-billing/functional-design/traceability.json
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:00Z
+**Event**: SENSOR_PASSED
+**Fire id**: 74ac7832
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u6-owner-locality-billing/functional-design/traceability.json
+**Duration ms**: 62
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:00Z
+**Event**: SENSOR_FIRED
+**Fire id**: 6dce6e72
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u6-owner-locality-billing/functional-design/frontend-components.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:00Z
+**Event**: SENSOR_PASSED
+**Fire id**: 6dce6e72
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u6-owner-locality-billing/functional-design/frontend-components.md
+**Duration ms**: 64
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:00Z
+**Event**: SENSOR_FIRED
+**Fire id**: 2d26e075
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u7-guest-links/functional-design/functional-spec.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:00Z
+**Event**: SENSOR_PASSED
+**Fire id**: 2d26e075
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u7-guest-links/functional-design/functional-spec.md
+**Duration ms**: 65
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:00Z
+**Event**: SENSOR_FIRED
+**Fire id**: e00fd4a5
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u7-guest-links/functional-design/traceability.json
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:00Z
+**Event**: SENSOR_PASSED
+**Fire id**: e00fd4a5
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u7-guest-links/functional-design/traceability.json
+**Duration ms**: 62
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:01Z
+**Event**: SENSOR_FIRED
+**Fire id**: 74ccb2bf
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u7-guest-links/functional-design/frontend-components.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:01Z
+**Event**: SENSOR_PASSED
+**Fire id**: 74ccb2bf
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u7-guest-links/functional-design/frontend-components.md
+**Duration ms**: 65
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:01Z
+**Event**: SENSOR_FIRED
+**Fire id**: da47f3c9
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/functional-spec.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:01Z
+**Event**: SENSOR_PASSED
+**Fire id**: da47f3c9
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/functional-spec.md
+**Duration ms**: 65
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:01Z
+**Event**: SENSOR_FIRED
+**Fire id**: 7c89f990
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/traceability.json
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:01Z
+**Event**: SENSOR_PASSED
+**Fire id**: 7c89f990
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/traceability.json
+**Duration ms**: 64
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:01Z
+**Event**: SENSOR_FIRED
+**Fire id**: a43a6b41
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/frontend-components.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:01Z
+**Event**: SENSOR_PASSED
+**Fire id**: a43a6b41
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/frontend-components.md
+**Duration ms**: 66
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:01Z
+**Event**: SENSOR_FIRED
+**Fire id**: 145b090c
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/functional-spec.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:01Z
+**Event**: SENSOR_PASSED
+**Fire id**: 145b090c
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/functional-spec.md
+**Duration ms**: 63
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:02Z
+**Event**: SENSOR_FIRED
+**Fire id**: bbc9ac50
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/traceability.json
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:02Z
+**Event**: SENSOR_PASSED
+**Fire id**: bbc9ac50
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/traceability.json
+**Duration ms**: 63
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:02Z
+**Event**: SENSOR_FIRED
+**Fire id**: 5a7b1ed1
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/frontend-components.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:02Z
+**Event**: SENSOR_PASSED
+**Fire id**: 5a7b1ed1
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/frontend-components.md
+**Duration ms**: 66
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:02Z
+**Event**: SENSOR_FIRED
+**Fire id**: 20c639e4
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/entities.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:02Z
+**Event**: SENSOR_FAILED
+**Fire id**: 20c639e4
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/entities.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-20c639e4.md
+**Findings count**: 4
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:02Z
+**Event**: SENSOR_FIRED
+**Fire id**: 1e40de81
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/rules.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:02Z
+**Event**: SENSOR_FAILED
+**Fire id**: 1e40de81
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/rules.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-1e40de81.md
+**Findings count**: 4
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:02Z
+**Event**: SENSOR_FIRED
+**Fire id**: 9ba2f558
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/functional-spec.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:02Z
+**Event**: SENSOR_FAILED
+**Fire id**: 9ba2f558
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/functional-spec.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-9ba2f558.md
+**Findings count**: 4
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:02Z
+**Event**: SENSOR_FIRED
+**Fire id**: 79fcdc2a
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/traceability.json
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:02Z
+**Event**: SENSOR_FAILED
+**Fire id**: 79fcdc2a
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/traceability.json
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-79fcdc2a.md
+**Findings count**: 4
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:03Z
+**Event**: SENSOR_FIRED
+**Fire id**: 3285df7f
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/entities.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:03Z
+**Event**: SENSOR_FAILED
+**Fire id**: 3285df7f
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/entities.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-3285df7f.md
+**Findings count**: 1
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:03Z
+**Event**: SENSOR_FIRED
+**Fire id**: f1170163
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/rules.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:03Z
+**Event**: SENSOR_FAILED
+**Fire id**: f1170163
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/rules.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-f1170163.md
+**Findings count**: 1
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:03Z
+**Event**: SENSOR_FIRED
+**Fire id**: 337c8ae1
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/functional-spec.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:03Z
+**Event**: SENSOR_FAILED
+**Fire id**: 337c8ae1
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/functional-spec.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-337c8ae1.md
+**Findings count**: 1
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:03Z
+**Event**: SENSOR_FIRED
+**Fire id**: 4ce9616b
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/traceability.json
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:03Z
+**Event**: SENSOR_FAILED
+**Fire id**: 4ce9616b
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/traceability.json
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-4ce9616b.md
+**Findings count**: 1
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:03Z
+**Event**: SENSOR_FIRED
+**Fire id**: a7f98ef9
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/entities.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:03Z
+**Event**: SENSOR_FAILED
+**Fire id**: a7f98ef9
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/entities.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-a7f98ef9.md
+**Findings count**: 1
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:03Z
+**Event**: SENSOR_FIRED
+**Fire id**: da8c12a2
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/rules.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:04Z
+**Event**: SENSOR_FAILED
+**Fire id**: da8c12a2
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/rules.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-da8c12a2.md
+**Findings count**: 1
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:04Z
+**Event**: SENSOR_FIRED
+**Fire id**: e99700b5
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/functional-spec.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:04Z
+**Event**: SENSOR_FAILED
+**Fire id**: e99700b5
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/functional-spec.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-e99700b5.md
+**Findings count**: 1
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:04Z
+**Event**: SENSOR_FIRED
+**Fire id**: c9d02db5
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/traceability.json
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:04Z
+**Event**: SENSOR_FAILED
+**Fire id**: c9d02db5
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/traceability.json
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-c9d02db5.md
+**Findings count**: 1
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:04Z
+**Event**: SENSOR_FIRED
+**Fire id**: d649f308
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u4-owner-shell/functional-design/functional-spec.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:04Z
+**Event**: SENSOR_FAILED
+**Fire id**: d649f308
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u4-owner-shell/functional-design/functional-spec.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-d649f308.md
+**Findings count**: 4
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:04Z
+**Event**: SENSOR_FIRED
+**Fire id**: 5a25904c
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u4-owner-shell/functional-design/traceability.json
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:04Z
+**Event**: SENSOR_FAILED
+**Fire id**: 5a25904c
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u4-owner-shell/functional-design/traceability.json
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-5a25904c.md
+**Findings count**: 4
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:04Z
+**Event**: SENSOR_FIRED
+**Fire id**: 99e19f0d
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u4-owner-shell/functional-design/frontend-components.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:05Z
+**Event**: SENSOR_FAILED
+**Fire id**: 99e19f0d
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u4-owner-shell/functional-design/frontend-components.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-99e19f0d.md
+**Findings count**: 4
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:05Z
+**Event**: SENSOR_FIRED
+**Fire id**: d91d37cb
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u5-owner-guide/functional-design/functional-spec.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:05Z
+**Event**: SENSOR_FAILED
+**Fire id**: d91d37cb
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u5-owner-guide/functional-design/functional-spec.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-d91d37cb.md
+**Findings count**: 2
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:05Z
+**Event**: SENSOR_FIRED
+**Fire id**: 28051ef8
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u5-owner-guide/functional-design/traceability.json
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:05Z
+**Event**: SENSOR_FAILED
+**Fire id**: 28051ef8
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u5-owner-guide/functional-design/traceability.json
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-28051ef8.md
+**Findings count**: 2
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:05Z
+**Event**: SENSOR_FIRED
+**Fire id**: bfe214e2
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u5-owner-guide/functional-design/frontend-components.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:05Z
+**Event**: SENSOR_FAILED
+**Fire id**: bfe214e2
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u5-owner-guide/functional-design/frontend-components.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-bfe214e2.md
+**Findings count**: 2
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:05Z
+**Event**: SENSOR_FIRED
+**Fire id**: 88fc0461
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u6-owner-locality-billing/functional-design/functional-spec.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:05Z
+**Event**: SENSOR_FAILED
+**Fire id**: 88fc0461
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u6-owner-locality-billing/functional-design/functional-spec.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-88fc0461.md
+**Findings count**: 3
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:05Z
+**Event**: SENSOR_FIRED
+**Fire id**: 735d4c39
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u6-owner-locality-billing/functional-design/traceability.json
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:06Z
+**Event**: SENSOR_FAILED
+**Fire id**: 735d4c39
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u6-owner-locality-billing/functional-design/traceability.json
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-735d4c39.md
+**Findings count**: 3
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:06Z
+**Event**: SENSOR_FIRED
+**Fire id**: 0fc5b489
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u6-owner-locality-billing/functional-design/frontend-components.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:06Z
+**Event**: SENSOR_FAILED
+**Fire id**: 0fc5b489
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u6-owner-locality-billing/functional-design/frontend-components.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-0fc5b489.md
+**Findings count**: 3
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:06Z
+**Event**: SENSOR_FIRED
+**Fire id**: 37f46ec6
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u7-guest-links/functional-design/functional-spec.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:06Z
+**Event**: SENSOR_FAILED
+**Fire id**: 37f46ec6
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u7-guest-links/functional-design/functional-spec.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-37f46ec6.md
+**Findings count**: 3
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:06Z
+**Event**: SENSOR_FIRED
+**Fire id**: ae59d19b
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u7-guest-links/functional-design/traceability.json
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:06Z
+**Event**: SENSOR_FAILED
+**Fire id**: ae59d19b
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u7-guest-links/functional-design/traceability.json
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-ae59d19b.md
+**Findings count**: 3
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:06Z
+**Event**: SENSOR_FIRED
+**Fire id**: cf93d6f2
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u7-guest-links/functional-design/frontend-components.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:06Z
+**Event**: SENSOR_FAILED
+**Fire id**: cf93d6f2
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u7-guest-links/functional-design/frontend-components.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-cf93d6f2.md
+**Findings count**: 3
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:07Z
+**Event**: SENSOR_FIRED
+**Fire id**: ece59ce5
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/functional-spec.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:07Z
+**Event**: SENSOR_FAILED
+**Fire id**: ece59ce5
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/functional-spec.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-ece59ce5.md
+**Findings count**: 3
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:07Z
+**Event**: SENSOR_FIRED
+**Fire id**: 39659e71
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/traceability.json
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:07Z
+**Event**: SENSOR_FAILED
+**Fire id**: 39659e71
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/traceability.json
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-39659e71.md
+**Findings count**: 3
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:07Z
+**Event**: SENSOR_FIRED
+**Fire id**: e2856d01
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/frontend-components.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:07Z
+**Event**: SENSOR_FAILED
+**Fire id**: e2856d01
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/frontend-components.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-e2856d01.md
+**Findings count**: 3
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:07Z
+**Event**: SENSOR_FIRED
+**Fire id**: 8e3d6c48
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/functional-spec.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:07Z
+**Event**: SENSOR_FAILED
+**Fire id**: 8e3d6c48
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/functional-spec.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-8e3d6c48.md
+**Findings count**: 2
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:07Z
+**Event**: SENSOR_FIRED
+**Fire id**: d29c02d2
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/traceability.json
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:07Z
+**Event**: SENSOR_FAILED
+**Fire id**: d29c02d2
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/traceability.json
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-d29c02d2.md
+**Findings count**: 2
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:08Z
+**Event**: SENSOR_FIRED
+**Fire id**: 3c45106b
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/frontend-components.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:08Z
+**Event**: SENSOR_FAILED
+**Fire id**: 3c45106b
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/frontend-components.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-3c45106b.md
+**Findings count**: 2
+
+---
+
+## Stage Awaiting Approval
+**Timestamp**: 2026-09-08T18:43:08Z
+**Event**: STAGE_AWAITING_APPROVAL
+**Stage**: functional-design
+**Details**: Re-entering gate after revision
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:09Z
+**Event**: SENSOR_FIRED
+**Fire id**: fa31924f
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/entities.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:09Z
+**Event**: SENSOR_PASSED
+**Fire id**: fa31924f
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/entities.md
+**Duration ms**: 62
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:09Z
+**Event**: SENSOR_FIRED
+**Fire id**: 076b5950
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/rules.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:09Z
+**Event**: SENSOR_PASSED
+**Fire id**: 076b5950
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/rules.md
+**Duration ms**: 62
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:09Z
+**Event**: SENSOR_FIRED
+**Fire id**: 94ca1644
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/functional-spec.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:09Z
+**Event**: SENSOR_PASSED
+**Fire id**: 94ca1644
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/functional-spec.md
+**Duration ms**: 62
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:09Z
+**Event**: SENSOR_FIRED
+**Fire id**: d8125ea6
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/traceability.json
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:09Z
+**Event**: SENSOR_PASSED
+**Fire id**: d8125ea6
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/traceability.json
+**Duration ms**: 63
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:09Z
+**Event**: SENSOR_FIRED
+**Fire id**: 73986261
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/entities.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:09Z
+**Event**: SENSOR_PASSED
+**Fire id**: 73986261
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/entities.md
+**Duration ms**: 61
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:10Z
+**Event**: SENSOR_FIRED
+**Fire id**: cb84477d
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/rules.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:10Z
+**Event**: SENSOR_PASSED
+**Fire id**: cb84477d
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/rules.md
+**Duration ms**: 63
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:10Z
+**Event**: SENSOR_FIRED
+**Fire id**: 296281e6
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/functional-spec.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:10Z
+**Event**: SENSOR_PASSED
+**Fire id**: 296281e6
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/functional-spec.md
+**Duration ms**: 62
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:10Z
+**Event**: SENSOR_FIRED
+**Fire id**: 3e6d1ca9
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/traceability.json
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:10Z
+**Event**: SENSOR_PASSED
+**Fire id**: 3e6d1ca9
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/traceability.json
+**Duration ms**: 63
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:10Z
+**Event**: SENSOR_FIRED
+**Fire id**: f41c5312
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/entities.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:10Z
+**Event**: SENSOR_PASSED
+**Fire id**: f41c5312
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/entities.md
+**Duration ms**: 64
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:10Z
+**Event**: SENSOR_FIRED
+**Fire id**: 4baa5f14
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/rules.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:10Z
+**Event**: SENSOR_PASSED
+**Fire id**: 4baa5f14
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/rules.md
+**Duration ms**: 65
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:11Z
+**Event**: SENSOR_FIRED
+**Fire id**: 1e4a45f0
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/functional-spec.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:11Z
+**Event**: SENSOR_PASSED
+**Fire id**: 1e4a45f0
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/functional-spec.md
+**Duration ms**: 67
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:11Z
+**Event**: SENSOR_FIRED
+**Fire id**: 747c50e1
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/traceability.json
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:11Z
+**Event**: SENSOR_PASSED
+**Fire id**: 747c50e1
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/traceability.json
+**Duration ms**: 63
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:11Z
+**Event**: SENSOR_FIRED
+**Fire id**: c84f1309
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u4-owner-shell/functional-design/functional-spec.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:11Z
+**Event**: SENSOR_PASSED
+**Fire id**: c84f1309
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u4-owner-shell/functional-design/functional-spec.md
+**Duration ms**: 63
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:11Z
+**Event**: SENSOR_FIRED
+**Fire id**: 60bc541e
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u4-owner-shell/functional-design/traceability.json
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:11Z
+**Event**: SENSOR_PASSED
+**Fire id**: 60bc541e
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u4-owner-shell/functional-design/traceability.json
+**Duration ms**: 62
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:11Z
+**Event**: SENSOR_FIRED
+**Fire id**: d7a048c6
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u4-owner-shell/functional-design/frontend-components.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:11Z
+**Event**: SENSOR_PASSED
+**Fire id**: d7a048c6
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u4-owner-shell/functional-design/frontend-components.md
+**Duration ms**: 63
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:12Z
+**Event**: SENSOR_FIRED
+**Fire id**: de64cf46
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u5-owner-guide/functional-design/functional-spec.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:12Z
+**Event**: SENSOR_PASSED
+**Fire id**: de64cf46
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u5-owner-guide/functional-design/functional-spec.md
+**Duration ms**: 64
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:12Z
+**Event**: SENSOR_FIRED
+**Fire id**: e18d3a7f
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u5-owner-guide/functional-design/traceability.json
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:12Z
+**Event**: SENSOR_PASSED
+**Fire id**: e18d3a7f
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u5-owner-guide/functional-design/traceability.json
+**Duration ms**: 63
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:12Z
+**Event**: SENSOR_FIRED
+**Fire id**: 097ea6c8
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u5-owner-guide/functional-design/frontend-components.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:12Z
+**Event**: SENSOR_PASSED
+**Fire id**: 097ea6c8
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u5-owner-guide/functional-design/frontend-components.md
+**Duration ms**: 62
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:12Z
+**Event**: SENSOR_FIRED
+**Fire id**: fcebc195
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u6-owner-locality-billing/functional-design/functional-spec.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:12Z
+**Event**: SENSOR_PASSED
+**Fire id**: fcebc195
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u6-owner-locality-billing/functional-design/functional-spec.md
+**Duration ms**: 63
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:12Z
+**Event**: SENSOR_FIRED
+**Fire id**: cc7e34a1
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u6-owner-locality-billing/functional-design/traceability.json
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:12Z
+**Event**: SENSOR_PASSED
+**Fire id**: cc7e34a1
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u6-owner-locality-billing/functional-design/traceability.json
+**Duration ms**: 61
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:13Z
+**Event**: SENSOR_FIRED
+**Fire id**: 6cde548d
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u6-owner-locality-billing/functional-design/frontend-components.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:13Z
+**Event**: SENSOR_PASSED
+**Fire id**: 6cde548d
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u6-owner-locality-billing/functional-design/frontend-components.md
+**Duration ms**: 63
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:13Z
+**Event**: SENSOR_FIRED
+**Fire id**: 0ff778c7
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u7-guest-links/functional-design/functional-spec.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:13Z
+**Event**: SENSOR_PASSED
+**Fire id**: 0ff778c7
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u7-guest-links/functional-design/functional-spec.md
+**Duration ms**: 65
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:13Z
+**Event**: SENSOR_FIRED
+**Fire id**: e810dd7e
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u7-guest-links/functional-design/traceability.json
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:13Z
+**Event**: SENSOR_PASSED
+**Fire id**: e810dd7e
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u7-guest-links/functional-design/traceability.json
+**Duration ms**: 63
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:13Z
+**Event**: SENSOR_FIRED
+**Fire id**: cf5a02ef
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u7-guest-links/functional-design/frontend-components.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:13Z
+**Event**: SENSOR_PASSED
+**Fire id**: cf5a02ef
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u7-guest-links/functional-design/frontend-components.md
+**Duration ms**: 62
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:13Z
+**Event**: SENSOR_FIRED
+**Fire id**: 8302f339
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/functional-spec.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:13Z
+**Event**: SENSOR_PASSED
+**Fire id**: 8302f339
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/functional-spec.md
+**Duration ms**: 65
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:14Z
+**Event**: SENSOR_FIRED
+**Fire id**: 605d831e
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/traceability.json
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:14Z
+**Event**: SENSOR_PASSED
+**Fire id**: 605d831e
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/traceability.json
+**Duration ms**: 65
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:14Z
+**Event**: SENSOR_FIRED
+**Fire id**: 8c1ff52a
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/frontend-components.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:14Z
+**Event**: SENSOR_PASSED
+**Fire id**: 8c1ff52a
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/frontend-components.md
+**Duration ms**: 63
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:14Z
+**Event**: SENSOR_FIRED
+**Fire id**: 1f8200f1
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/functional-spec.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:14Z
+**Event**: SENSOR_PASSED
+**Fire id**: 1f8200f1
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/functional-spec.md
+**Duration ms**: 65
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:14Z
+**Event**: SENSOR_FIRED
+**Fire id**: 11f95737
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/traceability.json
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:14Z
+**Event**: SENSOR_PASSED
+**Fire id**: 11f95737
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/traceability.json
+**Duration ms**: 65
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:14Z
+**Event**: SENSOR_FIRED
+**Fire id**: 094cd94a
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/frontend-components.md
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T18:43:14Z
+**Event**: SENSOR_PASSED
+**Fire id**: 094cd94a
+**Sensor ID**: required-sections
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/frontend-components.md
+**Duration ms**: 65
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:15Z
+**Event**: SENSOR_FIRED
+**Fire id**: adb4de4e
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/entities.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:15Z
+**Event**: SENSOR_FAILED
+**Fire id**: adb4de4e
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/entities.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-adb4de4e.md
+**Findings count**: 4
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:15Z
+**Event**: SENSOR_FIRED
+**Fire id**: 1da284bc
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/rules.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:15Z
+**Event**: SENSOR_FAILED
+**Fire id**: 1da284bc
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/rules.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-1da284bc.md
+**Findings count**: 4
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:15Z
+**Event**: SENSOR_FIRED
+**Fire id**: 81644a5a
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/functional-spec.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:15Z
+**Event**: SENSOR_FAILED
+**Fire id**: 81644a5a
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/functional-spec.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-81644a5a.md
+**Findings count**: 4
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:15Z
+**Event**: SENSOR_FIRED
+**Fire id**: b8efb8aa
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/traceability.json
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:15Z
+**Event**: SENSOR_FAILED
+**Fire id**: b8efb8aa
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/traceability.json
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-b8efb8aa.md
+**Findings count**: 4
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:15Z
+**Event**: SENSOR_FIRED
+**Fire id**: fed77227
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/entities.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:15Z
+**Event**: SENSOR_FAILED
+**Fire id**: fed77227
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/entities.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-fed77227.md
+**Findings count**: 1
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:16Z
+**Event**: SENSOR_FIRED
+**Fire id**: dc75c6c9
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/rules.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:16Z
+**Event**: SENSOR_FAILED
+**Fire id**: dc75c6c9
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/rules.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-dc75c6c9.md
+**Findings count**: 1
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:16Z
+**Event**: SENSOR_FIRED
+**Fire id**: 928c3668
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/functional-spec.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:16Z
+**Event**: SENSOR_FAILED
+**Fire id**: 928c3668
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/functional-spec.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-928c3668.md
+**Findings count**: 1
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:16Z
+**Event**: SENSOR_FIRED
+**Fire id**: 71546e9f
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/traceability.json
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:16Z
+**Event**: SENSOR_FAILED
+**Fire id**: 71546e9f
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u2-design-system/functional-design/traceability.json
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-71546e9f.md
+**Findings count**: 1
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:16Z
+**Event**: SENSOR_FIRED
+**Fire id**: fa88e7f1
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/entities.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:16Z
+**Event**: SENSOR_FAILED
+**Fire id**: fa88e7f1
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/entities.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-fa88e7f1.md
+**Findings count**: 1
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:16Z
+**Event**: SENSOR_FIRED
+**Fire id**: a60583e8
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/rules.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:17Z
+**Event**: SENSOR_FAILED
+**Fire id**: a60583e8
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/rules.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-a60583e8.md
+**Findings count**: 1
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:17Z
+**Event**: SENSOR_FIRED
+**Fire id**: 8c1b5f49
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/functional-spec.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:17Z
+**Event**: SENSOR_FAILED
+**Fire id**: 8c1b5f49
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/functional-spec.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-8c1b5f49.md
+**Findings count**: 1
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:17Z
+**Event**: SENSOR_FIRED
+**Fire id**: 4c6a8699
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/traceability.json
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:17Z
+**Event**: SENSOR_FAILED
+**Fire id**: 4c6a8699
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u3-foundation/functional-design/traceability.json
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-4c6a8699.md
+**Findings count**: 1
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:17Z
+**Event**: SENSOR_FIRED
+**Fire id**: 12ebc4c8
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u4-owner-shell/functional-design/functional-spec.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:17Z
+**Event**: SENSOR_FAILED
+**Fire id**: 12ebc4c8
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u4-owner-shell/functional-design/functional-spec.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-12ebc4c8.md
+**Findings count**: 4
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:17Z
+**Event**: SENSOR_FIRED
+**Fire id**: a04008ef
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u4-owner-shell/functional-design/traceability.json
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:17Z
+**Event**: SENSOR_FAILED
+**Fire id**: a04008ef
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u4-owner-shell/functional-design/traceability.json
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-a04008ef.md
+**Findings count**: 4
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:17Z
+**Event**: SENSOR_FIRED
+**Fire id**: 2d456ae6
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u4-owner-shell/functional-design/frontend-components.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:18Z
+**Event**: SENSOR_FAILED
+**Fire id**: 2d456ae6
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u4-owner-shell/functional-design/frontend-components.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-2d456ae6.md
+**Findings count**: 4
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:18Z
+**Event**: SENSOR_FIRED
+**Fire id**: a0561f9a
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u5-owner-guide/functional-design/functional-spec.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:18Z
+**Event**: SENSOR_FAILED
+**Fire id**: a0561f9a
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u5-owner-guide/functional-design/functional-spec.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-a0561f9a.md
+**Findings count**: 2
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:18Z
+**Event**: SENSOR_FIRED
+**Fire id**: 81422b12
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u5-owner-guide/functional-design/traceability.json
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:18Z
+**Event**: SENSOR_FAILED
+**Fire id**: 81422b12
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u5-owner-guide/functional-design/traceability.json
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-81422b12.md
+**Findings count**: 2
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:18Z
+**Event**: SENSOR_FIRED
+**Fire id**: edfd5aae
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u5-owner-guide/functional-design/frontend-components.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:18Z
+**Event**: SENSOR_FAILED
+**Fire id**: edfd5aae
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u5-owner-guide/functional-design/frontend-components.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-edfd5aae.md
+**Findings count**: 2
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:18Z
+**Event**: SENSOR_FIRED
+**Fire id**: e37bef9f
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u6-owner-locality-billing/functional-design/functional-spec.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:18Z
+**Event**: SENSOR_FAILED
+**Fire id**: e37bef9f
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u6-owner-locality-billing/functional-design/functional-spec.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-e37bef9f.md
+**Findings count**: 3
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:18Z
+**Event**: SENSOR_FIRED
+**Fire id**: 62a52827
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u6-owner-locality-billing/functional-design/traceability.json
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:19Z
+**Event**: SENSOR_FAILED
+**Fire id**: 62a52827
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u6-owner-locality-billing/functional-design/traceability.json
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-62a52827.md
+**Findings count**: 3
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:19Z
+**Event**: SENSOR_FIRED
+**Fire id**: 9234408b
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u6-owner-locality-billing/functional-design/frontend-components.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:19Z
+**Event**: SENSOR_FAILED
+**Fire id**: 9234408b
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u6-owner-locality-billing/functional-design/frontend-components.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-9234408b.md
+**Findings count**: 3
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:19Z
+**Event**: SENSOR_FIRED
+**Fire id**: a6e287b9
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u7-guest-links/functional-design/functional-spec.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:19Z
+**Event**: SENSOR_FAILED
+**Fire id**: a6e287b9
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u7-guest-links/functional-design/functional-spec.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-a6e287b9.md
+**Findings count**: 3
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:19Z
+**Event**: SENSOR_FIRED
+**Fire id**: c8c43322
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u7-guest-links/functional-design/traceability.json
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:19Z
+**Event**: SENSOR_FAILED
+**Fire id**: c8c43322
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u7-guest-links/functional-design/traceability.json
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-c8c43322.md
+**Findings count**: 3
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:19Z
+**Event**: SENSOR_FIRED
+**Fire id**: 789d7005
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u7-guest-links/functional-design/frontend-components.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:19Z
+**Event**: SENSOR_FAILED
+**Fire id**: 789d7005
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u7-guest-links/functional-design/frontend-components.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-789d7005.md
+**Findings count**: 3
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:19Z
+**Event**: SENSOR_FIRED
+**Fire id**: 00262bcd
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/functional-spec.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:20Z
+**Event**: SENSOR_FAILED
+**Fire id**: 00262bcd
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/functional-spec.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-00262bcd.md
+**Findings count**: 3
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:20Z
+**Event**: SENSOR_FIRED
+**Fire id**: 0f30b815
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/traceability.json
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:20Z
+**Event**: SENSOR_FAILED
+**Fire id**: 0f30b815
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/traceability.json
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-0f30b815.md
+**Findings count**: 3
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:20Z
+**Event**: SENSOR_FIRED
+**Fire id**: 054310c0
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/frontend-components.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:20Z
+**Event**: SENSOR_FAILED
+**Fire id**: 054310c0
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u8-guest-app/functional-design/frontend-components.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-054310c0.md
+**Findings count**: 3
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:20Z
+**Event**: SENSOR_FIRED
+**Fire id**: 9d7465cb
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/functional-spec.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:20Z
+**Event**: SENSOR_FAILED
+**Fire id**: 9d7465cb
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/functional-spec.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-9d7465cb.md
+**Findings count**: 2
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:20Z
+**Event**: SENSOR_FIRED
+**Fire id**: 2bdedf55
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/traceability.json
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:20Z
+**Event**: SENSOR_FAILED
+**Fire id**: 2bdedf55
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/traceability.json
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-2bdedf55.md
+**Findings count**: 2
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T18:43:20Z
+**Event**: SENSOR_FIRED
+**Fire id**: 9636cdd1
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/frontend-components.md
+
+---
+
+## Sensor Failed
+**Timestamp**: 2026-09-08T18:43:21Z
+**Event**: SENSOR_FAILED
+**Fire id**: 9636cdd1
+**Sensor ID**: upstream-coverage
+**Stage slug**: functional-design
+**Output path**: aidlc/spaces/default/intents/260907-frontend-app/construction/u9-guest-guide-view/functional-design/frontend-components.md
+**Detail path**: aidlc/spaces/default/intents/260907-frontend-app/.aidlc-sensors/functional-design/upstream-coverage-9636cdd1.md
+**Findings count**: 2
+
+---
+
+## Artifact Created
+**Timestamp**: 2026-09-08T18:44:21Z
+**Event**: ARTIFACT_CREATED
+**Tool**: Write
+**File**: <project-dir>/aidlc/spaces/default/intents/260907-frontend-app/construction/carried-assumptions.md
+**Context**: construction > carried-assumptions.md
+
+---
+
+## Human Turn
+**Timestamp**: 2026-09-08T18:44:55Z
+**Event**: HUMAN_TURN
+**Session**: 37443ca2-00ca-4ba9-8042-61a7c51b818f
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:45:03Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-state
+**Command**: aidlc-state approve functional-design --user-input Approve --project-dir <project-dir>
+**Error**: aidlc/spaces/default/intents/260907-frontend-app/construction/u1-api-contract/functional-design/functional-spec.md: invalid finding ID "-"
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:45:27Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-state
+**Command**: aidlc-state approve functional-design --user-input Approve --project-dir <project-dir>
+**Error**: Cannot complete "functional-design" because 9 of 9 applicable units do not have a current review from aidlc-architecture-reviewer-agent (u1-api-contract, u2-design-system, u3-foundation, u9-guest-guide-view, u4-owner-shell, u8-guest-app, u5-owner-guide, u6-owner-locality-billing, u7-guest-links). Changed after review: u1-api-contract, u2-design-system, u3-foundation, u9-guest-guide-view, u4-owner-shell, u8-guest-app, u5-owner-guide, u6-owner-locality-billing, u7-guest-links. Not yet reviewed: none. For invalidated units with recovery available (u5-owner-guide), run `aidlc-log.ts review --stage functional-design --unit <unit> --reviewer aidlc-architecture-reviewer-agent --iteration <next ordinal>`, then record the verdict with the same command plus `--verdict <READY|NOT-READY>` and stop editing this stage's output documents, that unit's source-manifest.json, and that unit's claimed source paths. For units whose recovery was already spent (u1-api-contract, u2-design-system, u3-foundation, u9-guest-guide-view, u4-owner-shell, u8-guest-app, u6-owner-locality-billing, u7-guest-links), the one recovery review was already used and their output changed again. To change this document, tell me what should change and I'll record your Request Changes decision (this works before the gate opens); that unlocks the file for revision and a fresh review. Only a human Request Changes decision resets the review attempt; do not record that rejection on the human's behalf.
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:45:51Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u1-api-contract --reviewer aidlc-architecture-reviewer-agent --iteration 1
+**Error**: Cannot start another review for "functional-design": the one recovery review was already used, and this stage's output document changed again afterward. To change this document, tell me what should change and I'll record your Request Changes decision (this works before the gate opens); that unlocks the file for revision and a fresh review. Only a human Request Changes decision resets the review attempt; do not record that rejection on the human's behalf.
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:45:52Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u2-design-system --reviewer aidlc-architecture-reviewer-agent --iteration 1
+**Error**: Cannot start another review for "functional-design": the one recovery review was already used, and this stage's output document changed again afterward. To change this document, tell me what should change and I'll record your Request Changes decision (this works before the gate opens); that unlocks the file for revision and a fresh review. Only a human Request Changes decision resets the review attempt; do not record that rejection on the human's behalf.
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:45:52Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u3-foundation --reviewer aidlc-architecture-reviewer-agent --iteration 1
+**Error**: Cannot start another review for "functional-design": the one recovery review was already used, and this stage's output document changed again afterward. To change this document, tell me what should change and I'll record your Request Changes decision (this works before the gate opens); that unlocks the file for revision and a fresh review. Only a human Request Changes decision resets the review attempt; do not record that rejection on the human's behalf.
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:45:53Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u4-owner-shell --reviewer aidlc-architecture-reviewer-agent --iteration 1
+**Error**: Cannot start another review for "functional-design": the one recovery review was already used, and this stage's output document changed again afterward. To change this document, tell me what should change and I'll record your Request Changes decision (this works before the gate opens); that unlocks the file for revision and a fresh review. Only a human Request Changes decision resets the review attempt; do not record that rejection on the human's behalf.
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:45:53Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u5-owner-guide --reviewer aidlc-architecture-reviewer-agent --iteration 1
+**Error**: Cannot start review iteration 1 for "functional-design" because the next iteration is 2. Retry with --iteration 2.
+
+---
+
+## Review Requested
+**Timestamp**: 2026-09-08T18:45:53Z
+**Event**: REVIEW_REQUESTED
+**Stage**: functional-design
+**Reviewer**: aidlc-architecture-reviewer-agent
+**Unit**: u5-owner-guide
+**Iteration**: 2
+**Recovery**: stale-receipt
+**Recovery Cause**: artifact
+**Artifact Fingerprint**: sha256:fd46fd75acb7e41a697a1c2f0a3664ba83271b1ef4283be52b2416e032a64bca
+**Review Appendix Artifact**: construction/u5-owner-guide/functional-design/functional-spec.md
+**Review Appendix Offset**: 15718
+**Review Appendix Prior Digest**: sha256:6495b48930bf6de47dd0c1c90addd4112464143bd9a4fda5e8c0ed4e58707e26
+**Review Appendix Prior Length**: 4199
+**Review Challenge**: review:1a8afbbf89f2f17c4c1edc7d2d0319a0
+
+---
+
+## Review Completed
+**Timestamp**: 2026-09-08T18:45:54Z
+**Event**: REVIEW_COMPLETED
+**Stage**: functional-design
+**Reviewer**: aidlc-architecture-reviewer-agent
+**Unit**: u5-owner-guide
+**Iteration**: 2
+**Verdict**: READY
+**Request Fingerprint**: sha256:fd46fd75acb7e41a697a1c2f0a3664ba83271b1ef4283be52b2416e032a64bca
+**Artifact Fingerprint**: sha256:bcab04f7ca8d57fa0939254efbfdd45fc8eb5cb6bcc9c7d4a1db9c8e5cc2fb55
+**Review Appendix Artifact**: construction/u5-owner-guide/functional-design/functional-spec.md
+**Review Appendix Offset**: 15718
+**Review Appendix Prior Digest**: sha256:6495b48930bf6de47dd0c1c90addd4112464143bd9a4fda5e8c0ed4e58707e26
+**Review Appendix Prior Length**: 4199
+**Review Challenge**: review:1a8afbbf89f2f17c4c1edc7d2d0319a0
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:45:54Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u6-owner-locality-billing --reviewer aidlc-architecture-reviewer-agent --iteration 1
+**Error**: Cannot start another review for "functional-design": the one recovery review was already used, and this stage's output document changed again afterward. To change this document, tell me what should change and I'll record your Request Changes decision (this works before the gate opens); that unlocks the file for revision and a fresh review. Only a human Request Changes decision resets the review attempt; do not record that rejection on the human's behalf.
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:45:54Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u7-guest-links --reviewer aidlc-architecture-reviewer-agent --iteration 1
+**Error**: Cannot start another review for "functional-design": the one recovery review was already used, and this stage's output document changed again afterward. To change this document, tell me what should change and I'll record your Request Changes decision (this works before the gate opens); that unlocks the file for revision and a fresh review. Only a human Request Changes decision resets the review attempt; do not record that rejection on the human's behalf.
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:45:55Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u8-guest-app --reviewer aidlc-architecture-reviewer-agent --iteration 1
+**Error**: Cannot start another review for "functional-design": the one recovery review was already used, and this stage's output document changed again afterward. To change this document, tell me what should change and I'll record your Request Changes decision (this works before the gate opens); that unlocks the file for revision and a fresh review. Only a human Request Changes decision resets the review attempt; do not record that rejection on the human's behalf.
+
+---
+
+## Error Logged
+**Timestamp**: 2026-09-08T18:45:55Z
+**Event**: ERROR_LOGGED
+**Tool**: aidlc-log
+**Command**: aidlc-log review --stage functional-design --unit u9-guest-guide-view --reviewer aidlc-architecture-reviewer-agent --iteration 1
+**Error**: Cannot start another review for "functional-design": the one recovery review was already used, and this stage's output document changed again afterward. To change this document, tell me what should change and I'll record your Request Changes decision (this works before the gate opens); that unlocks the file for revision and a fresh review. Only a human Request Changes decision resets the review attempt; do not record that rejection on the human's behalf.
+
+---

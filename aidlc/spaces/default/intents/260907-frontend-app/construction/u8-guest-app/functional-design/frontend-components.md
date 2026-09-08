@@ -1,7 +1,7 @@
 # Frontend Components — `u8-guest-app`
 
-*Re-confirmed 2026-09-08 after the functional-design redo jump, and re-saved
-following that confirmation. Content unchanged.*
+*Revised 2026-09-08 under a human Request Changes decision: the guest-guide
+theming misclassification is corrected. Every change is marked in place.*
 
 The component hierarchy, each component's inputs and state, its interaction flow,
 its validation rules and its integration points.
@@ -50,7 +50,7 @@ The unit's only stateful coordinator.
 | Inputs | The stay token from the URL |
 | State | `surfaceState` (`resolving`, `guide`, `not-yet-published`, `invalid`, `rate-limited`, `failed`); the `GuestStayView`; the resolved `ThemeTokens` |
 | Emits | Nothing upward — it is the root |
-| Integration | `u3-foundation` for the stay read and the brand read. It makes no other request |
+| Integration | `u3-foundation` for the **stay read only**. The brand arrives inside that same payload; nothing else is requested |
 
 **It decides *when* the guide renders; `u9-guest-guide-view` decides *how*.** This
 component owns the state machine and hands `u9` the shape plus whatever tokens
@@ -65,9 +65,20 @@ states.** Those are this unit's screens.
 `AC2.1.1`'s ordering, which is the part that stays this unit's responsibility
 because `ChatWidget` is this unit's component.
 
-**The brand read is deliberately not awaited.** Its result changes accent surfaces
-when it arrives. It currently never arrives — `AC4.1.7` does not exist — which is
-why `u9` must render correctly with no tokens at all.
+**The brand is not a second request.** The stay payload carries `locality:
+{ id, name, tagline, visualStyling }` inline, so this component hands that object
+to `u3-foundation` for parsing rather than fetching anything. Parsing is not
+awaited before identity paints — its result changes accent surfaces when it
+arrives, which is Q1 = A's ordering.
+
+**`u9` must still render correctly with no tokens at all.** `visualStyling` is
+documented as nullable, and `AC2.1.3` requires a name-and-tagline-only brand to
+produce the clean default look. Absent tokens are a supported state, not a
+permanent one.
+
+> **Corrected 2026-09-08.** This previously said the brand read "currently never
+> arrives" because `AC4.1.7` does not exist. `AC4.1.7` is the domain-keyed read the
+> *owner* screens need; the guest surface has had its brand inline all along.
 
 ---
 
@@ -137,12 +148,16 @@ would invite someone to branch on one later.
 **Terminal — no retry action.** The link is not coming back, and a retry would
 suggest otherwise. The only action is to contact the host.
 
-**Ships unbranded.** Whether G-1 renders the locality's branding was left open as
-**OQ2** and decided by ADR-005 in favour of branding — but that cannot take effect
-until `AC4.1.7`, since a `410` carries no payload to resolve a brand from and the
-brand read itself currently requires a session. Neutral is what happens by default
-meanwhile, and it is a low-stakes difference: a guest here is reading an error,
-not browsing content.
+**Ships unbranded, and this is the one guest path where that is genuinely
+forced.** Whether G-1 renders the locality's branding was left open as **OQ2** and
+decided by ADR-005 in favour of branding — but a `410 LINK_INVALID` carries **no
+body at all**, so there is nothing to resolve a brand from. The valid path gets
+its brand inline with the stay payload; this path gets nothing, because the
+response is empty by design.
+
+Branding it would need `AC4.1.7`'s domain-keyed read — the same one the owner
+screens wait on. Neutral is what happens meanwhile, and it is a low-stakes
+difference: a guest here is reading an error, not browsing content.
 
 ---
 
@@ -173,7 +188,7 @@ Every one goes through `u3-foundation`. This unit calls no endpoint directly.
 | Component | Call | Notes |
 |---|---|---|
 | `GuestSurface` | stay read | The only load-bearing request on this surface |
-| `GuestSurface` | brand read | Never completes today — `AC4.1.7` |
+| `GuestSurface` | **none for the brand** | The `locality` object arrives inline with the stay read above; nothing separate is fetched |
 | `ChatWidget` | chat send | `504` for almost every guest — the provider is `null` |
 
 **No authenticated call exists anywhere on this surface**, and none may be added.

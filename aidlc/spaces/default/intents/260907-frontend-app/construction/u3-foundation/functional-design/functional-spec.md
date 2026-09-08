@@ -1,7 +1,7 @@
 # Functional Specification — `u3-foundation`
 
-*Re-confirmed 2026-09-08 after the functional-design redo jump, and re-saved
-following that confirmation. Content unchanged.*
+*Revised 2026-09-08 under a human Request Changes decision: the guest-guide
+theming misclassification is corrected. Every change is marked in place.*
 
 The ordered behaviour: the session lifecycle, the single-flight refresh, the
 replay path Q2 = B introduced, and the error and theme resolution paths.
@@ -175,12 +175,21 @@ guest's central navigational state to the wrong one (BR4.1).
 
 | Step | Actor | Action |
 |---|---|---|
-| 1 | `LocalityBrandResolver` | Read the locality brand for the current domain. |
+| 1a | `LocalityBrandResolver` | **Guest path:** the brand arrives inline on the stay payload as `locality: { id, name, tagline, visualStyling }`. Parse what was handed over — **no request**. |
+| 1b | `LocalityBrandResolver` | **Owner path:** read the locality brand for the current domain. Blocked on `AC4.1.7`, which is what the owner screens wait for. |
 | 2 | `LocalityBrandResolver` | No brand resolves → return the unbranded base token set. Stop. |
 | 3 | `LocalityBrandResolver` | Brand carries only a name and tagline → return base tokens plus the name (`brand-partial`). Stop. |
 | 4 | `LocalityBrandResolver` | Parse `visualStyling` defensively. Anything uninterpretable falls back to its default; nothing throws (BR5.1). |
 | 5 | `LocalityBrandResolver` | Check the parsed accent against the contrast floor. Below it → use the base accent and set `contrastDegraded` (BR5.3). |
 | 6 | `LocalityBrandResolver` | Return a complete `ThemeTokens` (`brand-full`). |
+
+**Step 1 has two sources, and only one of them is blocked.** *Corrected
+2026-09-08:* this workflow previously named only the domain-keyed read, which made
+the guest guide look blocked on `AC4.1.7` when its brand has always arrived inline
+with the stay payload. `AC4.1.7` blocks the **owner** screens — signup, login,
+onboarding — which have no stay context to carry one. `G-1`, the guest
+invalid-link screen, is blocked for a different reason: a `410` carries no body at
+all, which is what BR5.4's note records.
 
 **Every path returns a complete set** (BR5.2). `u2-design-system` receives a
 `TokenSet` with no holes, which is what lets its primitives read tokens without
@@ -266,21 +275,60 @@ Three rows are **not** plainly `OK`, and each is honest rather than convenient:
 
 **Verdict:** READY
 **Reviewer:** aidlc-architecture-reviewer-agent
-**Iteration:** 1
+**Iteration:** 2
 **Date:** 2026-09-08
-**Request Challenge:** review:5c820e8472cbfe547a5694e3846a7cd7
+**Request Challenge:** review:561d78421076943b7f143c5b2d6807e4
 
-This unit was fully reviewed earlier in the stage. A redo jump then reset the
-stage for bookkeeping reasons unrelated to the designs, clearing the receipts.
-This pass re-verified that the recorded verdict still stands.
+A scoped pass over one correction, made under a human Request Changes decision:
+the guest guide's theming had been recorded as blocked on `AC4.1.7`, and it
+never was.
 
 ### Findings
 
 | ID | Severity | Location | Finding | Required action | Status |
 |---|---|---|---|---|---|
-| — | — | — | Nothing invalidates the verdict recorded below. The only changes since it were a disclosed provenance line and, in six units, the finding-status vocabulary remap. | None. | Resolved |
+| R-01 | Minor | (whole unit) | No findings. The correction is factually right and complete. | None. | Resolved |
 
-### What was re-verified
+### What was verified
+
+The reviewer checked the claim rather than accepting it. `GET /v1/stays/:token`
+returns `locality: { id, name, tagline, visualStyling }` inline with the
+`200` payload; `u1-api-contract` types it as `LocalityIdentity` and
+describes it as *"the only place locality data leaves the system today"*; and
+`AC4.1.7`'s own definition blocks `AC1.1.1`, `AC1.2.1`,
+`AC1.2.2`, `AC1.5.6` and `AC1.9.4` - every one an owner-surface
+criterion, none on the Guest surface. **The original blocked claim was wrong.**
+
+`AC2.1.2` is correctly `OK`. The remaining deferrals - `AC2.3.2`'s
+positive half on `AC4.1.9`, and `AC2.4.5` on `AC4.1.6` - are genuine
+and unaffected. `G-1` stays blocked for its own reason, a `410` carrying
+no body, which BR5.4 and the revised Workflow 4 state consistently. No stale
+pre-fix claim survives outside the review appendices that quote it deliberately
+as the defect.
+
+---
+
+### The review this supersedes, retained in full
+
+#### Review
+
+**Recorded verdict (superseded):** READY
+**Prior reviewer:** aidlc-architecture-reviewer-agent
+**Prior iteration:** 1
+**Date:** 2026-09-08
+**Prior request challenge:** review:5c820e8472cbfe547a5694e3846a7cd7
+
+This unit was fully reviewed earlier in the stage. A redo jump then reset the
+stage for bookkeeping reasons unrelated to the designs, clearing the receipts.
+This pass re-verified that the recorded verdict still stands.
+
+##### Findings
+
+| ID | Severity | Location | Finding | Required action | Status |
+|---|---|---|---|---|---|
+| R-01 | Minor | (whole unit) | Nothing invalidates the verdict recorded below. The only changes since it were a disclosed provenance line and, in six units, the finding-status vocabulary remap. | None. | Resolved |
+
+##### What was re-verified
 
 Every finding recorded as **Resolved** below has its fix genuinely present in
 the artifacts, and every finding recorded as **Accepted risk** genuinely remains
@@ -292,7 +340,7 @@ touch-target tokens.
 
 ---
 
-### The review this supersedes, retained in full
+##### The review this supersedes, retained in full
 
 #### Review
 

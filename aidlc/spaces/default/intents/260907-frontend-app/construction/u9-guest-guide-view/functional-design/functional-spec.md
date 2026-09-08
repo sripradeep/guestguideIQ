@@ -1,7 +1,7 @@
 # Functional Specification — `u9-guest-guide-view`
 
-*Re-confirmed 2026-09-08 after the functional-design redo jump, and re-saved
-following that confirmation. Content unchanged.*
+*Revised 2026-09-08 under a human Request Changes decision: the guest-guide
+theming misclassification is corrected. Every change is marked in place.*
 
 The shared rendering of a `GuestGuideView`: the identity block, the three tabs and
 their empty states, and the not-yet-published placeholder.
@@ -81,6 +81,13 @@ re-implemented in two.
 **Step 5's containment is `u8`'s Q1 = A control**, and it lives here now because
 this is where the rendering lives. A colour arriving is not a glitch; text moving
 is.
+
+**Tokens normally arrive.** `u8-guest-app` gets the brand inline with the stay
+payload (`locality: { id, name, tagline, visualStyling }`), so step 5 runs on most
+loads rather than being a path that never executes. Rendering with no tokens at
+all remains supported — a `null` `visualStyling`, or a name-and-tagline-only brand
+(AC2.1.3) — but it is the exception. *Corrected 2026-09-08; this unit had
+inherited `u8`'s mistaken claim that `AC4.1.7` blocked guest theming.*
 
 **When `notYetPublished` is true**, steps 3 and 4 are replaced by the
 guest-framed placeholder: the property name, a plain statement that the host is
@@ -196,21 +203,60 @@ verified inline. Checked directly:
 
 **Verdict:** READY
 **Reviewer:** aidlc-architecture-reviewer-agent
-**Iteration:** 1
+**Iteration:** 2
 **Date:** 2026-09-08
-**Request Challenge:** review:36d5e3ad8456cf8ba2b8ee417e6c5974
+**Request Challenge:** review:2f417a20cf77e4601350cf9cc24dee15
 
-This unit was fully reviewed earlier in the stage. A redo jump then reset the
-stage for bookkeeping reasons unrelated to the designs, clearing the receipts.
-This pass re-verified that the recorded verdict still stands.
+A scoped pass over one correction, made under a human Request Changes decision:
+the guest guide's theming had been recorded as blocked on `AC4.1.7`, and it
+never was.
 
 ### Findings
 
 | ID | Severity | Location | Finding | Required action | Status |
 |---|---|---|---|---|---|
-| — | — | — | Nothing invalidates the verdict recorded below. The only changes since it were a disclosed provenance line and, in six units, the finding-status vocabulary remap. | None. | Resolved |
+| R-01 | Minor | (whole unit) | No findings. The correction is factually right and complete. | None. | Resolved |
 
-### What was re-verified
+### What was verified
+
+The reviewer checked the claim rather than accepting it. `GET /v1/stays/:token`
+returns `locality: { id, name, tagline, visualStyling }` inline with the
+`200` payload; `u1-api-contract` types it as `LocalityIdentity` and
+describes it as *"the only place locality data leaves the system today"*; and
+`AC4.1.7`'s own definition blocks `AC1.1.1`, `AC1.2.1`,
+`AC1.2.2`, `AC1.5.6` and `AC1.9.4` - every one an owner-surface
+criterion, none on the Guest surface. **The original blocked claim was wrong.**
+
+`AC2.1.2` is correctly `OK`. The remaining deferrals - `AC2.3.2`'s
+positive half on `AC4.1.9`, and `AC2.4.5` on `AC4.1.6` - are genuine
+and unaffected. `G-1` stays blocked for its own reason, a `410` carrying
+no body, which BR5.4 and the revised Workflow 4 state consistently. No stale
+pre-fix claim survives outside the review appendices that quote it deliberately
+as the defect.
+
+---
+
+### The review this supersedes, retained in full
+
+#### Review
+
+**Recorded verdict (superseded):** READY
+**Prior reviewer:** aidlc-architecture-reviewer-agent
+**Prior iteration:** 1
+**Date:** 2026-09-08
+**Prior request challenge:** review:36d5e3ad8456cf8ba2b8ee417e6c5974
+
+This unit was fully reviewed earlier in the stage. A redo jump then reset the
+stage for bookkeeping reasons unrelated to the designs, clearing the receipts.
+This pass re-verified that the recorded verdict still stands.
+
+##### Findings
+
+| ID | Severity | Location | Finding | Required action | Status |
+|---|---|---|---|---|---|
+| R-01 | Minor | (whole unit) | Nothing invalidates the verdict recorded below. The only changes since it were a disclosed provenance line and, in six units, the finding-status vocabulary remap. | None. | Resolved |
+
+##### What was re-verified
 
 Every finding recorded as **Resolved** below has its fix genuinely present in
 the artifacts, and every finding recorded as **Accepted risk** genuinely remains
@@ -222,7 +268,7 @@ touch-target tokens.
 
 ---
 
-### The review this supersedes, retained in full
+##### The review this supersedes, retained in full
 
 #### Review
 
@@ -237,7 +283,7 @@ touch-target tokens.
 | ID | Severity | Location | Finding | Required action | Status |
 |---|---|---|---|---|---|
 | R-01 | Minor | `inception/units-generation/unit-of-work-dependency.md` > What the topology cannot express | The sentence "Seven of the **eight** units are blocked on external work" was missed in the 2026-09-08 correction pass. The sibling `unit-of-work.md` was correctly updated to "seven of **nine**" with the same 7-blocked / 2-unblocked count. The correction note claims the dependency artifact "was revised" — it was, but not this passage. | Update the count to nine. | Accepted risk |
-| R-02 | Major | `frontend-components.md` > `GuestGuideView` ("`ThemeTokens` is optional and its absence is a supported state... `AC4.1.7` does not exist, so no brand currently resolves"); `functional-spec.md` > Workflow step 5 | **Carried from `u8-guest-app`'s R-01.** This unit inherited the claim that no brand resolves for the guest surface. It is false: `GET /v1/stays/:token` returns `locality: { id, name, tagline, visualStyling }` inline, which is what `u3-foundation` parses into tokens. `AC4.1.7` blocks the *owner* screens, which have no stay context. Tokens will normally be present on the guest path. | Correct the framing: absent tokens remain a supported state (`AC2.1.3`), but they are the exception rather than the permanent condition. | Accepted risk |
+| R-02 | Major | `frontend-components.md` > `GuestGuideView` ("`ThemeTokens` is optional and its absence is a supported state... `AC4.1.7` does not exist, so no brand currently resolves"); `functional-spec.md` > Workflow step 5 | **Carried from `u8-guest-app`'s R-01.** This unit inherited the claim that no brand resolves for the guest surface. It is false: `GET /v1/stays/:token` returns `locality: { id, name, tagline, visualStyling }` inline, which is what `u3-foundation` parses into tokens. `AC4.1.7` blocks the *owner* screens, which have no stay context. Tokens will normally be present on the guest path. | Correct the framing: absent tokens remain a supported state (`AC2.1.3`), but they are the exception rather than the permanent condition. | Resolved |
 
 ##### What the review confirmed
 
