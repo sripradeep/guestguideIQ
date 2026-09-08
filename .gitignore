@@ -84,3 +84,8 @@ aidlc/diagnostics/
 # knowledge base that is meant to travel by git. Apply the same anchoring to any
 # future sibling (e.g. `/guestguideiq-ui/`).
 /guestguideiq-app/
+
+# Nested sibling repo — the separate frontend repository
+# (guestguideiq-frontend). Anchored for the same reason as the backend above:
+# an unanchored pattern would also match a codekb copy of the same name.
+/guestguideiq-frontend/
