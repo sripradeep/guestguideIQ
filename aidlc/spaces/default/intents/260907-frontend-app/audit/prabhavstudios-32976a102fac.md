@@ -19821,3 +19821,253 @@
 **Duration ms**: 286
 
 ---
+
+## Subagent Completed
+**Timestamp**: 2026-09-08T23:38:10Z
+**Event**: SUBAGENT_COMPLETED
+**Agent Type**: 
+**Agent ID**: ae6e032af0b2f8903
+**Message**: continue
+
+---
+
+## Human Turn
+**Timestamp**: 2026-09-08T23:40:49Z
+**Event**: HUMAN_TURN
+**Session**: 37443ca2-00ca-4ba9-8042-61a7c51b818f
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T23:41:45Z
+**Event**: SENSOR_FIRED
+**Fire id**: 34ecbf2d
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/owner/billing/PlanControls.tsx
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T23:41:46Z
+**Event**: SENSOR_PASSED
+**Fire id**: 34ecbf2d
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/owner/billing/PlanControls.tsx
+**Duration ms**: 341
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T23:42:40Z
+**Event**: SENSOR_FIRED
+**Fire id**: e0945e5e
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/owner/billing/LocalityCuration.tsx
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T23:42:40Z
+**Event**: SENSOR_PASSED
+**Fire id**: e0945e5e
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/owner/billing/LocalityCuration.tsx
+**Duration ms**: 399
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-08T23:44:28Z
+**Event**: SENSOR_FIRED
+**Fire id**: 006c73cb
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/owner/billing.test.tsx
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-08T23:44:28Z
+**Event**: SENSOR_PASSED
+**Fire id**: 006c73cb
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/owner/billing.test.tsx
+**Duration ms**: 365
+
+---
+
+## Subagent Completed
+**Timestamp**: 2026-09-08T23:46:29Z
+**Event**: SUBAGENT_COMPLETED
+**Agent Type**: 
+**Agent ID**: ad53d7b5d7a1a224e
+**Message**: continue
+
+---
+
+## Human Turn
+**Timestamp**: 2026-09-08T23:59:27Z
+**Event**: HUMAN_TURN
+**Session**: 37443ca2-00ca-4ba9-8042-61a7c51b818f
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-09T00:00:14Z
+**Event**: SENSOR_FIRED
+**Fire id**: 22e30711
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/guest/ChatWidget.tsx
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-09T00:00:15Z
+**Event**: SENSOR_PASSED
+**Fire id**: 22e30711
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/guest/ChatWidget.tsx
+**Duration ms**: 988
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-09T00:00:34Z
+**Event**: SENSOR_FIRED
+**Fire id**: dd2862d2
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/guest/GuestSurface.tsx
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-09T00:00:34Z
+**Event**: SENSOR_PASSED
+**Fire id**: dd2862d2
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/guest/GuestSurface.tsx
+**Duration ms**: 293
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-09T00:00:52Z
+**Event**: SENSOR_FIRED
+**Fire id**: 2fe99028
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/guest/states.tsx
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-09T00:00:52Z
+**Event**: SENSOR_PASSED
+**Fire id**: 2fe99028
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/guest/states.tsx
+**Duration ms**: 290
+
+---
+
+## Sensor Fired
+**Timestamp**: 2026-09-09T00:02:34Z
+**Event**: SENSOR_FIRED
+**Fire id**: 220616fc
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/guest/guest.test.tsx
+
+---
+
+## Sensor Passed
+**Timestamp**: 2026-09-09T00:02:35Z
+**Event**: SENSOR_PASSED
+**Fire id**: 220616fc
+**Sensor ID**: type-check
+**Stage slug**: functional-design
+**Output path**: guestguideiq-frontend/src/guest/guest.test.tsx
+**Duration ms**: 295
+
+---
+
+## Subagent Completed
+**Timestamp**: 2026-09-09T00:05:01Z
+**Event**: SUBAGENT_COMPLETED
+**Agent Type**: 
+**Agent ID**: ab5f64038acf191e9
+**Message**: build-and-test
+
+---
+
+## Human Turn
+**Timestamp**: 2026-09-09T00:10:57Z
+**Event**: HUMAN_TURN
+**Session**: 37443ca2-00ca-4ba9-8042-61a7c51b818f
+
+---
+
+## Subagent Completed
+**Timestamp**: 2026-09-09T00:11:47Z
+**Event**: SUBAGENT_COMPLETED
+**Agent Type**: 
+**Agent ID**: a124468555bfe639a
+**Message**: build-and-test
+
+---
+
+## Session Start
+**Timestamp**: 2026-09-09T02:26:03Z
+**Event**: SESSION_STARTED
+**Source**: startup
+**Session**: c999f9b2-2b39-4c7e-b03c-9dd30f7b1865
+
+---
+
+## Session End
+**Timestamp**: 2026-09-09T02:26:03Z
+**Event**: SESSION_ENDED
+**Reason**: other
+
+---
+
+## Session Resume
+**Timestamp**: 2026-09-09T02:26:03Z
+**Event**: SESSION_RESUMED
+**Source**: resume
+**Session**: 37443ca2-00ca-4ba9-8042-61a7c51b818f
+
+---
+
+## Human Turn
+**Timestamp**: 2026-09-09T02:27:05Z
+**Event**: HUMAN_TURN
+**Session**: 37443ca2-00ca-4ba9-8042-61a7c51b818f
+
+---
+
+## Human Turn
+**Timestamp**: 2026-09-09T02:28:33Z
+**Event**: HUMAN_TURN
+**Session**: 37443ca2-00ca-4ba9-8042-61a7c51b818f
+
+---
+
+## Subagent Completed
+**Timestamp**: 2026-09-09T02:29:44Z
+**Event**: SUBAGENT_COMPLETED
+**Agent Type**: 
+**Agent ID**: a9c4140e35bb2cad8
+**Message**: carry on with build-and-test and ci-pipeline
+
+---
