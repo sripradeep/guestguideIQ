@@ -1,0 +1,34 @@
+{
+  "stage": "functional-design",
+  "unit": "u2-design-system",
+  "note": "Re-confirmed 2026-09-08 after the functional-design redo jump. Coverage unchanged.",
+  "upstream_ids": [
+    "AC1.9.1",
+    "AC1.9.3",
+    "AC1.9.6",
+    "AC1.9.7",
+    "AC1.14.4",
+    "AC2.3.1",
+    "AC2.3.3",
+    "AC2.3.5"
+  ],
+  "coverage": [
+    { "id": "AC1.9.1", "status": "OK", "target": "BR3.2, and functional-spec.md > DateField > 'Primary input: Typing' — AC owned by u7-guest-links; this unit supplies the date field that is fully operable from the keyboard with no picker opened. The range rule itself (AC1.9.2) is explicitly NOT owned here" },
+    { "id": "AC1.9.3", "status": "OK", "target": "BR3.5, and functional-spec.md > CopyableValue > 'On success' — AC owned by u7-guest-links; this unit supplies the copy control and a confirmation that is both announced and shown, alongside the value rather than in place of it" },
+    { "id": "AC1.9.6", "status": "OK", "target": "BR3.1, and functional-spec.md > CopyableValue > 'Structure' — AC owned by u7-guest-links; enforced here structurally, because the value is always rendered as selectable text and the copy control is only ever an addition" },
+    { "id": "AC1.9.7", "status": "OK", "target": "BR2.4, and functional-spec.md > LiveRegion > 'Politeness' — AC owned by u7-guest-links; enforced here by LiveRegion exposing no assertive mode at all, so an assertive announcement is not reachable" },
+    { "id": "AC1.14.4", "status": "OK", "target": "BR2.5, and functional-spec.md > Button > 'disabled' — AC owned by u6-owner-locality-billing; this unit makes the disabled reason programmatically reachable rather than adjacent visual text. Which controls are disabled, and why, is that unit's rule" },
+    { "id": "AC2.3.1", "status": "OK", "target": "BR3.6, and functional-spec.md > TabBar > 'Keyboard' and 'Selection' — AC owned by u8-guest-app; this unit supplies arrow-key movement between tabs and the invariant that one tab is always selected" },
+    { "id": "AC2.3.3", "status": "OK", "target": "BR3.3, and functional-spec.md > TabBar > 'Empty panel' — AC owned by u8-guest-app; this unit guarantees a panel is never silent. The empty-state wording itself is supplied by the consuming unit" },
+    { "id": "AC2.3.5", "status": "OK", "target": "BR3.7, and functional-spec.md > Responsive behaviour > TabBar row — AC owned by u8-guest-app; the tab strip scrolls horizontally rather than wrapping or truncating, so every tab stays reachable at the narrowest supported width" }
+  ],
+  "reverse": [
+    { "id": "BR1.1", "status": "N/A", "target": "boundary rule with no acceptance criterion — it governs what may enter this unit rather than any behaviour a user observes. Its effect is recorded as the eight components this unit does not own (entities.md > 'What this unit does not own'), each with the domain rule that disqualified it" },
+    { "id": "BR1.2", "status": "N/A", "target": "layering rule over theme tokens. Not user-observable; enforced structurally by this unit's dependency set — it cannot reach a locality or a raw visualStyling blob, because u3-foundation owns the only parse (Contract Design C4)" },
+    { "id": "BR1.3", "status": "N/A", "target": "overridability rule over the token categories. Its user-visible effect belongs to NFR3, which cannot be validated inside this unit because brand colours are set after deploy — see functional-spec.md > 'What this unit cannot validate'. Implemented by DesignToken.localityOverridable in entities.md" },
+    { "id": "BR2.1", "status": "N/A", "target": "the default-accessibility rule underlying every AC in the coverage table above, rather than a criterion of its own. Recorded per primitive in functional-spec.md > 'The accessibility contract, per primitive', where six of the nine primitives have nothing overridable at all" },
+    { "id": "BR2.2", "status": "N/A", "target": "the compensating control agreed at this stage's gate for Q1 = A plus Q2 = B. Not user-observable: its effect is that a deviation appears in a diff, which is what makes it reviewable given NFR2's accessibility check is advisory. Exercised by exactly one named override today — Dialog's Escape-closes, taken by u4-owner-shell's SessionExpiredDialog" },
+    { "id": "BR2.3", "status": "N/A", "target": "traces to NFR1's non-colour-dependent status indicators rather than to any single AC, because it applies to every stateful primitive at once. Implemented by StatusBanner's icon-plus-text composition, Button's variant states, and NavRail's programmatic current-item marking (functional-spec.md)" },
+    { "id": "BR3.4", "status": "N/A", "target": "focus-management rule sourced from accessibility-checklist.md, which states it as a standard obligation rather than as a story criterion. Specified as the Dialog state machine in functional-spec.md; its one overridden branch is asserted downstream in u4-owner-shell's session-expired behaviour (AC1.10.3)" }
+  ]
+}

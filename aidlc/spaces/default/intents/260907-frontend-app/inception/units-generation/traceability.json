@@ -1,0 +1,133 @@
+{
+  "stage": "units-generation",
+  "upstream_ids": [
+    "US1.1",
+    "US1.2",
+    "US1.3",
+    "US1.4",
+    "US1.5",
+    "US1.6",
+    "US1.7",
+    "US1.8",
+    "US1.9",
+    "US1.10",
+    "US1.11",
+    "US1.12",
+    "US1.13",
+    "US1.14",
+    "US1.15",
+    "US2.1",
+    "US2.2",
+    "US2.3",
+    "US2.4",
+    "US2.5",
+    "US4.1"
+  ],
+  "coverage": [
+    {
+      "id": "US1.1",
+      "status": "OK",
+      "target": "u4-owner-shell"
+    },
+    {
+      "id": "US1.2",
+      "status": "OK",
+      "target": "u4-owner-shell"
+    },
+    {
+      "id": "US1.3",
+      "status": "OK",
+      "target": "u4-owner-shell"
+    },
+    {
+      "id": "US1.4",
+      "status": "OK",
+      "target": "u4-owner-shell"
+    },
+    {
+      "id": "US1.5",
+      "status": "OK",
+      "target": "u5-owner-guide"
+    },
+    {
+      "id": "US1.6",
+      "status": "OK",
+      "target": "u5-owner-guide"
+    },
+    {
+      "id": "US1.7",
+      "status": "OK",
+      "target": "u5-owner-guide"
+    },
+    {
+      "id": "US1.8",
+      "status": "OK",
+      "target": "u5-owner-guide"
+    },
+    {
+      "id": "US1.9",
+      "status": "OK",
+      "target": "u7-guest-links"
+    },
+    {
+      "id": "US1.10",
+      "status": "OK",
+      "target": "u4-owner-shell"
+    },
+    {
+      "id": "US1.11",
+      "status": "OK",
+      "target": "u4-owner-shell"
+    },
+    {
+      "id": "US1.12",
+      "status": "OK",
+      "target": "u6-owner-locality-billing"
+    },
+    {
+      "id": "US1.13",
+      "status": "OK",
+      "target": "u6-owner-locality-billing"
+    },
+    {
+      "id": "US1.14",
+      "status": "OK",
+      "target": "u6-owner-locality-billing"
+    },
+    {
+      "id": "US1.15",
+      "status": "OK",
+      "target": "u4-owner-shell"
+    },
+    {
+      "id": "US2.1",
+      "status": "OK",
+      "target": "u8-guest-app"
+    },
+    {
+      "id": "US2.2",
+      "status": "OK",
+      "target": "u8-guest-app"
+    },
+    {
+      "id": "US2.3",
+      "status": "OK",
+      "target": "u8-guest-app"
+    },
+    {
+      "id": "US2.4",
+      "status": "OK",
+      "target": "u8-guest-app"
+    },
+    {
+      "id": "US2.5",
+      "status": "OK",
+      "target": "u8-guest-app"
+    },
+    {
+      "id": "US4.1",
+      "status": "Deferred",
+      "target": "delivery-planning — the backend follow-up is another team's work in another repository, so it maps to no frontend unit; this was confirmed at this stage's gate as an external prerequisite rather than a unit. Delivery Planning is the downstream stage that must sequence around it, and each blocked unit names the specific AC4.1.x it waits on in the blocked-unit table in unit-of-work.md"
+    }
+  ]
+}

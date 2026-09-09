@@ -1,0 +1,30 @@
+{
+  "stage": "functional-design",
+  "unit": "u9-guest-guide-view",
+  "note": "Re-confirmed 2026-09-08 after the functional-design redo jump, and re-saved following that confirmation; coverage unchanged. This unit carries no stories, so every criterion below is owned by u8-guest-app or u5-owner-guide and listed because its rendering happens here. Both consumers declare the same criteria for their own halves, which is correct rather than duplicative: u8 owns reaching a guest with the shape, u5 owns framing and labelling it, and this unit owns drawing it.",
+  "upstream_ids": [
+    "AC1.8.3",
+    "AC1.8.4",
+    "AC2.1.1",
+    "AC2.1.3",
+    "AC2.1.5",
+    "AC2.3.1",
+    "AC2.3.2",
+    "AC2.3.3",
+    "AC2.3.4",
+    "AC2.3.5"
+  ],
+  "coverage": [
+    { "id": "AC1.8.3", "status": "OK", "target": "functional-spec.md > Workflow ('When notYetPublished is true'), and frontend-components.md > NotYetPublishedNotice — AC owned by u5-owner-guide and reached by a guest through u8-guest-app; drawn here. Guest-framed always, which matters more in this unit than anywhere: the component renders on BOTH surfaces, so owner-framed wording here would reach an actual guest" },
+    { "id": "AC1.8.4", "status": "OK", "target": "functional-spec.md > Why this unit exists — AC owned by u5-owner-guide. This unit IS the mechanism: 'exactly as a guest would see it' holds because the owner's preview renders the same component a guest gets, rather than a second implementation that would diverge silently. The frame and its label stay in u5; the 'no preview-mode input' rule in functional-spec.md > What must not be added is what keeps the two renderings identical" },
+    { "id": "AC2.1.1", "status": "OK", "target": "functional-spec.md > Workflow steps 1-2, and frontend-components.md > GuestGuideView ('It owns the paint order') and IdentityBlock — AC owned by u8-guest-app; the identity paints before tab content and before any theming asset. Guaranteed by this component's structure rather than by a convention each consumer follows, which is half the reason the unit exists" },
+    { "id": "AC2.1.3", "status": "OK", "target": "frontend-components.md > GuestGuideView ('ThemeTokens is optional, and its absence is a supported state') — AC owned by u8-guest-app; a minimal or absent brand renders a finished design rather than a placeholder. Corrected 2026-09-08: this row previously called the unthemed rendering the only state a guest sees, on the mistaken belief that AC4.1.7 blocked guest theming. It does not — the stay payload carries locality.visualStyling inline. Absence is the genuine but narrower case of a null visualStyling or a name-and-tagline-only brand" },
+    { "id": "AC2.1.5", "status": "OK", "target": "frontend-components.md > IdentityBlock ('No image input, and none may be added') — AC owned by u8-guest-app; the block has no image input at all, so a broken image, a grey placeholder or a stock photo is unreachable rather than merely avoided. u1-api-contract's BR3.4 keeps the absence true at the type boundary" },
+    { "id": "AC2.3.1", "status": "OK", "target": "functional-spec.md > The tabs, and frontend-components.md > GuideTabs — AC owned by u8-guest-app; three tabs render with Overview selected by default, per u8's Q3 = A. u2-design-system's BR3.6 guarantees one is always selected" },
+    { "id": "AC2.3.2", "status": "OK", "target": "functional-spec.md > The tabs, and frontend-components.md > GuideTabs — AC owned by u8-guest-app; no raw identifier is ever rendered. The criterion's positive half, favourites appearing with name and category, is blocked on AC4.1.9 and recorded as such in u8-guest-app's traceability; the negative half is met here and is the half that matters for correctness" },
+    { "id": "AC2.3.3", "status": "OK", "target": "functional-spec.md > The tabs, and frontend-components.md > GuideTabs — AC owned by u8-guest-app; the empty panels carry the criterion's wording, never blank and never an error, and carry it in the accessibility tree per u2-design-system's BR3.3. This is that rule's load-bearing case: a screen-reader user meeting silence would meet it two times out of three" },
+    { "id": "AC2.3.4", "status": "OK", "target": "functional-spec.md > The tabs, and frontend-components.md > GuideTabs ('Each panel owns its own empty state') — AC owned by u8-guest-app; an absent events list does not break the page, because the page never branches on content presence" },
+    { "id": "AC2.3.5", "status": "OK", "target": "frontend-components.md > GuideTabs and > Accessibility obligations — AC owned by u8-guest-app; the strip scrolls horizontally at narrow widths, which u2-design-system's BR3.7 provides and this unit must not override" }
+  ],
+  "reverse": []
+}

@@ -1,0 +1,31 @@
+{
+  "stage": "functional-design",
+  "unit": "u1-api-contract",
+  "note": "Re-confirmed 2026-09-08 after the functional-design redo jump. Coverage unchanged.",
+  "upstream_ids": [
+    "AC1.7.2",
+    "AC1.12.6",
+    "AC1.14.6",
+    "AC2.1.5",
+    "AC2.3.2",
+    "AC2.4.6"
+  ],
+  "coverage": [
+    { "id": "AC1.7.2", "status": "OK", "target": "BR2.1, BR2.3 — AC owned by u5-owner-guide; its enforcement point is this unit's type, which makes a save without a complete section set impossible to construct" },
+    { "id": "AC1.12.6", "status": "OK", "target": "BR2.3 — AC owned by u6-owner-locality-billing; enforced here by a non-optional body, since a bodyless favourites request returns 500" },
+    { "id": "AC1.14.6", "status": "OK", "target": "BR2.2, BR2.3 — AC owned by u6-owner-locality-billing; enforced here by a closed action enum, since any unrecognised value cancels the subscription" },
+    { "id": "AC2.1.5", "status": "OK", "target": "BR3.4 — AC owned by u8-guest-app; enforced here by the absence of any image field, so no placeholder can be rendered" },
+    { "id": "AC2.3.2", "status": "OK", "target": "BR3.2 — AC owned by u8-guest-app; enforced here by typing guest favourites as opaque identifiers rather than as content" },
+    { "id": "AC2.4.6", "status": "OK", "target": "BR3.3 — AC owned by u8-guest-app; enforced here by marking model-generated reply text untrusted at the boundary" }
+  ],
+  "reverse": [
+    { "id": "BR1.1", "status": "N/A", "target": "provenance rule with no acceptance criterion — this unit carries no user stories. Observable as the absence of shapes for undeployed endpoints, enforced by the compiler in any unit that tries to call one" },
+    { "id": "BR1.1a", "status": "N/A", "target": "source-revision recording rule. No AC, because it governs how the transcription is made rather than any behaviour a user observes. Implemented by the provenance block at the top of entities.md and by step 6 of the Transcribe workflow" },
+    { "id": "BR1.2", "status": "N/A", "target": "policy rule governing how a document/reality divergence is resolved. Not user-observable; enforced by review discipline, recorded in Contract Design C1" },
+    { "id": "BR1.3", "status": "N/A", "target": "authorization rule over the vendored path. Not user-observable; enforced by review discipline, recorded in Contract Design C2" },
+    { "id": "BR1.4", "status": "N/A", "target": "parsing policy for unknown response fields. Observable only as the absence of a failure when the backend adds a field; confirmed by the human at this stage's gate (Q2)" },
+    { "id": "BR1.5", "status": "N/A", "target": "error-union completeness rule. Its user-visible effects are asserted downstream in u8-guest-app (AC2.5.2) and u4-owner-shell (AC1.3.2), where the error states those units render depend on it" },
+    { "id": "BR1.6", "status": "N/A", "target": "non-envelope fallback rule. Its user-visible effect is asserted downstream in u8-guest-app's failed-load state (AC2.5.2)" },
+    { "id": "BR3.1", "status": "N/A", "target": "opacity rule for visualStyling. Structural rather than behavioural — its effect is that no component can read the raw blob, which is enforced by the type's shape and by u3-foundation owning the only parse" }
+  ]
+}

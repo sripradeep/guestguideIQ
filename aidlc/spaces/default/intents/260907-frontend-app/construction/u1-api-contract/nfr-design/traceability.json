@@ -1,0 +1,27 @@
+{
+  "stage": "nfr-design",
+  "unit": "u1-api-contract",
+  "upstream_ids": [
+    "NFR7.1", "NFR7.2", "NFR7.3", "NFR7.4", "NFR7.5", "NFR7.6", "NFR7.7",
+    "NFR7.8", "NFR7.9", "NFR7.10", "NFR7.11", "NFR7.12", "NFR7.13", "NFR7.14"
+  ],
+  "coverage": [
+    { "id": "NFR7.1", "status": "OK", "target": "D1 — pinned source; the pin is what the recorded digest is compared against on each refresh" },
+    { "id": "NFR7.2", "status": "OK", "target": "D1 — checksum committed with the vendored output and written by the refresh, so it moves in the same pull request as the types it corresponds to" },
+    { "id": "NFR7.3", "status": "OK", "target": "D1 — in the interim the recorded digest covers the revision of api-documentation.md the types were transcribed from, since no machine-readable contract exists to digest" },
+    { "id": "NFR7.4", "status": "OK", "target": "D3 — generator runs able to read one document and write one directory; no deploy, publish or registry credentials" },
+    { "id": "NFR7.5", "status": "OK", "target": "D1 and D2 — output reaches the repository only through a pull request; the human diff review is the step that catches what provenance checks cannot" },
+    { "id": "NFR7.6", "status": "OK", "target": "D2 — scheduled regeneration comparison that opens a pull request carrying the shape diff, updated in place rather than reopened" },
+    { "id": "NFR7.7", "status": "OK", "target": "D2 — with no contract source, the job reports and exits successfully rather than failing, so it is not red for a reason nobody can fix before it has ever been useful" },
+    { "id": "NFR7.8", "status": "OK", "target": "D5 — sections non-optional at the type level, so a save omitting it does not compile" },
+    { "id": "NFR7.9", "status": "OK", "target": "D5 — closed enumeration for the subscription action and non-optional request bodies" },
+    { "id": "NFR7.10", "status": "OK", "target": "D5 — visualStyling typed opaque so no component can read it without going through the one parsing module" },
+    { "id": "NFR7.11", "status": "OK", "target": "D5 — chat reply text marked untrusted, so a call reaching a raw-HTML sink is visible in review" },
+    { "id": "NFR7.12", "status": "OK", "target": "D5 — no property image field exists, so no placeholder can be rendered" },
+    { "id": "NFR7.13", "status": "OK", "target": "D6 — token fields typed as opaque credentials rather than strings" },
+    { "id": "NFR7.14", "status": "OK", "target": "D6 — no logging, serialisation or display behaviour defined for any shape in this unit" }
+  ],
+  "reverse": [
+    { "id": "D4", "status": "N/A", "target": "generator and refresh job covered by the team's mandated dependency scanning and SHA-pinned CI actions. Added at review of the previous stage, so it has no NFRx.y row in that stage's requirements file to trace back to; it implements team.md's standing practice rather than a unit requirement" }
+  ]
+}
